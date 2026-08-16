@@ -593,7 +593,9 @@ footer a:hover { color: var(--accent); }
 
 /* ===== 响应式 ===== */
 @media (max-width: 768px) {
-    .nav { flex-direction: column; gap: 10px; padding: 12px; }
+    .nav { flex-direction: column; gap: 8px; padding: 12px; }
+    .nav-links { flex-wrap: wrap; justify-content: center; gap: 8px 18px; }
+    .nav-links a { font-size: 14px; }
     .hero h2 { font-size: 26px; }
     .hero-btns { flex-direction: column; align-items: center; }
     .product-list, .feature-list, .year-grid, .service-grid, .contact-grid { grid-template-columns: 1fr; }
