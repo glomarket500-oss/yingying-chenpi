@@ -606,7 +606,7 @@ footer a:hover { color: var(--accent); }
     .yingying-card { flex-direction: column; align-items: center; text-align: center; }
     .yingying-avatar { margin: 0 auto 15px; }
     .live-btns { flex-direction: column; align-items: center; }
-    .avatar { width: 80px; height: 80px; font-size: 28px; }
+    .avatar { width: 80px; height: 80px; font-size: 28px; margin: 0 auto 25px; }
     .hero-personal h2 { font-size: 22px; }
     .hero-quote { font-size: 16px; }
     .hero-personal { flex-direction: column; text-align: center; }
