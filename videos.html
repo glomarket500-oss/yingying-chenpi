@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>短视频 | 滢滢的陈皮日常 - 溢丰堂</title>
+    <meta name="description" content="滢滢的短视频合集。开皮现场、冲泡演示、陈皮知识、客户见证，真实记录新会陈皮的每一天。">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="nav">
+        <a href="index.html" class="logo"><h1>溢丰堂</h1><span>滢滢家新会陈皮</span></a>
+        <div class="nav-links">
+            <a href="index.html">首页</a>
+            <a href="articles.html">陈皮日记</a>
+            <a href="videos.html" class="active">短视频</a>
+            <a href="live.html">直播间</a>
+            <a href="about.html">认识滢滢</a>
+            <a href="contact.html">买陈皮</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h2>🎬 滢滢的短视频</h2>
+        <p>真实记录 · 没有滤镜 · 现场直拍</p>
+    </header>
+
+    <main class="container">
+        <!-- 短视频分类 -->
+        <div class="video-tabs">
+            <button class="tab-btn active" onclick="filterVideos('all')">全部</button>
+            <button class="tab-btn" onclick="filterVideos('farm')">果园日常</button>
+            <button class="tab-btn" onclick="filterVideos('brew')">冲泡演示</button>
+            <button class="tab-btn" onclick="filterVideos('tips')">避坑知识</button>
+            <button class="tab-btn" onclick="filterVideos('review')">买家秀</button>
+        </div>
+
+        <div class="video-grid" id="videoGrid">
+            <div class="video-card" data-category="farm">
+                <div class="video-thumb">
+                    <img src="images/chenpi-4.jpg" alt="果园日常">
+                    <span class="play-icon">▶</span>
+                    <span class="duration">02:35</span>
+                </div>
+                <h3>凌晨5点的天马村，老果农已经开始摘柑了</h3>
+                <p>你还没起床的时候，他们已经踩着露水进了果园。这就是为什么正宗陈皮越来越贵——人工成本摆在这里。</p>
+                <div class="video-stats">
+                    <span>👁️ 1.2万播放</span>
+                    <span>❤️ 356赞</span>
+                    <span>💬 28评论</span>
+                </div>
+            </div>
+
+            <div class="video-card" data-category="brew">
+                <div class="video-thumb">
+                    <img src="images/chenpi-5.jpg" alt="冲泡演示">
+                    <span class="play-icon">▶</span>
+                    <span class="duration">01:48</span>
+                </div>
+                <h3>十年陈皮怎么泡？滢滢手把手教你</h3>
+                <p>很多人把好陈皮泡坏了。今天滢滢现场泡一泡，你看汤色、闻香气，就知道什么叫真正的老陈皮。</p>
+                <div class="video-stats">
+                    <span>👁️ 3.8万播放</span>
+                    <span>❤️ 892赞</span>
+                    <span>💬 156评论</span>
+                </div>
+            </div>
+
+            <div class="video-card" data-category="tips">
+                <div class="video-thumb">
+                    <img src="images/chenpi-6.jpg" alt="避坑知识">
+                    <span class="play-icon">▶</span>
+                    <span class="duration">03:12</span>
+                </div>
+                <h3>这种"黑皮"千万不要买！滢滢实拍湿仓做旧现场</h3>
+                <p>你去直播间看到的"十年陈皮"可能就是这样做出来的。滢滢带你进仓库，看看什么叫真正的干仓陈化。</p>
+                <div class="video-stats">
+                    <span>👁️ 5.6万播放</span>
+                    <span>❤️ 1.2k赞</span>
+                    <span>💬 312评论</span>
+                </div>
+            </div>
+
+            <div class="video-card" data-category="review">
+                <div class="video-thumb">
+                    <img src="images/chenpi-1.jpg" alt="买家秀">
+                    <span class="play-icon">▶</span>
+                    <span class="duration">00:45</span>
+                </div>
+                <h3>北京大姐收到陈皮后的真实反应</h3>
+                <p>她说在网上买了三次假的，第四次终于找对了人。打开包装那一刻，她说"这个香气对了"。</p>
+                <div class="video-stats">
+                    <span>👁️ 8900播放</span>
+                    <span>❤️ 234赞</span>
+                    <span>💬 45评论</span>
+                </div>
+            </div>
+
+            <div class="video-card" data-category="farm">
+                <div class="video-thumb">
+                    <img src="images/chenpi-3.jpg" alt="果园日常">
+                    <span class="play-icon">▶</span>
+                    <span class="duration">04:18</span>
+                </div>
+                <h3>从摘柑到开皮，一片陈皮要经历多少道工序？</h3>
+                <p>滢滢跟拍了一整天，从凌晨摘柑到下午翻晒。看完你就知道，为什么好陈皮不便宜。</p>
+                <div class="video-stats">
+                    <span>👁️ 2.1万播放</span>
+                    <span>❤️ 567赞</span>
+                    <span>💬 89评论</span>
+                </div>
+            </div>
+
+            <div class="video-card" data-category="tips">
+                <div class="video-thumb">
+                    <img src="images/chenpi-2.jpg" alt="鉴别技巧">
+                    <span class="play-icon">▶</span>
+                    <span class="duration">02:05</span>
+                </div>
+                <h3>天马、梅江、茶坑陈皮，放在一起你分得清吗？</h3>
+                <p>滢滢把三款陈皮摆在一起，从颜色、香气、口感一个个对比。看完你就知道该买哪种了。</p>
+                <div class="video-stats">
+                    <span>👁️ 4.2万播放</span>
+                    <span>❤️ 768赞</span>
+                    <span>💬 134评论</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 上传提示 -->
+        <section class="upload-hint">
+            <h3>🎥 想看更多滢滢的日常？</h3>
+            <p>关注滢滢的短视频账号，每天更新陈皮相关视频：</p>
+            <div class="social-links">
+                <a href="#" class="social-btn">📱 抖音：溢丰堂滢滢</a>
+                <a href="#" class="social-btn">📱 快手：滢滢家新会陈皮</a>
+                <a href="#" class="social-btn">📱 视频号：滢滢在新会</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 溢丰堂·滢滢家新会陈皮 | <a href="articles.html">读日记</a> | <a href="live.html">看直播</a> | <a href="contact.html">买陈皮</a></p>
+    </footer>
+
+    <script>
+        function filterVideos(category) {
+            const cards = document.querySelectorAll('.video-card');
+            const buttons = document.querySelectorAll('.tab-btn');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
