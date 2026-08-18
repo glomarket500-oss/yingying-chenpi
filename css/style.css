@@ -19,7 +19,7 @@ body {
     background: var(--bg);
 }
 
-/* ===== 导航 ===== */
+/* ===== 導航 ===== */
 .nav {
     background: var(--white);
     box-shadow: 0 2px 10px rgba(0,0,0,0.06);
@@ -45,7 +45,7 @@ body {
 }
 .nav-links a:hover, .nav-links a.active { color: var(--primary); }
 
-/* ===== 按钮 ===== */
+/* ===== 按鈕 ===== */
 .btn {
     display: inline-block;
     padding: 12px 28px;
@@ -96,7 +96,7 @@ body {
 .page-header h2 { font-size: 32px; margin-bottom: 10px; }
 .page-header p { font-size: 16px; opacity: 0.8; }
 
-/* ===== 区块通用 ===== */
+/* ===== 區塊通用 ===== */
 section, .container { padding: 60px 5%; max-width: 1100px; margin: 0 auto; }
 section h2, .container h2 {
     text-align: center;
@@ -110,7 +110,7 @@ section h3, .container h3 {
     margin: 40px 0 20px;
 }
 
-/* ===== 产品 ===== */
+/* ===== 產品 ===== */
 .product-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -149,7 +149,7 @@ section h3, .container h3 {
     font-size: 12px;
 }
 
-/* ===== 优势 ===== */
+/* ===== 優勢 ===== */
 .feature-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -224,7 +224,7 @@ tr:hover { background: var(--bg-alt); }
     margin-bottom: 5px;
 }
 
-/* ===== 服务 ===== */
+/* ===== 服務 ===== */
 .service-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -239,7 +239,7 @@ tr:hover { background: var(--bg-alt); }
 .service-card h4 { font-size: 16px; color: var(--primary); margin-bottom: 10px; }
 .service-card p { font-size: 14px; color: var(--text-light); }
 
-/* ===== 表单 ===== */
+/* ===== 表單 ===== */
 form { max-width: 600px; margin: 0 auto; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
 input, select, textarea {
@@ -254,7 +254,7 @@ input, select, textarea {
 input:focus, select:focus, textarea:focus { border-color: var(--primary); }
 .note { text-align: center; color: var(--text-light); font-size: 13px; margin-top: 15px; }
 
-/* ===== 联系方式 ===== */
+/* ===== 聯繫方式 ===== */
 .contact-info { text-align: center; }
 .contact-grid {
     display: grid;
@@ -276,7 +276,7 @@ input:focus, select:focus, textarea:focus { border-color: var(--primary); }
 ul { margin-left: 25px; }
 ul li { padding: 8px 0; }
 
-/* ===== 页脚 ===== */
+/* ===== 頁腳 ===== */
 footer {
     background: var(--primary-dark);
     color: rgba(255,255,255,0.8);
@@ -287,7 +287,7 @@ footer {
 footer a { color: rgba(255,255,255,0.8); text-decoration: none; margin: 0 8px; }
 footer a:hover { color: var(--accent); }
 
-/* ===== 每日陈皮故事 ===== */
+/* ===== 每日陳皮故事 ===== */
 .daily-article {
     background: linear-gradient(135deg, #fff9f0 0%, #fdf5e6 100%);
 }
@@ -349,7 +349,7 @@ footer a:hover { color: var(--accent); }
 }
 .read-more:hover { text-decoration: underline; }
 
-/* ===== 文章列表页 ===== */
+/* ===== 文章列表頁 ===== */
 .article-list {
     max-width: 900px;
     margin: 0 auto;
@@ -373,7 +373,7 @@ footer a:hover { color: var(--accent); }
 .article-item p { color: var(--text-light); font-size: 14px; line-height: 1.7; }
 .article-item .read-more { font-size: 14px; }
 
-/* ===== 文章详情页 ===== */
+/* ===== 文章詳情頁 ===== */
 .article-detail {
     max-width: 750px;
     margin: 0 auto;
@@ -424,7 +424,7 @@ footer a:hover { color: var(--accent); }
 }
 .article-nav a:hover { text-decoration: underline; }
 
-/* ===== 滢滢个人IP首屏 ===== */
+/* ===== 瀅瀅個人IP首屏 ===== */
 .hero-personal {
     background: linear-gradient(135deg, #fdf6e9 0%, #f5e6cc 50%, #ede0d0 100%);
     padding: 60px 5% 80px;
@@ -479,7 +479,7 @@ footer a:hover { color: var(--accent); }
     margin-bottom: 30px;
 }
 
-/* ===== 今日更新标签 ===== */
+/* ===== 今日更新標籤 ===== */
 .section-label {
     text-align: center;
     font-size: 14px;
@@ -503,7 +503,7 @@ footer a:hover { color: var(--accent); }
     50% { opacity: 0.4; }
 }
 
-/* ===== 滢滢想对你说 ===== */
+/* ===== 瀅瀅想對你説 ===== */
 .yingying-says {
     background: linear-gradient(135deg, #fff9f0 0%, #fdf5e6 100%);
     padding: 60px 5%;
@@ -543,7 +543,7 @@ footer a:hover { color: var(--accent); }
     margin-bottom: 12px;
 }
 
-/* ===== 文章卡片增强 ===== */
+/* ===== 文章卡片增強 ===== */
 .article-featured {
     border-left: 4px solid var(--primary);
 }
@@ -552,7 +552,7 @@ footer a:hover { color: var(--accent); }
     text-align: center;
 }
 
-/* ===== 直播区 ===== */
+/* ===== 直播區 ===== */
 .live-section {
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     color: var(--white);
@@ -591,7 +591,7 @@ footer a:hover { color: var(--accent); }
     color: var(--primary);
 }
 
-/* ===== 响应式 ===== */
+/* ===== 響應式 ===== */
 @media (max-width: 768px) {
     .nav { flex-direction: column; gap: 8px; padding: 12px; }
     .nav-links { flex-wrap: wrap; justify-content: center; gap: 8px 18px; }
@@ -613,7 +613,7 @@ footer a:hover { color: var(--accent); }
     .hero-image { flex: 1; width: 100%; }
 }
 
-/* ===== 短视频页面 ===== */
+/* ===== 短視頻頁面 ===== */
 .video-tabs {
     display: flex;
     gap: 10px;
@@ -730,7 +730,7 @@ footer a:hover { color: var(--accent); }
     color: var(--primary);
 }
 
-/* ===== 直播间页面 ===== */
+/* ===== 直播間頁面 ===== */
 .live-status-bar {
     background: #1a1a2e;
     padding: 12px 5%;
@@ -790,7 +790,7 @@ footer a:hover { color: var(--accent); }
     font-size: 12px;
 }
 
-/* 粉丝留言墙 */
+/* 粉絲留言牆 */
 .fan-wall {
     max-width: 800px;
     margin: 0 auto 50px;
@@ -849,7 +849,7 @@ footer a:hover { color: var(--accent); }
     color: #999;
 }
 
-/* 粉丝群 */
+/* 粉絲羣 */
 .fan-group {
     max-width: 700px;
     margin: 0 auto;
@@ -890,7 +890,7 @@ footer a:hover { color: var(--accent); }
     color: var(--primary);
 }
 
-/* 响应式补充 */
+/* 響應式補充 */
 @media (max-width: 768px) {
     .video-grid { grid-template-columns: 1fr; }
     .group-benefits { grid-template-columns: 1fr; }
