@@ -954,3 +954,8 @@ footer a:hover { color: var(--accent); }
 .faq-item { padding: 20px 0; border-bottom: 1px solid var(--border); }
 .faq-item h5 { color: var(--text); font-size: 17px; margin-bottom: 10px; }
 .faq-item p { color: #666; font-size: 15px; }
+
+/* ===== 文章列表頁：NEW 標籤 + 文章數量 ===== */
+.new-badge { display: inline-block; background: #e74c3c; color: var(--white); font-size: 12px; padding: 3px 10px; border-radius: 12px; margin-left: 8px; vertical-align: middle; font-weight: 700; }
+.article-count { text-align: center; margin-top: 15px; font-size: 16px; color: #888; }
+.article-count span { color: var(--accent); font-weight: 700; font-size: 24px; display: inline-block; margin: 0 5px; }
