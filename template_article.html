@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO -->
+    <title>{title} | 溢豐堂</title>
+    <meta name="description" content="{description}">
+    <meta name="keywords" content="{keywords}">
+    <meta name="author" content="瀅瀅">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    
+    <!-- GEO -->
+    <meta name="geo.position" content="22.5317;113.0286">
+    <meta name="geo.placename" content="新會, 江門, 廣東">
+    <meta name="geo.region" content="CN-GD">
+    <meta name="ICBM" content="22.5317, 113.0286">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="{url}">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="{title} | 溢豐堂">
+    <meta property="og:description" content="{description}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{url}">
+    <meta property="og:image" content="https://yingying-chenpi.vercel.app/images/chenpi-hero.jpg">
+    <meta property="og:locale" content="zh_HK">
+    <meta property="article:published_time" content="{iso_date}">
+    <meta property="article:modified_time" content="{iso_date}">
+    <meta property="article:author" content="瀅瀅">
+    <meta property="article:section" content="陳皮日記">
+    <meta property="article:tag" content="{tags}">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{title}">
+    <meta name="twitter:description" content="{description}">
+    <meta name="twitter:image" content="https://yingying-chenpi.vercel.app/images/chenpi-hero.jpg">
+    
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {{
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "{title}",
+        "description": "{description}",
+        "author": {{
+            "@type": "Person",
+            "name": "瀅瀅",
+            "jobTitle": "新會陳皮傳承人",
+            "url": "https://yingying-chenpi.vercel.app/about.html"
+        }},
+        "publisher": {{
+            "@type": "Organization",
+            "name": "溢豐堂",
+            "logo": {{
+                "@type": "ImageObject",
+                "url": "https://yingying-chenpi.vercel.app/images/logo.png"
+            }}
+        }},
+        "datePublished": "{iso_date}",
+        "dateModified": "{iso_date}",
+        "mainEntityOfPage": {{
+            "@type": "WebPage",
+            "@id": "{url}"
+        }},
+        "image": {{
+            "@type": "ImageObject",
+            "url": "https://yingying-chenpi.vercel.app/images/chenpi-hero.jpg",
+            "width": 1200,
+            "height": 630
+        }},
+        "articleSection": "陳皮日記",
+        "keywords": "{keywords}"
+    }}
+    </script>
+    
+    <!-- Person Schema (Author) -->
+    <script type="application/ld+json">
+    {{
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "瀅瀅",
+        "alternateName": "溢豐堂瀅瀅",
+        "jobTitle": "新會陳皮傳承人",
+        "description": "在新會賣陳皮，每天寫一篇陳皮日記，講真話、說故事、幫你避坑。",
+        "url": "https://yingying-chenpi.vercel.app/about.html",
+        "sameAs": [
+            "https://www.xiaohongshu.com/user/yingying_chenpi"
+        ],
+        "worksFor": {{
+            "@type": "Organization",
+            "name": "溢豐堂",
+            "url": "https://yingying-chenpi.vercel.app"
+        }},
+        "knowsAbout": ["新會陳皮", "陳皮鑑別", "陳皮養生", "茶枝柑"]
+    }}
+    </script>
+    
+    <!-- LocalBusiness Schema -->
+    <script type="application/ld+json">
+    {{
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "溢豐堂 - 瀅瀅家新會陳皮",
+        "description": "正宗新會天馬村陳皮，手工開皮、自然生曬、乾倉陳化。",
+        "url": "https://yingying-chenpi.vercel.app",
+        "telephone": "+86-134-XXXX-XXXX",
+        "address": {{
+            "@type": "PostalAddress",
+            "addressLocality": "新會",
+            "addressRegion": "廣東",
+            "addressCountry": "CN"
+        }},
+        "geo": {{
+            "@type": "GeoCoordinates",
+            "latitude": 22.5317,
+            "longitude": 113.0286
+        }},
+        "image": "https://yingying-chenpi.vercel.app/images/shop.jpg",
+        "priceRange": "$$"
+    }}
+    </script>
+    
+    <!-- BreadcrumbList -->
+    <script type="application/ld+json">
+    {{
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "首頁",
+                "item": "https://yingying-chenpi.vercel.app/index.html"
+            }},
+            {{
+                "@type": "ListItem",
+                "position": 2,
+                "name": "陳皮日記",
+                "item": "https://yingying-chenpi.vercel.app/articles.html"
+            }},
+            {{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "{title}"
+            }}
+        ]
+    }}
+    </script>
+    
+    <style>
+        * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+        body {{ font-family: 'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif; color: #333; background: #faf8f3; line-height: 1.8; }}
+        a {{ text-decoration: none; color: inherit; }}
+        
+        /* 导航 */
+        .nav {{ display: flex; justify-content: space-between; align-items: center; padding: 16px 5vw; background: #fff; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 100; }}
+        .nav-logo {{ font-size: 1.2rem; font-weight: 700; color: #8b4513; }}
+        .nav-logo span {{ font-weight: 400; font-size: 0.75rem; color: #999; display: block; }}
+        .nav-links {{ display: flex; gap: 24px; }}
+        .nav-links a {{ font-size: 0.9rem; color: #666; transition: color 0.3s; }}
+        .nav-links a:hover, .nav-links a.active {{ color: #8b4513; }}
+        
+        /* 文章容器 */
+        .article-wrap {{ max-width: 720px; margin: 0 auto; padding: 40px 5vw 60px; }}
+        
+        /* 面包屑 */
+        .breadcrumb {{ font-size: 0.82rem; color: #999; margin-bottom: 24px; }}
+        .breadcrumb a {{ color: #8b4513; }}
+        .breadcrumb a:hover {{ text-decoration: underline; }}
+        
+        /* 文章头部 */
+        .article-header {{ margin-bottom: 40px; padding-bottom: 24px; border-bottom: 2px solid #f0e6d8; }}
+        .article-header h1 {{ font-size: 1.6rem; font-weight: 700; color: #2c2c2c; margin-bottom: 16px; line-height: 1.4; }}
+        .article-meta {{ display: flex; gap: 12px; font-size: 0.85rem; color: #888; margin-bottom: 16px; flex-wrap: wrap; }}
+        .article-meta span {{ background: #f5f0eb; padding: 4px 12px; border-radius: 12px; }}
+        .article-tags {{ display: flex; gap: 8px; flex-wrap: wrap; }}
+        .article-tags a {{ font-size: 0.82rem; color: #8b4513; background: #f5f0eb; padding: 4px 12px; border-radius: 12px; transition: all 0.3s; }}
+        .article-tags a:hover {{ background: #8b4513; color: #fff; }}
+        
+        /* 热点提示 */
+        .hotspot-box {{ background: linear-gradient(135deg, #fff8f0 0%, #fff0e0 100%); border-left: 4px solid #e74c3c; padding: 16px 20px; margin: 24px 0; border-radius: 0 8px 8px 0; }}
+        .hotspot-box .label {{ font-size: 0.75rem; color: #e74c3c; font-weight: 600; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }}
+        .hotspot-box .label::before {{ content: "🔥"; }}
+        .hotspot-box p {{ font-size: 0.92rem; color: #666; margin: 0; }}
+        .hotspot-box a {{ color: #8b4513; text-decoration: underline; }}
+        
+        /* 场景 */
+        .scene {{ margin-bottom: 32px; }}
+        .scene h2 {{ font-size: 1.2rem; font-weight: 600; color: #2c2c2c; margin: 32px 0 16px; padding-left: 12px; border-left: 3px solid #8b4513; }}
+        .scene h3 {{ font-size: 1.05rem; font-weight: 600; color: #444; margin: 24px 0 12px; }}
+        .scene p {{ margin-bottom: 14px; font-size: 0.96rem; color: #444; text-align: justify; }}
+        
+        /* 对话 */
+        .dialogue {{ background: #fff; border-left: 3px solid #8b4513; padding: 16px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }}
+        .dialogue .who {{ font-weight: 600; color: #8b4513; font-size: 0.85rem; margin-bottom: 6px; }}
+        .dialogue .who::before {{ content: "💬 "; }}
+        .dialogue p {{ font-size: 0.94rem; margin: 0; color: #555; }}
+        
+        /* 知识卡片 */
+        .tip-box {{ background: linear-gradient(135deg, #f8f5f0 0%, #f0ebe3 100%); padding: 20px; margin: 24px 0; border-radius: 8px; border: 1px solid #e0d5c5; }}
+        .tip-box .label {{ font-size: 0.78rem; color: #8b4513; font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }}
+        .tip-box .label::before {{ content: "💡"; }}
+        .tip-box p {{ font-size: 0.94rem; margin: 0; color: #555; }}
+        .tip-box ul {{ margin: 8px 0 0 20px; padding: 0; }}
+        .tip-box li {{ font-size: 0.92rem; color: #555; margin-bottom: 6px; }}
+        
+        /* 高亮框 */
+        .highlight-box {{ background: #fff; border: 1px solid #e0d5c5; padding: 20px; margin: 24px 0; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }}
+        .highlight-box .title {{ font-size: 1rem; font-weight: 600; color: #8b4513; margin-bottom: 12px; }}
+        .highlight-box p {{ font-size: 0.94rem; color: #555; margin: 0; }}
+        .highlight-box ul {{ margin: 10px 0 0 20px; padding: 0; }}
+        .highlight-box li {{ font-size: 0.92rem; color: #555; margin-bottom: 8px; }}
+        
+        /* 食谱/配方 */
+        .recipe-box {{ background: linear-gradient(135deg, #fff 0%, #faf8f3 100%); border: 2px dashed #d4c4a8; padding: 24px; margin: 28px 0; border-radius: 12px; }}
+        .recipe-box .title {{ font-size: 1.1rem; font-weight: 600; color: #8b4513; margin-bottom: 16px; text-align: center; }}
+        .recipe-box .title::before {{ content: "🍵 "; }}
+        .recipe-box ul {{ margin: 0; padding: 0; list-style: none; }}
+        .recipe-box li {{ font-size: 0.92rem; color: #555; padding: 6px 0; border-bottom: 1px dotted #e0d5c5; }}
+        .recipe-box li:last-child {{ border-bottom: none; }}
+        .recipe-box .note {{ font-size: 0.85rem; color: #888; margin-top: 12px; font-style: italic; text-align: center; }}
+        
+        /* CTA */
+        .cta-box {{ background: linear-gradient(135deg, #8b4513 0%, #6b3410 100%); color: #fff; padding: 32px; border-radius: 12px; text-align: center; margin: 40px 0; }}
+        .cta-box h3 {{ font-size: 1.2rem; margin-bottom: 12px; }}
+        .cta-box p {{ font-size: 0.92rem; margin-bottom: 20px; opacity: 0.9; }}
+        .cta-box a {{ display: inline-block; padding: 14px 32px; background: #fff; color: #8b4513; border-radius: 6px; font-weight: 600; transition: all 0.3s; }}
+        .cta-box a:hover {{ transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }}
+        
+        /* 相关文章 */
+        .related {{ margin-top: 48px; padding-top: 32px; border-top: 2px solid #f0e6d8; }}
+        .related h3 {{ font-size: 1.1rem; font-weight: 600; color: #2c2c2c; margin-bottom: 20px; }}
+        .related-item {{ display: flex; gap: 16px; margin-bottom: 16px; padding: 12px; background: #fff; border-radius: 8px; transition: all 0.3s; }}
+        .related-item:hover {{ box-shadow: 0 2px 12px rgba(0,0,0,0.06); }}
+        .related-item .thumb {{ width: 80px; height: 60px; background: #f0e6d8; border-radius: 6px; flex-shrink: 0; }}
+        .related-item .body {{ flex: 1; }}
+        .related-item h4 {{ font-size: 0.95rem; font-weight: 600; color: #333; margin-bottom: 4px; }}
+        .related-item p {{ font-size: 0.82rem; color: #888; }}
+        
+        /* Footer */
+        footer {{ text-align: center; padding: 32px 5vw; font-size: 0.85rem; color: #999; border-top: 1px solid #eee; background: #fff; }}
+        footer a {{ color: #8b4513; }}
+        footer .social {{ margin-top: 12px; }}
+        footer .social a {{ margin: 0 8px; font-size: 0.9rem; }}
+        
+        /* 响应式 */
+        @media (max-width: 480px) {{
+            .nav {{ flex-direction: column; padding: 12px 5vw; }}
+            .nav-links {{ justify-content: center; margin-top: 8px; gap: 16px; }}
+            .article-header h1 {{ font-size: 1.3rem; }}
+            .article-wrap {{ padding: 24px 4vw 40px; }}
+        }}
+    </style>
+</head>
+<body>
+
+    <!-- 导航 -->
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">
+            溢豐堂
+            <span>瀅瀅家新會陳皮</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">首頁</a>
+            <a href="articles.html" class="active">陳皮日記</a>
+            <a href="videos.html">短視頻</a>
+            <a href="live.html">直播間</a>
+            <a href="about.html">認識瀅瀅</a>
+            <a href="contact.html">買陳皮</a>
+        </div>
+    </nav>
+
+    <!-- 文章主體 -->
+    <div class="article-wrap">
+        
+        <!-- 面包屑 -->
+        <div class="breadcrumb">
+            <a href="index.html">首頁</a>
+            <span> · </span>
+            <a href="articles.html">陳皮日記</a>
+            <span> · </span>
+            <span>{title}</span>
+        </div>
+        
+        <!-- 文章头部 -->
+        <header class="article-header">
+            <h1>{title}</h1>
+            <div class="article-meta">
+                <span>📅 {display_date}</span>
+                <span>👤 瀅瀅</span>
+                <span>📍 新會天馬村</span>
+                <span>🕐 閱讀約8分鐘</span>
+            </div>
+            <div class="article-tags">
+                {tags_html}
+            </div>
+        </header>
+        
+        <!-- 热点关联 -->
+        {hotspot_section}
+        
+        <!-- 文章正文 -->
+        <div class="article-content">
+            {body_html}
+        </div>
+        
+        <!-- CTA -->
+        <div class="cta-box">
+            <h3>想買正宗新會陳皮？</h3>
+            <p>瀅瀅家天馬村果園直發，手工開皮、自然生曬、乾倉陳化。<br>不滿意七天無理由退，我敢這麼說，是因為我對自己的陳皮有信心。</p>
+            <a href="contact.html">📱 加瀅瀅微信，了解詳情</a>
+        </div>
+        
+        <!-- 相關文章 -->
+        <div class="related">
+            <h3>📖 你可能還想看</h3>
+            <a href="articles.html" style="color: #8b4513;">查看全部陳皮故事 →</a>
+        </div>
+        
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 溢豐堂 · 瀅瀅 · 新會天馬村 · <a href="contact.html">聯繫我們</a></p>
+        <div class="social">
+            <a href="#">📕 小紅書</a>
+            <a href="#">📱 微信</a>
+            <a href="#">🎵 抖音</a>
+        </div>
+    </footer>
+
+</body>
+</html>
