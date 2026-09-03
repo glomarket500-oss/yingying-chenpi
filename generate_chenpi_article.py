@@ -341,22 +341,24 @@ def generate_full_html(title, body_html, tags, date_str, time_str):
   .breadcrumb {{ font-size: 0.82rem; color: #999; margin-bottom: 24px; }}
   .breadcrumb a {{ color: #8b4513; }}
   .article-header {{ margin-bottom: 40px; padding-bottom: 24px; border-bottom: 2px solid #f0e6d8; }}
-  .article-header h1 {{ font-size: 1.6rem; font-weight: 700; color: #2c2c2c; margin-bottom: 16px; line-height: 1.4; }}
+  .article-header h1 {{ font-size: 2rem; font-weight: 700; color: #2c2c2c; margin-bottom: 20px; line-height: 1.3; letter-spacing: -0.02em; }}
   .article-meta {{ display: flex; gap: 12px; font-size: 0.85rem; color: #888; margin-bottom: 16px; flex-wrap: wrap; }}
   .article-meta span {{ background: #f5f0eb; padding: 4px 12px; border-radius: 12px; }}
   .article-tags {{ display: flex; gap: 8px; flex-wrap: wrap; }}
   .article-tags a {{ font-size: 0.82rem; color: #8b4513; background: #f5f0eb; padding: 4px 12px; border-radius: 12px; }}
-  .hotspot-box {{ background: linear-gradient(135deg, #fff8f0 0%, #fff0e0 100%); border-left: 4px solid #e74c3c; padding: 16px 20px; margin: 24px 0; border-radius: 0 8px 8px 0; }}
-  .hotspot-box .label {{ font-size: 0.75rem; color: #e74c3c; font-weight: 600; margin-bottom: 6px; }}
-  .hotspot-box .label::before {{ content: "🔥 "; }}
-  .hotspot-box p {{ font-size: 0.92rem; color: #666; margin: 0; }}
-  .scene {{ margin-bottom: 32px; }}
-  .scene h2 {{ font-size: 1.2rem; font-weight: 600; color: #2c2c2c; margin: 32px 0 16px; padding-left: 12px; border-left: 3px solid #8b4513; }}
-  .scene h3 {{ font-size: 1.05rem; font-weight: 600; color: #444; margin: 24px 0 12px; }}
-  .scene p {{ margin-bottom: 14px; font-size: 0.96rem; color: #444; text-align: justify; }}
-  .dialogue {{ background: #fff; border-left: 3px solid #8b4513; padding: 16px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }}
-  .dialogue .who {{ font-weight: 600; color: #8b4513; font-size: 0.85rem; margin-bottom: 6px; }}
-  .dialogue .who::before {{ content: "💬 "; }}
+  .article-content {{ font-size: 1.05rem; line-height: 2; color: #333; }}
+  .article-content p {{ margin-bottom: 1.5em; text-indent: 0; }}
+  .article-content > p:first-of-type {{ font-size: 1.1rem; line-height: 1.9; }}
+  .article-content > p:first-of-type::first-letter {{ font-size: 3em; float: left; line-height: 1; margin-right: 12px; margin-top: -6px; color: #8b4513; font-weight: 700; }}
+  .article-content h2 {{ font-size: 1.5rem; font-weight: 600; color: #8b4513; margin: 48px 0 20px; padding-bottom: 12px; border-bottom: 2px solid #f0e6d8; }}
+  .article-content h3 {{ font-size: 1.15rem; font-weight: 600; color: #6b3410; margin: 32px 0 14px; }}
+  .article-content blockquote {{ background: #f9f5ef; border-left: 4px solid #8b4513; padding: 20px 24px; margin: 24px 0; border-radius: 0 10px 10px 0; font-style: italic; color: #555; }}
+  .article-content blockquote p {{ margin-bottom: 0; }}
+  .article-content strong {{ color: #8b4513; font-weight: 600; }}
+  .article-content hr {{ border: 0; height: 1px; background: linear-gradient(to right, transparent, #d4c4a8, transparent); margin: 48px auto; max-width: 40%; position: relative; }}
+  .article-content hr::after {{ content: "◆"; display: block; text-align: center; color: #c9a96e; font-size: 14px; margin-top: -8px; background: #faf8f3; width: 30px; margin-left: auto; margin-right: auto; }}
+  .dialogue {{ background: #fff; border-left: 3px solid #c9a96e; padding: 16px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; box-shadow: 0 1px 6px rgba(0,0,0,0.04); }}
+  .dialogue .who {{ font-weight: 600; color: #8b4513; font-size: 0.85rem; margin-bottom: 4px; }}
   .dialogue p {{ font-size: 0.94rem; margin: 0; color: #555; }}
   .recipe-box {{ background: linear-gradient(135deg, #fff 0%, #faf8f3 100%); border: 2px dashed #d4c4a8; padding: 24px; margin: 28px 0; border-radius: 12px; }}
   .recipe-box .title {{ font-size: 1.1rem; font-weight: 600; color: #8b4513; margin-bottom: 16px; text-align: center; }}
