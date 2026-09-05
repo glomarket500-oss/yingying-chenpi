@@ -421,7 +421,7 @@ def generate_full_html(title, body_html, tags, date_str, time_str, faqs, image_u
     abstract = abstract_match.group(1) if abstract_match else title
     abstract_clean = re.sub(r'<[^>]+>', '', abstract)[:150]
 
-    tags_html = ''.join(f'<a href="#">{escape_html(t)}</a>' for t in tags_list)
+    tags_html = ''.join(f'<a href="#">{escape_html(t).strip(chr(34)).strip(chr(39))}</a>' for t in tags_list)
     keywords_str = ','.join(tags_list)
 
     faq_schema = build_faq_schema(faqs)
