@@ -409,12 +409,12 @@ footer a:hover { color: var(--accent); }
     border-bottom: 1px solid var(--border);
 }
 .article-content {
-    font-size: 17px;
-    line-height: 2;
+    font-size: 15px;
+    line-height: 1.9;
     color: var(--text);
 }
 .article-content p {
-    margin-bottom: 22px;
+    margin-bottom: 16px;
     text-indent: 0;
 }
 /* 场景分隔线 */
@@ -460,11 +460,11 @@ footer a:hover { color: var(--accent); }
     text-indent: 0;
 }
 .article-content > p:first-of-type::first-letter {
-    font-size: 2.8em;
+    font-size: 1.5em;
     float: left;
     line-height: 1;
-    margin-right: 10px;
-    margin-top: -4px;
+    margin-right: 8px;
+    margin-top: 2px;
     color: var(--primary);
     font-weight: 700;
 }
