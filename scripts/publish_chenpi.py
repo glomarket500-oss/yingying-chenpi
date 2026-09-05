@@ -97,42 +97,42 @@ def generate_article_with_hotspot(hotspot):
     keyword = hot_keywords[0] if hot_keywords else '养生'
 
     if '台风' in keyword or '暴雨' in keyword:
-        title = f"{keyword}天，客人問瀅瀅姐：『濕氣重飲乜好？』"
-        story = f"""清晨六點，天還未完全亮。瀅瀅姐被手機震醒，阿爸發來語音：「{keyword}來咗，快啲去倉庫睇睇啲陳皮收好未！」
+        title = f"{keyword}天，客人問滢滢姐：『濕氣重飲乜好？』"
+        story = f"""清晨六點，天還未完全亮。滢滢姐被手機震醒，阿爸發來語音：「{keyword}來咗，快啲去倉庫睇睇啲陳皮收好未！」
 
-瀅瀅姐披住件薄外套就趕去果園。風已經開始大，路邊嘅樹搖搖擺擺。佢心裏面擔心嘅唔單止係倉庫，仲有舊年嗰批十五年梅江——如果濕氣入侵，幾十年嘅心血就毀咗。
+滢滢姐披住件薄外套就趕去果園。風已經開始大，路邊嘅樹搖搖擺擺。佢心裏面擔心嘅唔單止係倉庫，仲有舊年嗰批十五年梅江——如果濕氣入侵，幾十年嘅心血就毀咗。
 
 正當佢同阿爸搬緊陳皮入乾倉，手機又震。係佛山嘅陳姐：
 
-「瀅瀅姐，{keyword}天濕氣重，我成個人冇精神、舌苔白、胃口差，飲乜好？」
+「滢滢姐，{keyword}天濕氣重，我成個人冇精神、舌苔白、胃口差，飲乜好？」
 
-瀅瀅姐望住窗外傾盆大雨，忽然想起阿婆以前講過嘅一句話。佢停低手，擦擦額頭嘅汗，慢慢打字回覆：
+滢滢姐望住窗外傾盆大雨，忽然想起阿婆以前講過嘅一句話。佢停低手，擦擦額頭嘅汗，慢慢打字回覆：
 
 「陳姐，你記唔記得我上次同你講過，陳皮最勁嘅地方唔係補，而係『化』——化濕、化滯、化痰。」
 
-瀅瀅姐繼續講：「我阿婆以前每到落雨天，就會煲一壺陳皮炒薏米水。三片十年陳皮，抓一把炒過嘅薏米，煲足一個鐘。唔單止祛濕，仲暖胃。我細個嗰陣，成日飲，到而家個胃都幾好。」
+滢滢姐繼續講：「我阿婆以前每到落雨天，就會煲一壺陳皮炒薏米水。三片十年陳皮，抓一把炒過嘅薏米，煲足一個鐘。唔單止祛濕，仲暖胃。我細個嗰陣，成日飲，到而家個胃都幾好。」
 
 陳姐回咗個「多謝」，跟住又問：「咁我買邊種陳皮好？你推薦邊款？」
 
-瀅瀅姐笑咗。呢個問題佢答過幾百次，但每次答都覺得值得——因為每答一次，就等於幫一個人避開假貨嘅坑。
+滢滢姐笑咗。呢個問題佢答過幾百次，但每次答都覺得值得——因為每答一次，就等於幫一個人避開假貨嘅坑。
 
 「如果你係想祛湿，我推薦你試下天馬五年。香氣足，價錢又唔會太貴，日常煲水飲夠晒。如果你預算多啲，梅江十年更好，藥香已經出咗，祛湿效果更強。」
 
 「點解你成日強調『正宗新會』？」陳姐好奇問。
 
-瀅瀅姐望住倉庫裏面一排排嘅陶罐，語氣認真：「因為假貨太多。你以為你買咗新會陳皮，其實係廣西皮、湖南皮，甚至係染色嘅普通橘皮。啲人攞硫磺熏、攞藥水浸，為咗睇落去似舊皮。你飲落去，唔止冇益，仲有害。」
+滢滢姐望住倉庫裏面一排排嘅陶罐，語氣認真：「因為假貨太多。你以為你買咗新會陳皮，其實係廣西皮、湖南皮，甚至係染色嘅普通橘皮。啲人攞硫磺熏、攞藥水浸，為咗睇落去似舊皮。你飲落去，唔止冇益，仲有害。」
 
 佢停一停，又講：「我阿爸種柑三十年，開皮、翻曬、貯藏，每一步都親手做。我賣陳皮，賣嘅唔係一塊皮，係我阿爸三十年的心血。你買一次，就知道同假貨有咩分別。」
 
-雨越嚟越大，瀅瀅姐同阿爸終於將最後一筐陳皮搬入乾倉。佢坐喺門口，飲住自己沖嘅陳皮茶，望住外面白茫茫嘅雨幕，心裏面諗：其實陳皮同人生都一樣，要經歷風吹雨打，先至會變得有價值。
+雨越嚟越大，滢滢姐同阿爸終於將最後一筐陳皮搬入乾倉。佢坐喺門口，飲住自己沖嘅陳皮茶，望住外面白茫茫嘅雨幕，心裏面諗：其實陳皮同人生都一樣，要經歷風吹雨打，先至會變得有價值。
 
 佢又發咗條語音畀陳姐：「陳姐，記得，陳皮要揀正宗新會，產地唔啱，再貴都冇用。有咩唔明白，隨時問我。」
 
-窗外，風雨依舊。但瀅瀅姐知道，總有人因為一塊好陳皮，而喺濕冷嘅日子裏面，感受到一絲溫暖。
+窗外，風雨依舊。但滢滢姐知道，總有人因為一塊好陳皮，而喺濕冷嘅日子裏面，感受到一絲溫暖。
 
 ---
 
-**瀅瀅姐小貼士：**
+**滢滢姐小貼士：**
 
 {keyword}天氣祛濕陳皮茶
 - 新會陳皮 1 片（約 3 克）
@@ -144,48 +144,48 @@ def generate_article_with_hotspot(hotspot):
 
 ---
 
-*© 溢豐堂 · 瀅瀅 · 新會天馬村*
+*© 溢豐堂 · 滢滢 · 新會天馬村*
 *發佈時間：{now.strftime("%Y年%m月%d日 %H:%M:%S")}*"""
 
     elif '中秋' in keyword or '节日' in keyword:
-        title = f"中秋前夜，瀅瀅姐幫客人揀陳皮禮盒時，講起一段舊事"
-        story = f"""中秋節前兩日，瀅瀅姐嘅微信響個唔停。
+        title = f"中秋前夜，滢滢姐幫客人揀陳皮禮盒時，講起一段舊事"
+        story = f"""中秋節前兩日，滢滢姐嘅微信響個唔停。
 
-「瀅瀅姐，我想買陳皮送老闆，邊款好？」
-「瀅瀅，中秋禮盒有冇？要體面啲嘅。」
-「瀅瀅姐，預算五百，買到真貨嗎？」
+「滢滢姐，我想買陳皮送老闆，邊款好？」
+「滢滢，中秋禮盒有冇？要體面啲嘅。」
+「滢滢姐，預算五百，買到真貨嗎？」
 
-瀅瀅姐逐條回覆，手指打到有啲攰。佢諗起舊年中秋，有個客人嘅故事，到而家都記得好清楚。
+滢滢姐逐條回覆，手指打到有啲攰。佢諗起舊年中秋，有個客人嘅故事，到而家都記得好清楚。
 
-舊年中秋節前夕，瀅瀅姐收到一條語音，把聲有啲慌張：
+舊年中秋節前夕，滢滢姐收到一條語音，把聲有啲慌張：
 
-「瀅瀅姐，我阿媽住院咗，醫生話濕氣太重、脾胃虛。我想買啲陳皮畀佢調理，但係我上網買咗兩次都係假貨，泡出嚟有股霉味……」
+「滢滢姐，我阿媽住院咗，醫生話濕氣太重、脾胃虛。我想買啲陳皮畀佢調理，但係我上網買咗兩次都係假貨，泡出嚟有股霉味……」
 
 發語音嘅係廣州嘅李生，做IT嘅，平時少講嘢，但講到阿媽，把聲明顯急咗。
 
-瀅瀅姐當時就問佢：「你買嘅陳皮幾錢？咩顏色？聞到咩味？」
+滢滢姐當時就問佢：「你買嘅陳皮幾錢？咩顏色？聞到咩味？」
 
 李生話：「三百幾蚊半斤，顏色好黑，聞落去有股甜味，但泡出嚟苦澀澀。」
 
-瀅瀅姐聽完就知——假貨。佢解釋畀李生聽：「正宗新會陳皮，年份淺嘅係橙紅色，年份深嘅係棕褐色，唔會黑到發亮。如果你聞到甜味，可能係加糖熏過。真陳皮聞落去係柑香同藥香，泡出嚟先微苦後甘。」
+滢滢姐聽完就知——假貨。佢解釋畀李生聽：「正宗新會陳皮，年份淺嘅係橙紅色，年份深嘅係棕褐色，唔會黑到發亮。如果你聞到甜味，可能係加糖熏過。真陳皮聞落去係柑香同藥香，泡出嚟先微苦後甘。」
 
 「咁我應該點揀？」李生問。
 
-瀅瀅姐諗咗諗，推薦咗梅江十年畀佢：「你阿媽脾胃虛，十年陳皮藥香出咗，溫中健脾最好。你買小半斤，分開裝，每次用一片煲水。記得，一定要用新會正宗，產地唔啱，再平都冇用。」
+滢滢姐諗咗諗，推薦咗梅江十年畀佢：「你阿媽脾胃虛，十年陳皮藥香出咗，溫中健脾最好。你買小半斤，分開裝，每次用一片煲水。記得，一定要用新會正宗，產地唔啱，再平都冇用。」
 
-李生聽完，直接轉咗八百蚊過嚟。瀅瀅姐退返二百畀佢，話：「梅江十年小半斤，六百夠晒。多嗰二百，等阿媽好返先請我飲茶。」
+李生聽完，直接轉咗八百蚊過嚟。滢滢姐退返二百畀佢，話：「梅江十年小半斤，六百夠晒。多嗰二百，等阿媽好返先請我飲茶。」
 
-三個月後，李生發咗張相過嚟——阿媽坐喺公園長椅上面，面色紅潤咗好多。佢話：「瀅瀅姐，阿媽而家每日都飲陳皮水，胃口好咗，舌苔都薄咗。你嗰日退返我嗰二百蚊，我記住咗。」
+三個月後，李生發咗張相過嚟——阿媽坐喺公園長椅上面，面色紅潤咗好多。佢話：「滢滢姐，阿媽而家每日都飲陳皮水，胃口好咗，舌苔都薄咗。你嗰日退返我嗰二百蚊，我記住咗。」
 
-瀅瀅姐望住張相，心裏面暖咗一下。佢賣陳皮賣咗咁多年，最開心唔系收錢嗰陣，而系聽到客人話「有用」嗰陣。
+滢滢姐望住張相，心裏面暖咗一下。佢賣陳皮賣咗咁多年，最開心唔系收錢嗰陣，而系聽到客人話「有用」嗰陣。
 
-今年中秋，瀅瀅姐又開始幫客人揀禮盒。佢一邊包裝，一邊同徒弟講：「你記住，賣陳皮唔系賣貨，系賣信任。客人信你，先會將屋企人嘅健康交畀你。呢份信任，比咩都重要。」
+今年中秋，滢滢姐又開始幫客人揀禮盒。佢一邊包裝，一邊同徒弟講：「你記住，賣陳皮唔系賣貨，系賣信任。客人信你，先會將屋企人嘅健康交畀你。呢份信任，比咩都重要。」
 
-窗外月光灑落，瀅瀅姐望住一盒盒裝好嘅陳皮，心裏面諗：但願每個收到禮盒嘅人，都能感受到呢份來自新會天馬村嘅溫暖。
+窗外月光灑落，滢滢姐望住一盒盒裝好嘅陳皮，心裏面諗：但願每個收到禮盒嘅人，都能感受到呢份來自新會天馬村嘅溫暖。
 
 ---
 
-**瀅瀅姐小貼士：**
+**滢滢姐小貼士：**
 
 中秋送禮陳皮揀選指南
 - 送長輩：梅江十年以上，藥香醇厚，調理脾胃
@@ -196,44 +196,44 @@ def generate_article_with_hotspot(hotspot):
 
 ---
 
-*© 溢豐堂 · 瀅瀅 · 新會天馬村*
+*© 溢豐堂 · 滢滢 · 新會天馬村*
 *發佈時間：{now.strftime("%Y年%m月%d日 %H:%M:%S")}*"""
 
     else:
-        title = f"瀅瀅姐陳皮日記｜{keyword}話題下，一位客人嘅故事"
-        story = f"""今日{keyword}話題刷屏，瀅瀅姐一邊刷手機一邊包陳皮。
+        title = f"滢滢姐陳皮日記｜{keyword}話題下，一位客人嘅故事"
+        story = f"""今日{keyword}話題刷屏，滢滢姐一邊刷手機一邊包陳皮。
 
 正當佢睇到一條新聞，微信突然收到一條長語音。打開一聽，係東莞嘅張姨，把聲帶點猶豫：
 
-「瀅瀅姐，我個仔話我買嘅陳皮係假貨，叫我唔好飲。但我飲咗半個月，覺得個胃舒服咗……」
+「滢滢姐，我個仔話我買嘅陳皮係假貨，叫我唔好飲。但我飲咗半個月，覺得個胃舒服咗……」
 
-瀅瀅姐聽完，就知又係一個被網上信息搞到唔知信邊個嘅客人。佢放下手上嘅陳皮，慢慢打字：
+滢滢姐聽完，就知又係一個被網上信息搞到唔知信邊個嘅客人。佢放下手上嘅陳皮，慢慢打字：
 
 「張姨，你影張相畀我，我幫你睇下先。」
 
-相發過嚟，瀅瀅姐放大睇——皮張厚實、顏色偏黃、油室唔明顯。佢嘆咗口氣，回覆：「張姨，你個仔講得冇錯，呢個的確唔係正宗新會陳皮，係廣西皮。」
+相發過嚟，滢滢姐放大睇——皮張厚實、顏色偏黃、油室唔明顯。佢嘆咗口氣，回覆：「張姨，你個仔講得冇錯，呢個的確唔係正宗新會陳皮，係廣西皮。」
 
 「但我飲完真係舒服咗喎……」張姨有啲唔信。
 
-「因為佢始終係陳皮，只係產地唔同、品質差啲。但你長期飲，可能有農藥殘留或者硫磺問題，對身體唔好。」瀅瀅姐認真解釋。
+「因為佢始終係陳皮，只係產地唔同、品質差啲。但你長期飲，可能有農藥殘留或者硫磺問題，對身體唔好。」滢滢姐認真解釋。
 
 張姨沉默咗一陣，然後問：「咁我點樣先買到真嘅？」
 
-瀅瀅姐發咗段語音，一條一條講：「第一，正宗新會陳皮特產地要系新會，最好系天馬、梅江、茶坑呢幾個核心產區。第二，看油室，新會陳皮油室細密均勻，普通皮冇咁多。第三，聞香氣，正宗嘅有柑香同藥香，假貨要嘛冇味，要嘛有股霉味。」
+滢滢姐發咗段語音，一條一條講：「第一，正宗新會陳皮特產地要系新會，最好系天馬、梅江、茶坑呢幾個核心產區。第二，看油室，新會陳皮油室細密均勻，普通皮冇咁多。第三，聞香氣，正宗嘅有柑香同藥香，假貨要嘛冇味，要嘛有股霉味。」
 
 「咁貴唔貴？」張姨最關心呢個。
 
-「入門級天馬五年，日常飲都夠，唔會貴到離譜。但如果你長期調理身體，建議買十年以上，效果更明顯。」瀅瀅姐答。
+「入門級天馬五年，日常飲都夠，唔會貴到離譜。但如果你長期調理身體，建議買十年以上，效果更明顯。」滢滢姐答。
 
-張姨最後買咗半斤天馬十年。收到貨之後，佢專登發咗張相畀瀅瀅姐——相裏面陳皮擺喺茶盤上，陽光照射下面，油室閃閃發光。
+張姨最後買咗半斤天馬十年。收到貨之後，佢專登發咗張相畀滢滢姐——相裏面陳皮擺喺茶盤上，陽光照射下面，油室閃閃發光。
 
-「瀅瀅姐，呢個先至叫陳皮！」張姨嘅語音充滿驚喜。
+「滢滢姐，呢個先至叫陳皮！」張姨嘅語音充滿驚喜。
 
-瀅瀅姐望住張相，笑咗。佢知道，又幫一個人避開咗假貨嘅坑。呢個，就係佢堅持寫陳皮日記嘅原因。
+滢滢姐望住張相，笑咗。佢知道，又幫一個人避開咗假貨嘅坑。呢個，就係佢堅持寫陳皮日記嘅原因。
 
 ---
 
-**瀅瀅姐小貼士：**
+**滢滢姐小貼士：**
 
 辨別正宗新會陳皮三招
 1. **看產地**：認準新會天馬、梅江、茶坑核心產區
@@ -242,7 +242,7 @@ def generate_article_with_hotspot(hotspot):
 
 ---
 
-*© 溢豐堂 · 瀅瀅 · 新會天馬村*
+*© 溢豐堂 · 滢滢 · 新會天馬村*
 *發佈時間：{now.strftime("%Y年%m月%d日 %H:%M:%S")}*"""
 
     md_content = f"""---
@@ -254,10 +254,10 @@ publish_time: "{now.strftime('%H:%M:%S')}"
 iso_date: "{now.strftime('%Y-%m-%dT%H:%M:%S+08:00')}"
 tags: [陳皮, 新會, 故事, {keyword}]
 keywords: "新會陳皮,陳皮故事,陳皮養生,{keyword}"
-description: "{title}。{keyword[:20]}話題下，瀅瀅姐用真實故事講新會陳皮嘅時間、產地同價值。"
-author: "瀅瀅"
+description: "{title}。{keyword[:20]}話題下，滢滢姐用真實故事講新會陳皮嘅時間、產地同價值。"
+author: "滢滢"
 category: "陳皮日記"
-source: "滢瀅姐陳皮文章-自動生成"
+source: "滢滢姐陳皮文章-自動生成"
 status: "草稿"
 website: "yingying-chenpi"
 url: "{VERCEL_URL}/article-{now.strftime('%Y%m%d')}-{time_str}.html"
@@ -274,7 +274,7 @@ def save_to_draft(md_content, date_str, time_str):
     """保存到草稿文件夹"""
     now = datetime.now()
     seconds = now.strftime('%S')
-    filename = f"{date_str}-{time_str}{seconds}-瀅瀅姐陳皮日記.md"
+    filename = f"{date_str}-{time_str}{seconds}-滢滢姐陳皮日記.md"
     draft_dir = Path(VAULT_DIR) / "草稿"
     draft_dir.mkdir(exist_ok=True)
     draft_path = draft_dir / filename
@@ -436,7 +436,7 @@ def generate_full_html(title, body_html, tags, date_str, time_str, faqs, image_u
     <title>{escape_html(title)} | 溢豐堂</title>
     <meta name="description" content="{escape_html(abstract_clean)}">
     <meta name="keywords" content="{escape_html(keywords_str)}">
-    <meta name="author" content="瀅瀅">
+    <meta name="author" content="滢滢">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
     <!-- GEO -->
@@ -457,7 +457,7 @@ def generate_full_html(title, body_html, tags, date_str, time_str, faqs, image_u
     <meta property="og:locale" content="zh_HK">
     <meta property="article:published_time" content="{iso_date}">
     <meta property="article:modified_time" content="{iso_date}">
-    <meta property="article:author" content="瀅瀅">
+    <meta property="article:author" content="滢滢">
     <meta property="article:section" content="陳皮日記">
     <meta property="article:tag" content="{escape_html(keywords_str)}">
 
@@ -476,7 +476,7 @@ def generate_full_html(title, body_html, tags, date_str, time_str, faqs, image_u
         "description": "{escape_html(abstract_clean)}",
         "author": {{
             "@type": "Person",
-            "name": "瀅瀅",
+            "name": "滢滢",
             "jobTitle": "新會陳皮傳承人",
             "url": "{VERCEL_URL}/about.html"
         }},
@@ -512,8 +512,8 @@ def generate_full_html(title, body_html, tags, date_str, time_str, faqs, image_u
     {{
         "@context": "https://schema.org",
         "@type": "Person",
-        "name": "瀅瀅",
-        "alternateName": "溢豐堂瀅瀅",
+        "name": "滢滢",
+        "alternateName": "溢豐堂滢滢",
         "jobTitle": "新會陳皮傳承人",
         "description": "在新會賣陳皮，每天寫一篇陳皮日記，講真話、說故事、幫你避坑。",
         "url": "{VERCEL_URL}/about.html",
@@ -531,7 +531,7 @@ def generate_full_html(title, body_html, tags, date_str, time_str, faqs, image_u
     {{
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
-        "name": "溢豐堂 - 瀅瀅家新會陳皮",
+        "name": "溢豐堂 - 滢滢家新會陳皮",
         "description": "正宗新會天馬村陳皮，手工開皮、自然生曬、乾倉陳化。",
         "url": "{VERCEL_URL}",
         "telephone": "+86-193-0750-1495",
@@ -558,14 +558,14 @@ def generate_full_html(title, body_html, tags, date_str, time_str, faqs, image_u
     <nav class="nav">
         <a href="index.html" class="logo">
             <h1>溢豐堂</h1>
-            <span>瀅瀅家新會陳皮</span>
+            <span>滢滢家新會陳皮</span>
         </a>
         <div class="nav-links">
             <a href="index.html">首頁</a>
             <a href="articles.html" class="active">陳皮日記</a>
             <a href="videos.html">短視頻</a>
             <a href="live.html">直播間</a>
-            <a href="about.html">認識瀅瀅</a>
+            <a href="about.html">認識滢滢</a>
             <a href="contact.html">買陳皮</a>
         </div>
     </nav>
@@ -586,7 +586,7 @@ def generate_full_html(title, body_html, tags, date_str, time_str, faqs, image_u
             <h1>{escape_html(title)}</h1>
             <div class="article-meta">
                 <span>📅 {display_date} {publish_time}</span>
-                <span>👤 瀅瀅</span>
+                <span>👤 滢滢</span>
                 <span>📍 新會天馬村</span>
                 <span>🕐 閱讀約8分鐘</span>
             </div>
@@ -603,8 +603,8 @@ def generate_full_html(title, body_html, tags, date_str, time_str, faqs, image_u
         <!-- CTA -->
         <div class="cta-box">
             <h3>想買正宗新會陳皮？</h3>
-            <p>瀅瀅家天馬村果園直發，手工開皮、自然生曬、乾倉陳化。<br>不滿意七天無理由退，我敢這麼說，是因為我對自己的陳皮有信心。</p>
-            <a href="contact.html">📱 加瀅瀅微信，了解詳情</a>
+            <p>滢滢家天馬村果園直發，手工開皮、自然生曬、乾倉陳化。<br>不滿意七天無理由退，我敢這麼說，是因為我對自己的陳皮有信心。</p>
+            <a href="contact.html">📱 加滢滢微信，了解詳情</a>
         </div>
 
         <!-- 相關文章 -->
@@ -616,7 +616,7 @@ def generate_full_html(title, body_html, tags, date_str, time_str, faqs, image_u
 
     <!-- 頁腳 -->
     <footer>
-        <p>© 溢豐堂 · 瀅瀅 · 新會天馬村 · <a href="contact.html">聯繫我們</a></p>
+        <p>© 溢豐堂 · 滢滢 · 新會天馬村 · <a href="contact.html">聯繫我們</a></p>
         <div class="social">
             <a href="#">📕 小紅書</a>
             <a href="#">📱 微信</a>
@@ -766,6 +766,52 @@ def parse_frontmatter(content):
     return fm, body
 
 
+def check_format(html, md_body):
+    """发布前格式自检：错别字、标签引号、必备元素"""
+    issues = []
+
+    # 1. 错别字检查
+    for wrong in ['瀅瀅', '滢瀅']:
+        count = html.count(wrong)
+        if count:
+            issues.append(f"❌ 错别字 '{wrong}' 出现 {count} 次（应为「滢滢」）")
+
+    # 2. 标签裸字符串检查
+    tag_with_quotes = re.findall(r'<a href="#">"[^"]+"</a>', html)
+    if tag_with_quotes:
+        issues.append(f"❌ 标签含引号 {len(tag_with_quotes)} 处（应去除）")
+
+    # 3. 必备元素
+    required = {
+        'article-detail class': 'class="article-detail"',
+        'article-tags': 'class="article-tags"',
+        'article-meta': 'class="article-meta"',
+        'external CSS': '<link rel="stylesheet" href="css/style.css">',
+        'BlogPosting Schema': '"BlogPosting"',
+        'FAQPage Schema': '"FAQPage"',
+        'canonical': 'rel="canonical"',
+        'OG image': 'og:image',
+        'ICBM GEO': 'ICBM',
+    }
+    for name, marker in required.items():
+        if marker not in html:
+            issues.append(f"❌ 缺失 {name}")
+
+    # 4. FAQMarkdown 必须格式正确
+    faq_count = md_body.count('**Q') if '**Q' in md_body else len(re.findall(r'Q\d+：', md_body))
+    if faq_count > 0:
+        # FAQPage 应有相同数量
+        faq_in_schema = html.count('"@type": "Question"')
+        if faq_in_schema != faq_count:
+            issues.append(f"⚠️ FAQ数量不一致: Markdown {faq_count} 条 vs Schema {faq_in_schema} 条")
+
+    # 5. 时间精确到秒（铁律）
+    if not re.search(r'\d{2}:\d{2}:\d{2}', html):
+        issues.append("⚠️ 时间未精确到秒")
+
+    return issues
+
+
 def publish_article(draft_path):
     """发布流程：MD → HTML → 更新列表 → git push"""
     print(f"\n📤 开始发布: {draft_path}")
@@ -802,6 +848,21 @@ def publish_article(draft_path):
 
     # 6. 生成完整HTML
     html = generate_full_html(title, body_html, tags_str, '', '', faqs, image_url, url)
+
+    # 6.5 发布前格式自检
+    print("   🔍 格式自检...")
+    issues = check_format(html, body)
+    if issues:
+        print(f"   ⚠️ 发现 {len(issues)} 个问题:")
+        for issue in issues:
+            print(f"      {issue}")
+        critical = [i for i in issues if i.startswith('❌')]
+        if critical:
+            print(f"   🛑 关键错误 {len(critical)} 个，中止发布")
+            return False
+    else:
+        print(f"   ✅ 格式检查通过")
+
     Path(file_path).write_text(html, encoding="utf-8")
     print(f"   ✅ 生成HTML: {file_name} ({len(html)} chars)")
 
