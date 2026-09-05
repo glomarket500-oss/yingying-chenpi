@@ -571,7 +571,7 @@ def generate_full_html(title, body_html, tags, date_str, time_str, faqs, image_u
     </nav>
 
     <!-- 文章主體 -->
-    <article class="article">
+    <article class="article-detail">
         <!-- 面包屑 -->
         <div class="breadcrumb">
             <a href="index.html">首頁</a>
