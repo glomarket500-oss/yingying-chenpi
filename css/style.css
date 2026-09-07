@@ -444,6 +444,21 @@ footer a:hover { color: var(--accent); }
     color: var(--primary);
     text-decoration: none;
 }
+.article-content a,
+.article-content a:link,
+.article-content a:visited,
+.article-content a:hover,
+.article-content a:active,
+.article-content a:focus,
+.article-content u,
+.article-content ins {
+    color: inherit !important;
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    text-decoration-color: transparent !important;
+    border-bottom: 0 !important;
+    box-shadow: none !important;
+}
 .article-content h2 {
     color: #2c2c2c;
     font-size: 1.2rem;
