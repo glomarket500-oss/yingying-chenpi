@@ -191,7 +191,7 @@ def build_html(title, body_html, tags, date_str, time_str, faqs, image_url, url,
       <li><a href="videos.html">短視頻</a></li>
       <li><a href="live.html">直播間</a></li>
       <li><a href="about.html">認識滢滢</a></li>
-      <li><a href="contact.html">買陳皮</a></li>
+      <li><a href="contact.html">銷售陳皮</a></li>
     </ul>
   </nav>
 </header>

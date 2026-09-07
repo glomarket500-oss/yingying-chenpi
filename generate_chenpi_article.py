@@ -390,7 +390,7 @@ def generate_full_html(title, body_html, tags, date_str, time_str):
     <a href="videos.html">短視頻</a>
     <a href="live.html">直播間</a>
     <a href="about.html">認識滢滢</a>
-    <a href="contact.html">買陳皮</a>
+    <a href="contact.html">銷售陳皮</a>
   </div>
 </nav>
 
