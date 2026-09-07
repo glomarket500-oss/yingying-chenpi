@@ -328,13 +328,31 @@ footer a:hover { color: var(--accent); }
 .article-card h3 {
     margin: 0 0 15px;
 }
+.article-card > a,
+.article-card > a:link,
+.article-card > a:visited,
+.article-card > a:hover,
+.article-card > a:active,
+.article-card > a:focus {
+    display: block;
+    color: inherit;
+    text-decoration: none !important;
+}
+.article-card > a h3,
+.article-card > a p,
+.article-card > a .read-more {
+    text-decoration: none !important;
+}
 .article-card h3 a {
     color: var(--primary);
     text-decoration: none;
     font-size: 20px;
     line-height: 1.5;
 }
-.article-card h3 a:hover { text-decoration: underline; }
+.article-card h3 a:hover,
+.article-card .read-more:hover {
+    text-decoration: none;
+}
 .article-card p {
     color: var(--text-light);
     font-size: 15px;
