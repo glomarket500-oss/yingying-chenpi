@@ -29,7 +29,7 @@ from pathlib import Path
 # ==================== 配置 ====================
 SITE_URL = "https://yingying-chenpi.vercel.app"
 REPO_DIR = r"C:\Users\a\Desktop\chenpi-website"
-CHAR_CORRECT = chr(0x6EE2)  # 瀅
+CHAR_CORRECT = chr(0x6EE2)  # 滢
 
 VAULT_DIR = f"C:\\Users\\a\\Desktop\\MianAI知识库\\vault\\{CHAR_CORRECT}{CHAR_CORRECT}姐讲陈皮故事"
 DRAFT_DIR = f"{VAULT_DIR}\\草稿"
@@ -254,7 +254,7 @@ def check_format(html, md_body):
 # ==================== HTML 生成 ====================
 
 
-def generate_full_html(title, body_html, tags, date_str, time_str, faqs, image_url, url, author="瀅瀅"):
+def generate_full_html(title, body_html, tags, date_str, time_str, faqs, image_url, url, author="滢滢"):
     """生成完整HTML（含SEO/GEO/Schema）"""
     if isinstance(tags, str):
         tag_list = [t.strip().strip('"').strip("'") for t in re.findall(r'\[?["\']([^"\']+)["\']\]?', tags) if t.strip()]
@@ -266,7 +266,7 @@ def generate_full_html(title, body_html, tags, date_str, time_str, faqs, image_u
     tag_list = [escape_html(t).strip('"').strip("'") for t in tag_list[:5]]
 
     description = f"{title}——{author}姐在天马村仓库的实拍记录，用镜头讲述新会陈皮的真实故事。"
-    keywords = "新会陈皮,陈皮收藏,陈皮年份,陈皮价格,陈皮储存,瀅瀅姐,天马村"
+    keywords = "新会陈皮,陈皮收藏,陈皮年份,陈皮价格,陈皮储存,滢滢姐,天马村"
 
     # 转换时间
     display_date = f"{date_str[:4]}年{date_str[5:7]}月{date_str[8:10]}日"
@@ -322,7 +322,7 @@ def generate_full_html(title, body_html, tags, date_str, time_str, faqs, image_u
     local_business_schema = {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
-        "name": "溢豐堂 · 瀅瀅家新會陳皮",
+        "name": "溢豐堂 · 滢滢家新會陳皮",
         "image": image_url,
         "address": {
             "@type": "PostalAddress",
@@ -349,7 +349,7 @@ def generate_full_html(title, body_html, tags, date_str, time_str, faqs, image_u
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{escape_html(title)} | 溢豐堂 · 瀅瀅家新會陳皮</title>
+<title>{escape_html(title)} | 溢豐堂 · 滢滢家新會陳皮</title>
 <meta name="description" content="{escape_html(description)}">
 <meta name="keywords" content="{escape_html(keywords)}">
 <meta name="author" content="{escape_html(author)}">
@@ -398,13 +398,13 @@ def generate_full_html(title, body_html, tags, date_str, time_str, faqs, image_u
 
 <header class="site-header">
   <nav class="main-nav">
-    <a href="index.html" class="logo">溢豐堂 · 瀅瀅家新會陳皮</a>
+    <a href="index.html" class="logo">溢豐堂 · 滢滢家新會陳皮</a>
     <ul>
       <li><a href="index.html">首頁</a></li>
       <li><a href="articles.html" class="active">陳皮日記</a></li>
       <li><a href="videos.html">短視頻</a></li>
       <li><a href="live.html">直播間</a></li>
-      <li><a href="about.html">認識瀅瀅</a></li>
+      <li><a href="about.html">認識滢滢</a></li>
       <li><a href="contact.html">買陳皮</a></li>
     </ul>
   </nav>
@@ -436,9 +436,9 @@ def generate_full_html(title, body_html, tags, date_str, time_str, faqs, image_u
 
   <div class="cta-box">
     <h3>想買正宗新會陳皮？</h3>
-    <p>瀅瀅家天馬村果園直發，手工開皮、自然生曬、乾倉陳化。</p>
+    <p>滢滢家天馬村果園直發，手工開皮、自然生曬、乾倉陳化。</p>
     <p>不滿意七天無理由退，我敢這麼說，是因為我對自己的陳皮有信心。</p>
-    <p>📱 加瀅瀅微信，了解詳情</p>
+    <p>📱 加滢滢微信，了解詳情</p>
   </div>
 
   <div class="related">
@@ -448,8 +448,8 @@ def generate_full_html(title, body_html, tags, date_str, time_str, faqs, image_u
 </article>
 
 <footer>
-  <p>📍 新會陳皮村南門牌坊 G04 | 瀅瀅姐陳皮文化傳播 | 📞 [REDACTED] | QQ [REDACTED] | 微信 [REDACTED]</p>
-  <p>© 溢豐堂 · 瀅瀅 · 新會天馬村 · <a href="contact.html">聯繫我們</a></p>
+  <p>📍 新會陳皮村南門牌坊 G04 | 滢滢姐陳皮文化傳播 | 📞 [REDACTED] | QQ [REDACTED] | 微信 [REDACTED]</p>
+  <p>© 溢豐堂 · 滢滢 · 新會天馬村 · <a href="contact.html">聯繫我們</a></p>
   <p class="social-links">
     <a href="#">📕 小紅書</a>
     <a href="#">📱 微信</a>
@@ -636,7 +636,7 @@ def publish_article(draft_path):
     url = f"{SITE_URL}/{file_name}"
 
     # 4. 生成完整 HTML
-    html = generate_full_html(title, body_html, tags, date_str, time_str, faqs, image, url, author="瀅瀅")
+    html = generate_full_html(title, body_html, tags, date_str, time_str, faqs, image, url, author="滢滢")
 
     # 5. 格式自检
     print(f"   🔍 格式自检...")
@@ -730,9 +730,9 @@ def generate_from_template():
     iso_date = now.strftime("%Y-%m-%dT%H:%M:%S+08:00")
     new_fm = f"""---
 title: "{title}"
-description: "{title}——瀅瀅姐在天马村仓库的实拍记录，用镜头讲述新会陈皮的真实故事。"
-keywords: "新会陈皮,陈皮收藏,陈皮年份,陈皮价格,陈皮储存,瀅瀅姐,天马村"
-author: "瀅瀅"
+description: "{title}——滢滢姐在天马村仓库的实拍记录，用镜头讲述新会陈皮的真实故事。"
+keywords: "新会陈皮,陈皮收藏,陈皮年份,陈皮价格,陈皮储存,滢滢姐,天马村"
+author: "滢滢"
 date: "{date_str}"
 display_date: "{now.strftime('%Y年%m月%d日')}"
 publish_time: "{now.strftime('%H:%M:%S')}"
