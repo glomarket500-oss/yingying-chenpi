@@ -365,7 +365,9 @@ footer a:hover { color: var(--accent); }
     font-weight: 500;
     font-size: 15px;
 }
-.read-more:hover { text-decoration: underline; }
+.read-more:hover {
+    text-decoration: none !important;
+}
 
 /* ===== 文章列表頁 ===== */
 .article-list {
