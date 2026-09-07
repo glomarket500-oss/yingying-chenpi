@@ -479,6 +479,86 @@ footer a:hover { color: var(--accent); }
 .article-content strong {
     color: #8b4513;
 }
+
+/* ===== 正文阅读优化 ===== */
+.article-content {
+    color: #444;
+    font-size: 16px;
+}
+.article-content p {
+    margin: 0 0 18px;
+    line-height: 1.95;
+    letter-spacing: 0.01em;
+    text-align: left;
+}
+.article-content h2 + p {
+    margin-top: 2px;
+}
+.article-content hr {
+    margin: 34px auto;
+}
+.article-content .faq-list > p {
+    margin: 0 0 14px;
+    padding: 16px 18px 15px;
+    background: #fffdf9;
+    border: 1px solid #eadfce;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(92, 57, 24, 0.04);
+}
+.article-content .faq-list > p > strong:first-child {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--primary);
+    line-height: 1.6;
+}
+.article-content .faq-item {
+    margin: 0;
+    padding: 16px 18px 15px;
+    background: #fffdf9;
+    border: 1px solid #eadfce;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(92, 57, 24, 0.04);
+}
+.article-content .faq-question {
+    margin: 0 0 8px;
+    color: var(--primary);
+    font-weight: 700;
+    line-height: 1.6;
+}
+.article-content .faq-answer {
+    margin: 0;
+    color: #555;
+    line-height: 1.85;
+}
+.article-content .article-signature {
+    margin-top: 30px;
+    padding-top: 16px;
+    border-top: 1px solid #eadfce;
+    color: #888;
+    font-size: 0.88rem;
+    line-height: 1.8;
+    text-align: center;
+}
+.article-content .article-signature em {
+    font-style: normal;
+}
+.article-content ul,
+.article-content ol {
+    margin-top: 8px;
+    margin-bottom: 20px;
+}
+@media (max-width: 480px) {
+    .article-content {
+        font-size: 15px;
+    }
+    .article-content p {
+        margin-bottom: 16px;
+        line-height: 1.9;
+    }
+    .article-content .faq-item {
+        padding: 14px 15px;
+    }
+}
 .article-content table {
     width: 100%;
     border-collapse: collapse;
@@ -1129,4 +1209,76 @@ footer a:hover { color: var(--accent); }
     .schedule-tag { position: static; margin-top: 8px; display: inline-block; }
     .comment-item { flex-direction: column; }
     .comment-avatar { align-self: flex-start; }
+}
+
+/* ===== 新旧文章模板兼容 =====
+   旧文章使用 .nav/.article-detail，近期文章使用
+   .site-header/.main-nav。统一视觉，避免新文章出现裸导航和面包屑。 */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--white);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+.site-header .main-nav {
+    max-width: none;
+    margin: 0;
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.main-nav .logo {
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.main-nav ul {
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.main-nav ul a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 15px;
+    transition: color 0.3s;
+}
+.main-nav ul a:hover,
+.main-nav ul a.active { color: var(--primary); }
+.site-header + .breadcrumb {
+    max-width: 720px;
+    margin: 0 auto 24px;
+    padding: 40px 5vw 0;
+    font-size: 0.82rem;
+    color: #999;
+}
+.site-header + .breadcrumb a {
+    color: var(--primary);
+    text-decoration: none;
+}
+.site-header + .breadcrumb a:hover { text-decoration: underline; }
+.site-header + .breadcrumb + .article-detail { padding-top: 0; }
+@media (max-width: 768px) {
+    .site-header .main-nav { padding: 12px 4vw; }
+    .main-nav ul { gap: 16px; }
+}
+@media (max-width: 480px) {
+    .site-header .main-nav {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .main-nav ul {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px 16px;
+    }
+    .site-header + .breadcrumb {
+        padding: 24px 4vw 0;
+    }
 }

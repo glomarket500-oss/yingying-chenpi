@@ -7,6 +7,7 @@
 
 import argparse
 import glob
+import html
 import json
 import os
 import re
@@ -44,14 +45,14 @@ def read_md(md_path):
 def md_to_html(body):
     lines = body.split('\n')
     out, in_p, in_list = [], False, False
-    
+
     def close_p():
         nonlocal in_p
         if in_p: out.append('</p>'); in_p = False
     def close_list():
         nonlocal in_list
         if in_list: out.append('</ul>'); in_list = False
-    
+
     for s in (l.rstrip() for l in lines):
         if s.startswith('## '):
             close_p(); close_list(); out.append(f'<h2>{s[3:]}</h2>')
@@ -70,11 +71,25 @@ def md_to_html(body):
         else:
             close_list()
             if not in_p: out.append('<p>'); in_p = True
-            s = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', s)
-            s = s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
-            out.append(s + ' ')
+            # 先转义正文，再恢复 Markdown 粗体，避免生成的 <strong> 被再次转义。
+            escaped = html.escape(s, quote=False)
+            escaped = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', escaped)
+            out.append(escaped + ' ')
     close_p(); close_list()
-    return '\n'.join(out)
+    html_out = '\n'.join(out)
+    # 将 FAQ 的 Markdown 段落转换成独立问答卡片，避免问题和答案挤在一个 p 内。
+    html_out = re.sub(
+        r'<p>\s*<strong>(Q\d+[：:].*?)</strong>\s*(A：[\s\S]*?)</p>',
+        r'<div class="faq-item"><p class="faq-question">\1</p><p class="faq-answer">\2</p></div>',
+        html_out,
+    )
+    html_out = re.sub(
+        r'(<h2>(?:FAQ )?常見問題</h2>)\s*((?:<div class="faq-item">[\s\S]*?</div>\s*)+)',
+        r'\1\n<div class="faq-list">\n\2</div>',
+        html_out,
+    )
+    html_out = html_out.replace('<p class="faq-answer">A：', '<p class="faq-answer">')
+    return html_out
 
 
 def extract_faqs(body):
@@ -89,14 +104,14 @@ def build_html(title, body_html, tags, date_str, time_str, faqs, image_url, url)
     tags_html = '\n'.join(f'<a href="#">{t}</a>' for t in tag_list[:5])
     display_date = f"{date_str[:4]}年{date_str[5:7]}月{date_str[8:10]}日"
     iso_date = f"{date_str}T{time_str}+08:00"
-    
+
     faq_schema = ""
     if faqs:
         items = [{"@type": "Question", "name": f["q"], "acceptedAnswer": {"@type": "Answer", "text": f["a"]}} for f in faqs]
         faq_schema = f'<script type="application/ld+json">\n{json.dumps({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": items}, ensure_ascii=False, indent=2)}\n</script>'
-    
+
     blog = {"@context": "https://schema.org", "@type": "BlogPosting", "headline": title, "image": image_url, "datePublished": iso_date, "dateModified": iso_date, "author": {"@type": "Person", "name": "瀅瀅"}, "publisher": {"@type": "Organization", "name": "溢豐堂"}, "articleSection": "陳皮日記"}
-    
+
     return f'''<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -174,7 +189,7 @@ def update_index(title, abstract, display_date, time_str, file_name):
     idx_path = os.path.join(REPO_DIR, "index.html")
     with open(idx_path, encoding='utf-8') as f:
         html = f.read()
-    
+
     new_featured = f'''<article class="article-card article-featured">
             <div class="article-meta">
                 <span class="article-date">{display_date} {time_str}</span>
@@ -186,7 +201,7 @@ def update_index(title, abstract, display_date, time_str, file_name):
                 <a href="{file_name}" class="btn">讀完整日記 →</a>
             </div>
         </article>'''
-    
+
     # 替换 featured 区块
     html = re.sub(r'<article class="article-card article-featured".*?</article>', new_featured, html, count=1, flags=re.DOTALL)
     with open(idx_path, 'w', encoding='utf-8') as f:
@@ -197,7 +212,7 @@ def update_articles(file_name, title, abstract, display_date, time_str, tags):
     art_path = os.path.join(REPO_DIR, "articles.html")
     with open(art_path, encoding='utf-8') as f:
         html = f.read()
-    
+
     tag_str = " · ".join(tags[:3]) if isinstance(tags, list) else "陳皮日記"
     new_item = f'''<article class="article-card">
         <a href="{file_name}">
@@ -207,10 +222,10 @@ def update_articles(file_name, title, abstract, display_date, time_str, tags):
           <span class="read-more">閱讀全文 →</span>
         </a>
       </article>'''
-    
+
     if 'class="article-list"' in html:
         html = html.replace('class="article-list"', 'class="article-list"\n      ' + new_item, 1)
-    
+
     with open(art_path, 'w', encoding='utf-8') as f:
         f.write(html)
 
@@ -218,14 +233,14 @@ def update_articles(file_name, title, abstract, display_date, time_str, tags):
 def git_push():
     os.chdir(REPO_DIR)
     subprocess.run(["git", "add", "index.html", "articles.html", "article-*.html"], capture_output=True, timeout=10)
-    
+
     msg = f"feat: 发布新文章 {datetime.now().strftime('%Y-%m-%d %H:%M')}"
     r = subprocess.run(["git", "commit", "-m", msg], capture_output=True, text=True, timeout=10)
     if r.returncode != 0:
         if "nothing" in r.stdout.lower() or "nothing" in r.stderr.lower():
             return True, "无变更"
         return False, r.stderr[:100]
-    
+
     r = subprocess.run(["git", "push", "origin", "main"], capture_output=True, text=True, timeout=30)
     if r.returncode == 0:
         h = subprocess.run(["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True)
@@ -235,7 +250,7 @@ def git_push():
 
 def publish(draft_path):
     print(f"\n📤 发布: {os.path.basename(draft_path)}")
-    
+
     fm, body = read_md(draft_path)
     title = fm.get("title", "未命名")
     date_str = fm.get("date", datetime.now().strftime("%Y-%m-%d"))
@@ -243,33 +258,33 @@ def publish(draft_path):
     tags = fm.get("tags", ["新會陳皮"])
     abstract = fm.get("description", "")
     image = fm.get("image", f"{SITE_URL}/images/chenpi-hero.jpg")
-    
+
     # 生成HTML
     faqs = extract_faqs(body)
     body_html = md_to_html(body)
     file_name = f"article-{date_str.replace('-', '')}-{time_str.replace(':', '')[:4]}.html"
     url = f"{SITE_URL}/{file_name}"
-    
+
     html = build_html(title, body_html, tags, date_str, time_str, faqs, image, url)
-    
+
     with open(os.path.join(REPO_DIR, file_name), 'w', encoding='utf-8') as f:
         f.write(html)
-    
+
     display_date = f"{date_str[:4]}年{date_str[5:7]}月{date_str[8:10]}日"
     update_index(title, abstract, display_date, time_str, file_name)
     update_articles(file_name, title, abstract, display_date, time_str, tags)
-    
+
     ok, msg = git_push()
     if not ok:
         print(f"   ❌ {msg}")
         return False
     print(f"   ✅ {msg}")
-    
+
     # 移动草稿
     pub_dir = f"{VAULT_DIR}\\已发布"
     os.makedirs(pub_dir, exist_ok=True)
     shutil.move(draft_path, os.path.join(pub_dir, os.path.basename(draft_path)))
-    
+
     print(f"\n🎉 {url}")
     return True
 
@@ -288,14 +303,14 @@ def main():
     parser.add_argument('--publish', nargs='?', const=None, help='发布草稿')
     parser.add_argument('--list', action='store_true', help='列出草稿')
     args = parser.parse_args()
-    
+
     if args.list:
         draft_dir = f"{VAULT_DIR}\\草稿"
         for f in sorted(os.listdir(draft_dir), reverse=True):
             if f.endswith('.md'):
                 print(f"  - {f}")
         return
-    
+
     if args.publish is not None:
         draft = args.publish if args.publish else get_latest_draft()
         if draft:
