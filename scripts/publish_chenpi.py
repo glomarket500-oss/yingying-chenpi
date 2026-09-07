@@ -16,10 +16,28 @@ import subprocess
 from datetime import datetime
 from pathlib import Path
 
+try:
+    from opencc import OpenCC
+    HK_CONVERTER = OpenCC('s2hk')
+except ImportError:
+    HK_CONVERTER = None
+
 REPO_DIR = r"C:\Users\a\Desktop\chenpi-website"
 SITE_URL = "https://yingying-chenpi.vercel.app"
 CHAR_CORRECT = chr(0x6EE2)
 VAULT_DIR = f"C:\\Users\\a\\Desktop\\MianAI知识库\\vault\\{CHAR_CORRECT}{CHAR_CORRECT}姐讲陈皮故事"
+
+
+def hk_text(value):
+    """转换为香港繁体，并统一正确人名写法为「滢滢」。"""
+    if not isinstance(value, str):
+        return value
+    converted = HK_CONVERTER.convert(value) if HK_CONVERTER else value
+    correct = chr(0x6EE2) * 2
+    wrong_a = chr(0x7005) * 2
+    wrong_b = chr(0x6EE2) + chr(0x7005)
+    wrong_c = chr(0x7005) + chr(0x6EE2)
+    return converted.replace(wrong_a, correct).replace(wrong_b, correct).replace(wrong_c, correct)
 
 
 def read_md(md_path):
@@ -39,6 +57,11 @@ def read_md(md_path):
             fm['tags'] = json.loads(tags_raw)
         except:
             fm['tags'] = [t.strip().strip('"').strip("'") for t in tags_raw[1:-1].split(',') if t.strip()]
+    # 统一正文与 frontmatter 为香港繁体，并固定作者名为「滢滢」。
+    fm = {k: hk_text(v) for k, v in fm.items()}
+    if isinstance(fm.get('tags'), list):
+        fm['tags'] = [hk_text(t) for t in fm['tags']]
+    body = hk_text(body)
     return fm, body
 
 
@@ -55,7 +78,18 @@ def md_to_html(body):
 
     for s in (l.rstrip() for l in lines):
         if s.startswith('## '):
-            close_p(); close_list(); out.append(f'<h2>{s[3:]}</h2>')
+            close_p(); close_list()
+            heading = s[3:]
+            heading_class = 'section-heading'
+            if '開場' in heading:
+                heading_class += ' section-opening'
+            elif '常見問題' in heading:
+                heading_class += ' section-faq'
+            elif '茶識' in heading or '小貼士' in heading:
+                heading_class += ' section-tips'
+            elif '結語' in heading:
+                heading_class += ' section-ending'
+            out.append(f'<h2 class="{heading_class}">{heading}</h2>')
         elif s.startswith('### '):
             close_p(); close_list(); out.append(f'<h3>{s[4:]}</h3>')
         elif s.startswith('- '):
@@ -85,7 +119,7 @@ def md_to_html(body):
         html_out,
     )
     html_out = re.sub(
-        r'(<h2>(?:FAQ )?常見問題</h2>)\s*((?:<div class="faq-item">[\s\S]*?</div>\s*)+)',
+        r'(<h2(?: class="[^"]+")?>(?:FAQ )?常見問題</h2>)\s*((?:<div class="faq-item">[\s\S]*?</div>\s*)+)',
         r'\1\n<div class="faq-list">\n\2</div>',
         html_out,
     )
@@ -121,7 +155,7 @@ def build_html(title, body_html, tags, date_str, time_str, faqs, image_url, url,
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{title} | 溢豐堂 · 瀅瀅家新會陳皮</title>
+<title>{title} | 溢豐堂 · 滢滢家新會陳皮</title>
 <meta name="description" content="{meta_description}">
 <meta name="keywords" content="{meta_keywords}">
 <meta name="author" content="滢滢">
@@ -150,13 +184,13 @@ def build_html(title, body_html, tags, date_str, time_str, faqs, image_url, url,
 <body>
 <header class="site-header">
   <nav class="main-nav">
-    <a href="index.html" class="logo">溢豐堂 · 瀅瀅家新會陳皮</a>
+    <a href="index.html" class="logo">溢豐堂 · 滢滢家新會陳皮</a>
     <ul>
       <li><a href="index.html">首頁</a></li>
       <li><a href="articles.html" class="active">陳皮日記</a></li>
       <li><a href="videos.html">短視頻</a></li>
       <li><a href="live.html">直播間</a></li>
-      <li><a href="about.html">認識瀅瀅</a></li>
+      <li><a href="about.html">認識滢滢</a></li>
       <li><a href="contact.html">買陳皮</a></li>
     </ul>
   </nav>
@@ -173,7 +207,7 @@ def build_html(title, body_html, tags, date_str, time_str, faqs, image_url, url,
     <h1>{title}</h1>
     <div class="article-meta">
       <span>📅 {display_date} {time_str}</span>
-      <span>👤 瀅瀅</span>
+      <span>👤 滢滢</span>
       <span>📍 新會天馬村</span>
       <span>🕐 閱讀約8分鐘</span>
     </div>
@@ -182,8 +216,8 @@ def build_html(title, body_html, tags, date_str, time_str, faqs, image_url, url,
   <div class="article-content">{body_html}</div>
   <div class="cta-box">
     <h3>想買正宗新會陳皮？</h3>
-    <p>瀅瀅家天馬村果園直發，手工開皮、自然生曬、乾倉陳化。</p>
-    <p>📱 加瀅瀅微信，了解詳情</p>
+    <p>滢滢家天馬村果園直發，手工開皮、自然生曬、乾倉陳化。</p>
+    <p>📱 加滢滢微信，了解詳情</p>
   </div>
   <div class="related">
     <h3>📖 你可能還想看</h3>
@@ -192,8 +226,8 @@ def build_html(title, body_html, tags, date_str, time_str, faqs, image_url, url,
 </article>
 
 <footer>
-  <p>📍 新會陳皮村南門牌坊 G04 | 瀅瀅姐陳皮文化傳播 | 📞 19307501495</p>
-  <p>© 溢豐堂 · 瀅瀅 · 新會天馬村 · <a href="contact.html">聯繫我們</a></p>
+  <p>📍 新會陳皮村南門牌坊 G04 | 滢滢姐陳皮文化傳播 | 📞 19307501495</p>
+  <p>© 溢豐堂 · 滢滢 · 新會天馬村 · <a href="contact.html">聯繫我們</a></p>
 </footer>
 </body>
 </html>'''

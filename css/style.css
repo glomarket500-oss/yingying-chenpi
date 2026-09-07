@@ -816,7 +816,57 @@ footer a:hover { color: var(--accent); }
 }
 .article-nav a:hover { text-decoration: underline; }
 
-/* ===== 瀅瀅個人IP首屏 ===== */
+/* ===== 正文标题与图标层次 ===== */
+.article-content h2.section-heading {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    margin: 34px 0 18px;
+    padding: 11px 16px 11px 50px;
+    border-left: 4px solid var(--primary);
+    border-radius: 0 10px 10px 0;
+    background: linear-gradient(90deg, #fff8ed 0%, rgba(255, 248, 237, 0.28) 78%, transparent 100%);
+    color: var(--primary-dark);
+    font-size: 1.18rem;
+    line-height: 1.55;
+}
+.article-content h2.section-heading::before {
+    position: absolute;
+    left: 16px;
+    font-size: 1.35rem;
+    line-height: 1;
+}
+.article-content h2.section-opening::before { content: '🍊'; }
+.article-content h2.section-act::before { content: '🍂'; }
+.article-content h2.section-tips::before { content: '🍵'; }
+.article-content h2.section-faq::before { content: '❓'; }
+.article-content h2.section-ending::before { content: '✦'; }
+.article-content .faq-list {
+    display: grid;
+    gap: 12px;
+    margin: 18px 0 24px;
+}
+.article-content .faq-question::before {
+    content: '❔';
+    margin-right: 7px;
+    font-size: 0.95em;
+}
+.article-content h2.section-tips + p {
+    padding: 15px 18px;
+    border: 1px solid #eadfce;
+    border-radius: 10px;
+    background: #fffdf9;
+}
+@media (max-width: 480px) {
+    .article-content h2.section-heading {
+        padding-left: 43px;
+        font-size: 1.05rem;
+    }
+    .article-content h2.section-heading::before { left: 13px; }
+}
+
+/* ===== 滢滢個人IP首屏 ===== */
 .hero-personal {
     background: linear-gradient(135deg, #fdf6e9 0%, #f5e6cc 50%, #ede0d0 100%);
     padding: 60px 5% 80px;
@@ -895,7 +945,7 @@ footer a:hover { color: var(--accent); }
     50% { opacity: 0.4; }
 }
 
-/* ===== 瀅瀅想對你説 ===== */
+/* ===== 滢滢想對你説 ===== */
 .yingying-says {
     background: linear-gradient(135deg, #fff9f0 0%, #fdf5e6 100%);
     padding: 60px 5%;
