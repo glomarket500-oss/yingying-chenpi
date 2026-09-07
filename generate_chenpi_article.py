@@ -188,7 +188,7 @@ def generate_article_with_hotspot(hotspot):
 
     else:
         # 通用故事模板
-        title = f"滢滢姐陳皮日記｜{keyword}話題下，一位客人嘅故事"
+        title = f"滢滢姐陳皮故事｜{keyword}話題下，一位客人嘅故事"
         story = f"""今日{keyword}話題刷屏，滢滢姐一邊刷手機一邊包陳皮。
 
 正當佢睇到一條新聞，微信突然收到一條長語音。打開一聽，係東莞嘅張姨，把聲帶點猶豫：
@@ -217,7 +217,7 @@ def generate_article_with_hotspot(hotspot):
 
 「滢滢姐，呢個先至叫陳皮！」張姨嘅語音充滿驚喜。
 
-滢滢姐望住張相，笑咗。佢知道，又幫一個人避開咗假貨嘅坑。呢個，就係佢堅持寫陳皮日記嘅原因。
+滢滢姐望住張相，笑咗。佢知道，又幫一個人避開咗假貨嘅坑。呢個，就係佢堅持寫陳皮故事嘅原因。
 
 ---
 
@@ -238,7 +238,7 @@ title: "{title}"
 date: "{date_str}"
 time: "{time_str}"
 tags: [陳皮, 新會, 故事, {keyword}]
-category: 陳皮日記
+category: 陳皮故事
 source: 滢滢姐陳皮文章-自動生成
 status: 草稿
 ---
@@ -386,7 +386,7 @@ def generate_full_html(title, body_html, tags, date_str, time_str):
   </a>
   <div class="nav-links">
     <a href="index.html">首頁</a>
-    <a href="articles.html" class="active">陳皮日記</a>
+    <a href="articles.html" class="active">陳皮故事</a>
     <a href="videos.html">短視頻</a>
     <a href="live.html">直播間</a>
     <a href="about.html">認識滢滢</a>
@@ -398,7 +398,7 @@ def generate_full_html(title, body_html, tags, date_str, time_str):
   <div class="breadcrumb">
     <a href="index.html">首頁</a>
     <span> · </span>
-    <a href="articles.html">陳皮日記</a>
+    <a href="articles.html">陳皮故事</a>
     <span> · </span>
     <span>{title}</span>
   </div>

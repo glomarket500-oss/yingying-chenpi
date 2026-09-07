@@ -39,7 +39,7 @@
 
 ```
 [导航栏 nav]  ← 引用外部 css/style.css
-[面包屑 breadcrumb]  ← 「首頁 · 陳皮日記 · 文章标题」
+[面包屑 breadcrumb]  ← 「首頁 · 陳皮故事 · 文章标题」
 [文章头部 article-header]
   ├── H1 标题
   ├── article-meta（📅 👤 📍 🕐）

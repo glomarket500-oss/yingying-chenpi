@@ -147,7 +147,7 @@ def build_html(title, body_html, tags, date_str, time_str, faqs, image_url, url,
         items = [{"@type": "Question", "name": f["q"], "acceptedAnswer": {"@type": "Answer", "text": f["a"]}} for f in faqs]
         faq_schema = f'<script type="application/ld+json">\n{json.dumps({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": items}, ensure_ascii=False, indent=2)}\n</script>'
 
-    blog = {"@context": "https://schema.org", "@type": "BlogPosting", "headline": title, "description": description or title, "image": image_url, "datePublished": iso_date, "dateModified": iso_date, "author": {"@type": "Person", "name": "滢滢"}, "publisher": {"@type": "Organization", "name": "溢豐堂"}, "articleSection": "陳皮日記", "inLanguage": "zh-Hant", "contentLocation": {"@type": "Place", "name": "新會天馬村"}}
+    blog = {"@context": "https://schema.org", "@type": "BlogPosting", "headline": title, "description": description or title, "image": image_url, "datePublished": iso_date, "dateModified": iso_date, "author": {"@type": "Person", "name": "滢滢"}, "publisher": {"@type": "Organization", "name": "溢豐堂"}, "articleSection": "陳皮故事", "inLanguage": "zh-Hant", "contentLocation": {"@type": "Place", "name": "新會天馬村"}}
     local_business = {"@context": "https://schema.org", "@type": "LocalBusiness", "name": "溢豐堂 · 滢滢家新會陳皮", "address": {"@type": "PostalAddress", "addressLocality": "新會區", "addressRegion": "廣東省", "addressCountry": "CN"}, "geo": {"@type": "GeoCoordinates", "latitude": 22.5317, "longitude": 113.0286}}
 
     return f'''<!DOCTYPE html>
@@ -187,7 +187,7 @@ def build_html(title, body_html, tags, date_str, time_str, faqs, image_url, url,
     <a href="index.html" class="logo">溢豐堂 · 滢滢家新會陳皮</a>
     <ul>
       <li><a href="index.html">首頁</a></li>
-      <li><a href="articles.html" class="active">陳皮日記</a></li>
+      <li><a href="articles.html" class="active">陳皮故事</a></li>
       <li><a href="videos.html">短視頻</a></li>
       <li><a href="live.html">直播間</a></li>
       <li><a href="about.html">認識滢滢</a></li>
@@ -198,7 +198,7 @@ def build_html(title, body_html, tags, date_str, time_str, faqs, image_url, url,
 
 <div class="breadcrumb">
   <a href="index.html">首頁</a> ·
-  <a href="articles.html">陳皮日記</a> ·
+  <a href="articles.html">陳皮故事</a> ·
   {title}
 </div>
 
@@ -241,7 +241,7 @@ def update_index(title, abstract, display_date, time_str, file_name):
     new_featured = f'''<article class="article-card article-featured">
             <div class="article-meta">
                 <span class="article-date">{display_date} {time_str}</span>
-                <span class="article-tag">#陳皮日記</span>
+                <span class="article-tag">#陳皮故事</span>
             </div>
             <h3><a href="{file_name}">{title}</a></h3>
             <p>{abstract}</p>
@@ -261,7 +261,7 @@ def update_articles(file_name, title, abstract, display_date, time_str, tags):
     with open(art_path, encoding='utf-8') as f:
         html = f.read()
 
-    tag_str = " · ".join(tags[:3]) if isinstance(tags, list) else "陳皮日記"
+    tag_str = " · ".join(tags[:3]) if isinstance(tags, list) else "陳皮故事"
     new_item = f'''<article class="article-card">
         <a href="{file_name}">
           <h3>{title}</h3>
