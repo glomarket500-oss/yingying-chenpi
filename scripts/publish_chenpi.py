@@ -231,7 +231,7 @@ def update_articles(file_name, title, abstract, display_date, time_str, tags):
     new_item = f'''<article class="article-card">
         <a href="{file_name}">
           <h3>{title}</h3>
-          <p class="meta">{display_date} | {tag_str}</p>
+          <p class="meta">{display_date} {time_str} | {tag_str}</p>
           <p class="excerpt">{abstract}</p>
           <span class="read-more">閱讀全文 →</span>
         </a>
