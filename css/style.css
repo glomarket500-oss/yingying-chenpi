@@ -435,6 +435,15 @@ footer a:hover { color: var(--accent); }
     background: #8b4513;
     color: #fff;
 }
+.article-content a {
+    color: inherit;
+    text-decoration: none;
+}
+.article-content a:hover,
+.article-content a:focus-visible {
+    color: var(--primary);
+    text-decoration: none;
+}
 .article-content h2 {
     color: #2c2c2c;
     font-size: 1.2rem;
