@@ -74,6 +74,7 @@ def md_to_html(body):
             # 先转义正文，再恢复 Markdown 粗体，避免生成的 <strong> 被再次转义。
             escaped = html.escape(s, quote=False)
             escaped = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', escaped)
+            escaped = re.sub(r'(?<!\*)\*(?!\s)(.+?)(?<!\s)\*(?!\*)', r'<em>\1</em>', escaped)
             out.append(escaped + ' ')
     close_p(); close_list()
     html_out = '\n'.join(out)
@@ -99,18 +100,21 @@ def extract_faqs(body):
     return faqs
 
 
-def build_html(title, body_html, tags, date_str, time_str, faqs, image_url, url):
+def build_html(title, body_html, tags, date_str, time_str, faqs, image_url, url, description=""):
     tag_list = tags if isinstance(tags, list) else ["新會陳皮"]
-    tags_html = '\n'.join(f'<a href="#">{t}</a>' for t in tag_list[:5])
+    tags_html = '\n'.join(f'<a href="#">{html.escape(str(t), quote=True)}</a>' for t in tag_list[:5])
     display_date = f"{date_str[:4]}年{date_str[5:7]}月{date_str[8:10]}日"
     iso_date = f"{date_str}T{time_str}+08:00"
+    meta_description = html.escape(description or title, quote=True)
+    meta_keywords = html.escape(','.join(str(t) for t in tag_list[:8]), quote=True)
 
     faq_schema = ""
     if faqs:
         items = [{"@type": "Question", "name": f["q"], "acceptedAnswer": {"@type": "Answer", "text": f["a"]}} for f in faqs]
         faq_schema = f'<script type="application/ld+json">\n{json.dumps({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": items}, ensure_ascii=False, indent=2)}\n</script>'
 
-    blog = {"@context": "https://schema.org", "@type": "BlogPosting", "headline": title, "image": image_url, "datePublished": iso_date, "dateModified": iso_date, "author": {"@type": "Person", "name": "瀅瀅"}, "publisher": {"@type": "Organization", "name": "溢豐堂"}, "articleSection": "陳皮日記"}
+    blog = {"@context": "https://schema.org", "@type": "BlogPosting", "headline": title, "description": description or title, "image": image_url, "datePublished": iso_date, "dateModified": iso_date, "author": {"@type": "Person", "name": "滢滢"}, "publisher": {"@type": "Organization", "name": "溢豐堂"}, "articleSection": "陳皮日記", "inLanguage": "zh-Hant", "contentLocation": {"@type": "Place", "name": "新會天馬村"}}
+    local_business = {"@context": "https://schema.org", "@type": "LocalBusiness", "name": "溢豐堂 · 滢滢家新會陳皮", "address": {"@type": "PostalAddress", "addressLocality": "新會區", "addressRegion": "廣東省", "addressCountry": "CN"}, "geo": {"@type": "GeoCoordinates", "latitude": 22.5317, "longitude": 113.0286}}
 
     return f'''<!DOCTYPE html>
 <html lang="zh-Hant">
@@ -118,19 +122,29 @@ def build_html(title, body_html, tags, date_str, time_str, faqs, image_url, url)
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{title} | 溢豐堂 · 瀅瀅家新會陳皮</title>
-<meta name="description" content="{title}——瀅瀅姐在天馬村的陳皮故事">
-<meta name="keywords" content="新會陳皮,陳皮收藏,陳皮年份,陳皮價格,天馬村">
-<meta name="author" content="瀅瀅">
+<meta name="description" content="{meta_description}">
+<meta name="keywords" content="{meta_keywords}">
+<meta name="author" content="滢滢">
 <link rel="canonical" href="{url}">
 <meta name="geo.position" content="22.5317;113.0286">
 <meta name="ICBM" content="22.5317, 113.0286">
+<meta name="geo.placename" content="新會天馬村, 江門, 廣東">
+<meta name="geo.region" content="CN-GD">
 <meta property="og:type" content="article">
 <meta property="og:title" content="{title}">
+<meta property="og:description" content="{meta_description}">
 <meta property="og:url" content="{url}">
 <meta property="og:image" content="{image_url}">
+<meta property="og:locale" content="zh_HK">
+<meta property="article:published_time" content="{iso_date}">
+<meta property="article:author" content="滢滢">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{title}">
+<meta name="twitter:description" content="{meta_description}">
+<meta name="twitter:image" content="{image_url}">
 <link rel="stylesheet" href="css/style.css">
 <script type="application/ld+json">\n{json.dumps(blog, ensure_ascii=False, indent=2)}\n</script>
+<script type="application/ld+json">\n{json.dumps(local_business, ensure_ascii=False, indent=2)}\n</script>
 {faq_schema}
 </head>
 <body>
@@ -265,7 +279,7 @@ def publish(draft_path):
     file_name = f"article-{date_str.replace('-', '')}-{time_str.replace(':', '')[:4]}.html"
     url = f"{SITE_URL}/{file_name}"
 
-    html = build_html(title, body_html, tags, date_str, time_str, faqs, image, url)
+    html = build_html(title, body_html, tags, date_str, time_str, faqs, image, url, abstract)
 
     with open(os.path.join(REPO_DIR, file_name), 'w', encoding='utf-8') as f:
         f.write(html)

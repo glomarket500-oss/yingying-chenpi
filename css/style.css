@@ -328,20 +328,56 @@ footer a:hover { color: var(--accent); }
 .article-card h3 {
     margin: 0 0 15px;
 }
-.article-card > a,
-.article-card > a:link,
-.article-card > a:visited,
-.article-card > a:hover,
-.article-card > a:active,
-.article-card > a:focus {
+.article-card a,
+.article-card a:link,
+.article-card a:visited,
+.article-card a:hover,
+.article-card a:active,
+.article-card a:focus,
+.product-card a,
+.product-card a:link,
+.product-card a:visited,
+.product-card a:hover,
+.product-card a:active,
+.product-card a:focus,
+.yingying-card a,
+.yingying-card a:link,
+.yingying-card a:visited,
+.yingying-card a:hover,
+.yingying-card a:active,
+.yingying-card a:focus {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    border-bottom: 0 !important;
+    box-shadow: none !important;
+}
+.article-card > a {
     display: block;
     color: inherit;
-    text-decoration: none !important;
 }
-.article-card > a h3,
-.article-card > a p,
-.article-card > a .read-more {
-    text-decoration: none !important;
+.article-card h3 a,
+.article-card h3 a:link,
+.article-card h3 a:visited,
+.article-card h3 a:hover,
+.article-card h3 a:active,
+.article-card h3 a:focus {
+    color: var(--primary) !important;
+}
+.article-card .read-more,
+.article-card .read-more:link,
+.article-card .read-more:visited,
+.article-card .read-more:hover,
+.article-card .read-more:active,
+.article-card .read-more:focus {
+    color: var(--primary) !important;
+}
+.article-card .article-cta .btn,
+.article-card .article-cta .btn:link,
+.article-card .article-cta .btn:visited,
+.article-card .article-cta .btn:hover,
+.article-card .article-cta .btn:active,
+.article-card .article-cta .btn:focus {
+    color: var(--white) !important;
 }
 .article-card h3 a {
     color: var(--primary);
