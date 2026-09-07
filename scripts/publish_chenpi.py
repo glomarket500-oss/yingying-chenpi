@@ -237,8 +237,7 @@ def update_articles(file_name, title, abstract, display_date, time_str, tags):
         </a>
       </article>'''
 
-    if 'class="article-list"' in html:
-        html = html.replace('class="article-list"', 'class="article-list"\n      ' + new_item, 1)
+    html = html.replace('<section class="article-list">', '<section class="article-list">\n      ' + new_item, 1)
 
     with open(art_path, 'w', encoding='utf-8') as f:
         f.write(html)
