@@ -290,11 +290,16 @@ def git_push():
             return True, "无变更"
         return False, r.stderr[:100]
 
-    r = subprocess.run(["git", "push", "origin", "main"], capture_output=True, text=True, timeout=30)
+    try:
+        r = subprocess.run(["git", "push", "origin", "main"], capture_output=True, text=True, timeout=90)
+    except subprocess.TimeoutExpired:
+        return False, "GitHub 推送超时，文章已生成但尚未完成远程同步"
+    except OSError as exc:
+        return False, f"Git 推送无法启动：{exc}"
     if r.returncode == 0:
         h = subprocess.run(["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True)
         return True, f"已推送 ({h.stdout.strip()})"
-    return False, r.stderr[:100]
+    return False, (r.stderr or r.stdout or "Git 推送失败").strip()[:160]
 
 
 def publish(draft_path):
