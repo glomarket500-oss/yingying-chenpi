@@ -33,7 +33,7 @@ from pathlib import Path
 REPO_DIR = r"C:\Users\a\Desktop\chenpi-website"
 INDEX_HTML = os.path.join(REPO_DIR, "index.html")
 ARTICLES_HTML = os.path.join(REPO_DIR, "articles.html")
-VAULT_DIR = r"C:\Users\a\Desktop\MianAI知识库\MianAI知识库\滢滢姐讲陈皮故事"
+VAULT_DIR = r"C:\Users\a\Desktop\MianAI知识库\MianAI知识库\vault\滢滢姐讲陈皮故事"
 VERCEL_URL = "https://yingying-chenpi.vercel.app"
 
 
