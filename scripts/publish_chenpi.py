@@ -83,6 +83,8 @@ def md_to_html(body):
             heading_class = 'section-heading'
             if '開場' in heading:
                 heading_class += ' section-opening'
+            elif re.match(r'^[一二三四五六七八九十]+、', heading):
+                heading_class += ' section-act'
             elif '常見問題' in heading:
                 heading_class += ' section-faq'
             elif '茶識' in heading or '小貼士' in heading:
@@ -246,7 +248,7 @@ def update_index(title, abstract, display_date, time_str, file_name):
             <h3><a href="{file_name}">{title}</a></h3>
             <p>{abstract}</p>
             <div class="article-cta">
-                <a href="{file_name}" class="btn">讀完整日記 →</a>
+                <a href="{file_name}" class="btn">讀完整故事 →</a>
             </div>
         </article>'''
 
