@@ -25,7 +25,7 @@ except ImportError:
 REPO_DIR = r"C:\Users\a\Desktop\chenpi-website"
 SITE_URL = "https://yingying-chenpi.vercel.app"
 CHAR_CORRECT = chr(0x6EE2)
-VAULT_DIR = f"C:\\Users\\a\\Desktop\\MianAI知识库\\vault\\{CHAR_CORRECT}{CHAR_CORRECT}姐讲陈皮故事"
+VAULT_DIR = f"C:\\Users\\a\\Desktop\\MianAI知识库\\MianAI知识库\\{CHAR_CORRECT}{CHAR_CORRECT}姐讲陈皮故事"
 
 
 def hk_text(value):

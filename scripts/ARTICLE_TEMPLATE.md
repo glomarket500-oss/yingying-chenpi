@@ -200,8 +200,8 @@ A：xxx。
 
 ## 🚀 发布流程
 
-1. **生成/写稿** → 放 `vault/滢滢姐讲陈皮故事/草稿/`
-2. **用户说「OK」/「确定」** → 确认内容
+1. **生成/写稿** → 放 `C:\Users\a\Desktop\MianAI知识库\MianAI知识库\滢滢姐讲陈皮故事\草稿\`
+2. **直接发布** → 脚本完成后移动到 `C:\Users\a\Desktop\MianAI知识库\MianAI知识库\滢滢姐讲陈皮故事\已发布\`
 3. **运行发布**：
    ```bash
    python Desktop/chenpi-website/scripts/publish_chenpi.py --publish "草稿路径.md"
@@ -239,5 +239,5 @@ A：xxx。
 - **参考文章：**
   - `article-20260904-2247.html`（央视曝光，标准模板）
   - `article-20260906-0117.html`（那一年的陈皮，对话驱动）
-- **草稿箱：** `vault/滢滢姐讲陈皮故事/草稿/`
-- **已发布：** `vault/滢滢姐讲陈皮故事/已发布/`
+- **草稿箱：** `C:\Users\a\Desktop\MianAI知识库\MianAI知识库\滢滢姐讲陈皮故事\草稿\`
+- **已发布：** `C:\Users\a\Desktop\MianAI知识库\MianAI知识库\滢滢姐讲陈皮故事\已发布\`
