@@ -73,7 +73,7 @@ display_date: "2026年09月XX日"
 publish_time: "HH:MM:SS"
 iso_date: "2026-09-XXTHH:MM:SS+08:00"
 url: "https://yingying-chenpi.vercel.app/article-YYYYMMDD-HHMM.html"
-image: "https://yingying-chenpi.vercel.app/images/chenpi-hero.jpg"
+image: "https://yingying-chenpi.vercel.app/images/article-YYYYMMDD-HHMM-topic.jpg"  # 每篇先搜索主题相关图片，禁止复用 homepage-hero
 tags: ["新會陳皮", "陳皮收藏", "陳皮年份", "陳皮價格", "天馬村"]
 status: "草稿"
 website: "yingying-chenpi"

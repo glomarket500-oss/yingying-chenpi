@@ -143,6 +143,13 @@ def build_html(title, body_html, tags, date_str, time_str, faqs, image_url, url,
     iso_date = f"{date_str}T{time_str}+08:00"
     meta_description = html.escape(description or title, quote=True)
     meta_keywords = html.escape(','.join(str(t) for t in tag_list[:8]), quote=True)
+    article_image = ''
+    if image_url:
+        safe_image = html.escape(image_url, quote=True)
+        article_image = f'''<figure class="article-inline-image">
+    <img src="{safe_image}" alt="{html.escape(title, quote=True)}">
+    <figcaption>圖片來源：公開報道配圖｜中國新聞網</figcaption>
+  </figure>'''
 
     faq_schema = ""
     if faqs:
@@ -215,6 +222,7 @@ def build_html(title, body_html, tags, date_str, time_str, faqs, image_url, url,
     </div>
     <div class="article-tags">{tags_html}</div>
   </header>
+  {article_image}
   <div class="article-content">{body_html}</div>
   <div class="cta-box">
     <h3>想買正宗新會陳皮？</h3>
@@ -235,10 +243,18 @@ def build_html(title, body_html, tags, date_str, time_str, faqs, image_url, url,
 </html>'''
 
 
-def update_index(title, abstract, display_date, time_str, file_name):
+def update_index(title, abstract, display_date, time_str, file_name, image_url=""):
     idx_path = os.path.join(REPO_DIR, "index.html")
     with open(idx_path, encoding='utf-8') as f:
-        html = f.read()
+        page_html = f.read()
+
+    image_html = ""
+    if image_url:
+        safe_image = html.escape(image_url, quote=True)
+        image_html = f'''<figure class="featured-image">
+                <img src="{safe_image}" alt="{html.escape(title, quote=True)}">
+                <figcaption>圖片來源：公開報道配圖｜中國新聞網</figcaption>
+            </figure>'''
 
     new_featured = f'''<article class="article-card article-featured">
             <div class="article-meta">
@@ -246,16 +262,19 @@ def update_index(title, abstract, display_date, time_str, file_name):
                 <span class="article-tag">#陳皮故事</span>
             </div>
             <h3><a href="{file_name}">{title}</a></h3>
-            <p>{abstract}</p>
+            {image_html}
+            <p>{abstract}</p>'''
+
+    new_featured += '''
             <div class="article-cta">
                 <a href="{file_name}" class="btn">讀完整故事 →</a>
             </div>
-        </article>'''
+        </article>'''.replace('{file_name}', file_name)
 
     # 替换 featured 区块
-    html = re.sub(r'<article class="article-card article-featured".*?</article>', new_featured, html, count=1, flags=re.DOTALL)
+    page_html = re.sub(r'<article class="article-card article-featured".*?</article>', new_featured, page_html, count=1, flags=re.DOTALL)
     with open(idx_path, 'w', encoding='utf-8') as f:
-        f.write(html)
+        f.write(page_html)
 
 
 def update_articles(file_name, title, abstract, display_date, time_str, tags):
@@ -281,7 +300,7 @@ def update_articles(file_name, title, abstract, display_date, time_str, tags):
 
 def git_push():
     os.chdir(REPO_DIR)
-    subprocess.run(["git", "add", "index.html", "articles.html", "article-*.html"], capture_output=True, timeout=10)
+    subprocess.run(["git", "add", "index.html", "articles.html", "article-*.html", "images/*"], capture_output=True, timeout=10)
 
     msg = f"feat: 发布新文章 {datetime.now().strftime('%Y-%m-%d %H:%M')}"
     r = subprocess.run(["git", "commit", "-m", msg], capture_output=True, text=True, timeout=10)
@@ -311,7 +330,9 @@ def publish(draft_path):
     time_str = fm.get("publish_time", datetime.now().strftime("%H:%M:%S"))
     tags = fm.get("tags", ["新會陳皮"])
     abstract = fm.get("description", "")
-    image = fm.get("image", f"{SITE_URL}/images/chenpi-hero.jpg")
+    image = fm.get("image", "").strip()
+    if not image or "homepage-hero" in image or image.endswith("/images/chenpi-hero.jpg"):
+        raise ValueError("每篇文章必须先搜索并填写独立主题图片，不能使用首页统一图片")
 
     # 生成HTML
     faqs = extract_faqs(body)
@@ -325,7 +346,7 @@ def publish(draft_path):
         f.write(html)
 
     display_date = f"{date_str[:4]}年{date_str[5:7]}月{date_str[8:10]}日"
-    update_index(title, abstract, display_date, time_str, file_name)
+    update_index(title, abstract, display_date, time_str, file_name, image)
     update_articles(file_name, title, abstract, display_date, time_str, tags)
 
     ok, msg = git_push()
