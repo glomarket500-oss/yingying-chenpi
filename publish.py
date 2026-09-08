@@ -10,16 +10,25 @@ def today_str():
     return datetime.date.today().strftime("%Y%m%d")
 
 def today_cn():
-    return datetime.date.today().strftime("%Y年%m月%d日")
+    return datetime.datetime.now().strftime("%Y年%m月%d日 %H:%M:%S")
+
+
+def current_stamp():
+    now = datetime.datetime.now()
+    return (
+        now.strftime("%Y%m%d"),
+        now.strftime("%Y年%m月%d日 %H:%M:%S"),
+        now.strftime("%H%M%S"),
+    )
+
 
 def generate():
     print("=" * 40)
     print("溢丰堂陈皮日记发布工具")
     print("=" * 40)
 
-    date_str = today_str()
-    date_cn = today_cn()
-    file_name = f"article-{date_str}.html"
+    date_str, date_cn, time_slug = current_stamp()
+    file_name = f"article-{date_str}-{time_slug}.html"
     file_path = os.path.join(BASE, file_name)
 
     if os.path.exists(file_path):
@@ -71,11 +80,11 @@ def generate():
         <a href="index.html" class="logo"><h1>溢丰堂</h1><span>滢滢家新会陈皮</span></a>
         <div class="nav-links">
             <a href="index.html">首页</a>
-            <a href="articles.html" class="active">陈皮日记</a>
+            <a href="articles.html" class="active">陈皮故事</a>
             <a href="videos.html">短视频</a>
             <a href="live.html">直播间</a>
             <a href="about.html">认识滢滢</a>
-            <a href="contact.html">买陈皮</a>
+            <a href="contact.html">销售陈皮</a>
         </div>
     </nav>
 
@@ -149,10 +158,9 @@ def generate():
                 <span class="article-tag">{tag_hash}</span>
             </div>
             <h3><a href="{file_name}">{title}</a></h3>
-            <p>{paragraphs[0][:120]}…</p>
-            <p>{paragraphs[1][:120] if len(paragraphs) > 1 else ""}…</p>
+            <p>{summary[:180]}{'…' if len(summary) > 180 else ''}</p>
             <div class="article-cta">
-                <a href="{file_name}" class="btn">读完整日记 →</a>
+                <a href="{file_name}" class="btn">讀完整故事 →</a>
             </div>
         {match.group(2)}'''
 

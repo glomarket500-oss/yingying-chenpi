@@ -988,9 +988,32 @@ footer a:hover { color: var(--accent); }
 /* ===== 文章卡片增強 ===== */
 .article-featured {
     border-left: 4px solid var(--primary);
+    display: flex;
+    flex-direction: column;
+    min-height: 310px;
+    box-sizing: border-box;
+}
+.article-featured .article-meta {
+    flex-wrap: wrap;
+    align-items: center;
+}
+.article-featured h3 {
+    overflow-wrap: anywhere;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+.article-featured > p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+    overflow-wrap: anywhere;
 }
 .article-cta {
-    margin-top: 20px;
+    margin-top: auto;
+    padding-top: 8px;
     text-align: center;
 }
 
