@@ -136,19 +136,20 @@ def extract_faqs(body):
     return faqs
 
 
-def build_html(title, body_html, tags, date_str, time_str, faqs, image_url, url, description=""):
+def build_html(title, body_html, tags, date_str, time_str, faqs, image_url, url, description="", image_source="公開報道配圖"):
     tag_list = tags if isinstance(tags, list) else ["新會陳皮"]
     tags_html = '\n'.join(f'<a href="#">{html.escape(str(t), quote=True)}</a>' for t in tag_list[:5])
     display_date = f"{date_str[:4]}年{date_str[5:7]}月{date_str[8:10]}日"
     iso_date = f"{date_str}T{time_str}+08:00"
     meta_description = html.escape(description or title, quote=True)
     meta_keywords = html.escape(','.join(str(t) for t in tag_list[:8]), quote=True)
+    source_caption = html.escape(image_source or "公開報道配圖", quote=False)
     article_image = ''
     if image_url:
         safe_image = html.escape(image_url, quote=True)
         article_image = f'''<figure class="article-inline-image">
     <img src="{safe_image}" alt="{html.escape(title, quote=True)}">
-    <figcaption>圖片來源：公開報道配圖｜中國新聞網</figcaption>
+    <figcaption>圖片來源：{source_caption}</figcaption>
   </figure>'''
 
     faq_schema = ""
@@ -243,7 +244,7 @@ def build_html(title, body_html, tags, date_str, time_str, faqs, image_url, url,
 </html>'''
 
 
-def update_index(title, abstract, display_date, time_str, file_name, image_url=""):
+def update_index(title, abstract, display_date, time_str, file_name, image_url="", image_source="公開報道配圖"):
     idx_path = os.path.join(REPO_DIR, "index.html")
     with open(idx_path, encoding='utf-8') as f:
         page_html = f.read()
@@ -251,9 +252,10 @@ def update_index(title, abstract, display_date, time_str, file_name, image_url="
     image_html = ""
     if image_url:
         safe_image = html.escape(image_url, quote=True)
+        source_caption = html.escape(image_source or "公開報道配圖", quote=False)
         image_html = f'''<figure class="featured-image">
                 <img src="{safe_image}" alt="{html.escape(title, quote=True)}">
-                <figcaption>圖片來源：公開報道配圖｜中國新聞網</figcaption>
+                <figcaption>圖片來源：{source_caption}</figcaption>
             </figure>'''
 
     new_featured = f'''<article class="article-card article-featured">
@@ -331,6 +333,7 @@ def publish(draft_path):
     tags = fm.get("tags", ["新會陳皮"])
     abstract = fm.get("description", "")
     image = fm.get("image", "").strip()
+    image_source = fm.get("image_source", "公開報道配圖").strip()
     if not image or "homepage-hero" in image or image.endswith("/images/chenpi-hero.jpg"):
         raise ValueError("每篇文章必须先搜索并填写独立主题图片，不能使用首页统一图片")
 
@@ -340,13 +343,13 @@ def publish(draft_path):
     file_name = f"article-{date_str.replace('-', '')}-{time_str.replace(':', '')[:4]}.html"
     url = f"{SITE_URL}/{file_name}"
 
-    html = build_html(title, body_html, tags, date_str, time_str, faqs, image, url, abstract)
+    html = build_html(title, body_html, tags, date_str, time_str, faqs, image, url, abstract, image_source)
 
     with open(os.path.join(REPO_DIR, file_name), 'w', encoding='utf-8') as f:
         f.write(html)
 
     display_date = f"{date_str[:4]}年{date_str[5:7]}月{date_str[8:10]}日"
-    update_index(title, abstract, display_date, time_str, file_name, image)
+    update_index(title, abstract, display_date, time_str, file_name, image, image_source)
     update_articles(file_name, title, abstract, display_date, time_str, tags)
 
     ok, msg = git_push()
