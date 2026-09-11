@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.chenpiyun.com/sitemap.xml
+Sitemap: https://yingying-chenpi.vercel.app/sitemap.xml
