@@ -302,7 +302,7 @@ def update_articles(file_name, title, abstract, display_date, time_str, tags):
 
 def git_push():
     os.chdir(REPO_DIR)
-    subprocess.run(["git", "add", "index.html", "articles.html", "article-*.html", "images/*"], capture_output=True, timeout=10)
+    subprocess.run(["git", "add", "index.html", "articles.html", "article-*.html", "images/*", ".pending_push"], capture_output=True, timeout=10)
 
     msg = f"feat: 发布新文章 {datetime.now().strftime('%Y-%m-%d %H:%M')}"
     r = subprocess.run(["git", "commit", "-m", msg], capture_output=True, text=True, timeout=10)
@@ -354,15 +354,20 @@ def publish(draft_path):
 
     ok, msg = git_push()
     if not ok:
-        print(f"   ❌ {msg}")
-        return False
-    print(f"   ✅ {msg}")
+        print(f"   ⚠️ {msg}（本地已落盘，稍后自动补推）")
+    else:
+        print(f"   ✅ {msg}")
 
-    # 移动草稿
+    # 移动草稿：无论推送成败，本地产物先归档，不挡下一环节
     pub_dir = f"{VAULT_DIR}\\已发布"
     os.makedirs(pub_dir, exist_ok=True)
     shutil.move(draft_path, os.path.join(pub_dir, os.path.basename(draft_path)))
 
+    # 记录待推送状态，供下次补推
+    pending_flag = os.path.join(REPO_DIR, ".pending_push")
+    if not ok:
+        with open(pending_flag, 'a', encoding='utf-8') as f:
+            f.write(f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} {file_name} 待推送\n")
     print(f"\n🎉 {url}")
     return True
 
