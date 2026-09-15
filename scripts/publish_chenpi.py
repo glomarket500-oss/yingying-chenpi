@@ -143,13 +143,20 @@ def build_html(title, body_html, tags, date_str, time_str, faqs, image_url, url,
     iso_date = f"{date_str}T{time_str}+08:00"
     meta_description = html.escape(description or title, quote=True)
     meta_keywords = html.escape(','.join(str(t) for t in tag_list[:8]), quote=True)
-    source_caption = html.escape(image_source or "公開報道配圖", quote=False)
+    source_caption = (image_source or "").strip()
+    no_source_markers = {"", "暫不署名", "暂不署名", "無", "无", "不寫來源", "不写来源", "none", "null"}
     article_image = ''
     if image_url:
         safe_image = html.escape(image_url, quote=True)
-        article_image = f'''<figure class="article-inline-image">
+        if source_caption in no_source_markers:
+            article_image = f'''<figure class="article-inline-image no-source">
     <img src="{safe_image}" alt="{html.escape(title, quote=True)}">
-    <figcaption>圖片來源：{source_caption}</figcaption>
+  </figure>'''
+        else:
+            safe_caption = html.escape(source_caption or "公開報道配圖", quote=False)
+            article_image = f'''<figure class="article-inline-image">
+    <img src="{safe_image}" alt="{html.escape(title, quote=True)}">
+    <figcaption>圖片來源：{safe_caption}</figcaption>
   </figure>'''
 
     faq_schema = ""
@@ -252,8 +259,14 @@ def update_index(title, abstract, display_date, time_str, file_name, image_url="
     image_html = ""
     if image_url:
         safe_image = html.escape(image_url, quote=True)
-        source_caption = html.escape(image_source or "公開報道配圖", quote=False)
-        image_html = f'''<figure class="featured-image">
+        no_source_markers = {"", "暫不署名", "暂不署名", "無", "无", "不寫來源", "不写来源", "none", "null"}
+        if (image_source or "").strip() in no_source_markers:
+            image_html = f'''<figure class="featured-image no-source">
+                <img src="{safe_image}" alt="{html.escape(title, quote=True)}">
+            </figure>'''
+        else:
+            source_caption = html.escape(image_source or "公開報道配圖", quote=False)
+            image_html = f'''<figure class="featured-image">
                 <img src="{safe_image}" alt="{html.escape(title, quote=True)}">
                 <figcaption>圖片來源：{source_caption}</figcaption>
             </figure>'''
