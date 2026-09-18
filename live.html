@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>直播間 | 滢滢每天早上7點至中午视频号直播 - 溢豐堂</title>
     <meta name="description" content="滢滢每天早上7點至中午视频号直播。現場開皮、現場衝泡、現場回答你的問題。不買也沒關係，來聊聊天，學點陳皮知識。">
-    <link rel="stylesheet" href="css/style.css?v=2">
+    <link rel="stylesheet" href="css/style.css?v=5">
 </head>
 <body>
     <nav class="nav">
@@ -25,8 +25,15 @@
         <div class="live-status">
             <span class="live-dot"></span>
             <span class="live-text">🔴 正在直播中！滢滢正在開皮，快進來</span>
-            <a href="#" class="btn btn-live">立即進入直播間</a>
+            <button onclick="toggleLiveQR()" class="btn btn-live" style="cursor:pointer;">立即進入直播間</button>
         </div>
+    </div>
+    <!-- 视频号直播二维码（点击按钮显示） -->
+    <div id="live-qr" style="display: none; text-align: center; padding: 20px; background: var(--bg, #fff); box-shadow: 0 4px 16px rgba(0,0,0,0.15); position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 9999; border-radius: 12px;">
+        <p style="font-weight: bold; margin-bottom: 12px;">📺 掃碼進入视频号直播间</p>
+        <img src="images/shipinhao-qr.jpg" alt="视频号直播间二维码" style="width: 240px; border-radius: 8px;">
+        <p style="margin-top: 10px; color: #666; font-size: 14px;">每天早上7點至中午直播</p>
+        <button onclick="toggleLiveQR()" style="margin-top: 10px; padding: 8px 20px; background: #eee; border: none; border-radius: 6px; cursor: pointer;">關閉</button>
     </div>
 
     <header class="page-header">
@@ -34,7 +41,6 @@
         <p>每天早上7點至中午視頻號直播 · 現場開皮 · 現場衝泡 · 有問必答</p>
             <figure class="article-inline-image">
                 <img src="images/live-studio.jpg" alt="直播間全景：早上7點陳皮茶室视频号開播">
-                <figcaption>圖片來源：AI生成圖片（多模型生成）</figcaption>
             </figure>
     <header>
 
@@ -49,7 +55,6 @@
                     <div class="schedule-topic">🌅 主題：清晨柑園直擊！帶你看新會的第一縷陽光</div>
             <figure class="article-inline-image">
                 <img src="images/live-orchard-morning.jpg" alt="清晨柑園直擊：第一縷陽光下的柑園直播">
-                <figcaption>圖片來源：AI生成圖片（多模型生成）</figcaption>
             </figure>
                     <div class="schedule-tag">🔴 正在直播</div>
                 </div>
@@ -59,7 +64,6 @@
                     <div class="schedule-topic">🍊 主題：現場開皮！從摘柑到翻曬全過程</div>
             <figure class="article-inline-image">
                 <img src="images/live-kaipi.jpg" alt="現場開皮：從摘柑到翻曬全過程">
-                <figcaption>圖片來源：AI生成圖片（多模型生成）</figcaption>
             </figure>
                 </div>
                 <div class="schedule-item">
@@ -68,7 +72,6 @@
                     <div class="schedule-topic">🍵 主題：十年陳皮煮飲教學，直播間現場泡</div>
             <figure class="article-inline-image">
                 <img src="images/live-brewing.jpg" alt="十年陳皮煮飲教學：直播間現場衝泡">
-                <figcaption>圖片來源：AI生成圖片（多模型生成）</figcaption>
             </figure>
                 </div>
                 <div class="schedule-item">
@@ -77,7 +80,6 @@
                     <div class="schedule-topic">💬 主題：你問我答！陳皮鑑別、選購、保存問題全解答</div>
             <figure class="article-inline-image">
                 <img src="images/live-qa.jpg" alt="你問我答：陳皮鑑別選購保存全解答">
-                <figcaption>圖片來源：AI生成圖片（多模型生成）</figcaption>
             </figure>
                 </div>
                 <div class="schedule-item">
@@ -86,7 +88,6 @@
                     <div class="schedule-topic">🏭 主題：帶你看倉庫！滢滢家的幹倉長什麼樣</div>
             <figure class="article-inline-image">
                 <img src="images/live-warehouse.jpg" alt="帶你看倉庫：滢滢家的幹倉陳化">
-                <figcaption>圖片來源：AI生成圖片（多模型生成）</figcaption>
             </figure>
                 </div>
             </div>
@@ -97,7 +98,6 @@
             <h3>💬 粉絲們在直播間説的話</h3>
             <figure class="article-inline-image">
                 <img src="images/live-fans.jpg" alt="粉絲在直播間：真實評價與互動">
-                <figcaption>圖片來源：AI生成圖片（多模型生成）</figcaption>
             </figure>
             <div class="comment-list">
                 <div class="comment-item">
@@ -143,7 +143,6 @@
             <h3>👥 加入滢滢的陳皮交流羣</h3>
             <figure class="article-inline-image">
                 <img src="images/live-group.jpg" alt="加入陳皮交流羣：老粉帶新粉">
-                <figcaption>圖片來源：AI生成圖片（多模型生成）</figcaption>
             </figure>
             <p>羣裏每天分享陳皮小知識，滢滢也會在羣裏回答大家的問題。買不買沒關係，交個朋友。</p>
             <div class="group-benefits">
@@ -171,6 +170,10 @@
             navigator.clipboard.writeText('chenpi-yingying').then(() => {
                 alert('微信號已複製：chenpi-yingying');
             });
+        }
+        function toggleLiveQR() {
+            var el = document.getElementById('live-qr');
+            el.style.display = el.style.display === 'none' ? 'block' : 'none';
         }
     </script>
 </body>
