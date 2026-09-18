@@ -104,29 +104,38 @@
             </figure>
         </section>
 
-        <!-- 關注我們：微信/视频号/抖音二维码 -->
+        <!-- 關注我們：微信/视频号/抖音按钮，点击展开二维码 -->
         <section class="follow-us" style="margin-top: 40px;">
             <h3>關注我們</h3>
-            <p style="color: var(--text-light); margin-bottom: 20px;">掃碼關注，获取陳皮最新资讯、直播预告和朋友圈分享</p>
-            <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-                <div style="flex: 1; min-width: 180px; max-width: 240px; text-align: center; background: var(--bg-alt); padding: 20px; border-radius: 12px;">
-                    <img src="images/wechat-qr.jpg" alt="微信二维码" style="width: 160px; height: 160px; object-fit: cover; border-radius: 8px; border: 2px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                    <p style="margin-top: 12px; font-weight: bold; font-size: 16px;">💬 微信</p>
-                    <p style="color: var(--text-light); font-size: 14px; margin-top: 4px;">chenpi-yingying</p>
-                </div>
-                <div style="flex: 1; min-width: 180px; max-width: 240px; text-align: center; background: var(--bg-alt); padding: 20px; border-radius: 12px;">
-                    <img src="images/shipinhao-qr.jpg" alt="视频号二维码" style="width: 160px; height: 160px; object-fit: cover; border-radius: 8px; border: 2px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                    <p style="margin-top: 12px; font-weight: bold; font-size: 16px;">📺 视频号</p>
-                    <p style="color: var(--text-light); font-size: 14px; margin-top: 4px;">滢滢家新會陳皮</p>
-                </div>
-                <div style="flex: 1; min-width: 180px; max-width: 240px; text-align: center; background: var(--bg-alt); padding: 20px; border-radius: 12px;">
-                    <img src="images/douyin-qr.jpg" alt="抖音号二维码" style="width: 160px; height: 160px; object-fit: cover; border-radius: 8px; border: 2px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                    <p style="margin-top: 12px; font-weight: bold; font-size: 16px;">🎵 抖音</p>
-                    <p style="color: var(--text-light); font-size: 14px; margin-top: 4px;">@滢滢家新會陳皮</p>
-                    <p style="color: var(--text-light); font-size: 13px; margin-top: 2px;">抖音号：azmy8268</p>
-                </div>
+            <p style="color: var(--text-light); margin-bottom: 20px;">點擊下方按鈕，掃碼關注获取最新资讯</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-bottom: 20px;">
+                <button onclick="toggleQR('wechat-qr')" style="padding: 14px 28px; font-size: 16px; font-weight: bold; background: #07c160; color: #fff; border: none; border-radius: 8px; cursor: pointer;">💬 微信</button>
+                <button onclick="toggleQR('shipinhao-qr')" style="padding: 14px 28px; font-size: 16px; font-weight: bold; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer;">📺 视频号</button>
+                <button onclick="toggleQR('douyin-qr')" style="padding: 14px 28px; font-size: 16px; font-weight: bold; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer;">🎵 抖音</button>
+            </div>
+            <div id="wechat-qr" style="display: none; text-align: center; margin-bottom: 20px;">
+                <img src="images/wechat-qr.jpg" alt="微信二维码" style="width: 200px; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.15);">
+                <p style="margin-top: 10px; color: var(--text-light);">微信号：chenpi-yingying</p>
+            </div>
+            <div id="shipinhao-qr" style="display: none; text-align: center; margin-bottom: 20px;">
+                <img src="images/shipinhao-qr.jpg" alt="视频号二维码" style="width: 200px; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.15);">
+                <p style="margin-top: 10px; color: var(--text-light);">滢滢家新會陳皮</p>
+            </div>
+            <div id="douyin-qr" style="display: none; text-align: center; margin-bottom: 20px;">
+                <img src="images/douyin-qr.jpg" alt="抖音号二维码" style="width: 200px; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.15);">
+                <p style="margin-top: 10px; color: var(--text-light);">@滢滢家新會陳皮 · 抖音号：azmy8268</p>
             </div>
         </section>
+        <script>
+        function toggleQR(id) {
+            var el = document.getElementById(id);
+            var showing = el.style.display !== 'none';
+            ['wechat-qr','shipinhao-qr','douyin-qr'].forEach(function(i){
+                document.getElementById(i).style.display = 'none';
+            });
+            if (!showing) el.style.display = 'block';
+        }
+        </script>
 
         <!-- 聯繫方式 -->
         <section class="contact-info">
