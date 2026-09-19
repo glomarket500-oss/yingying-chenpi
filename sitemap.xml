@@ -253,9 +253,15 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.yiyichenpi.com/article-20260911-1431.html</loc>
-    <lastmod>2026-09-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-</urlset>
+      <loc>https://www.yiyichenpi.com/article-20260911-1431.html</loc>
+      <lastmod>2026-09-11</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+    </url>
+    <url>
+      <loc>https://www.yiyichenpi.com/xhs.html</loc>
+      <lastmod>2026-09-19</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  </urlset>
