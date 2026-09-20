@@ -33,7 +33,7 @@
     <!-- 视频号直播二维码（点击按钮显示） -->
     <div id="live-qr" style="display: none; text-align: center; padding: 20px; background: var(--bg, #fff); box-shadow: 0 4px 16px rgba(0,0,0,0.15); position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 9999; border-radius: 12px;">
         <p style="font-weight: bold; margin-bottom: 12px;">📺 掃碼進入视频号直播间</p>
-        <img src="images/shipinhao-qr.jpg" alt="视频号直播间二维码" style="width: 240px; border-radius: 8px;">
+        <img src="images/shipinhao-qr.webp" loading="lazy" alt="视频号直播间二维码" style="width: 240px; border-radius: 8px;">
         <p style="margin-top: 10px; color: #666; font-size: 14px;">每天 7am–12pm (GMT+8)直播</p>
         <button onclick="toggleLiveQR()" style="margin-top: 10px; padding: 8px 20px; background: #eee; border: none; border-radius: 6px; cursor: pointer;">關閉</button>
     </div>
@@ -42,7 +42,7 @@
         <h2>📺 滢滢的直播間</h2>
         <p>每天 7am–12pm (GMT+8)視頻號直播 · 現場開皮 · 現場衝泡 · 有問必答</p>
             <figure class="article-inline-image">
-                <img src="images/live-studio.jpg" alt="直播間全景：7am陳皮茶室视频号開播">
+                <img src="images/live-studio.webp" loading="lazy" alt="直播間全景：7am陳皮茶室视频号開播">
             </figure>
     <header>
 
@@ -56,7 +56,7 @@
                     <div class="schedule-time">06:00 - 09:00</div>
                     <div class="schedule-topic">🌅 主題：清晨柑園直擊！帶你看新會的第一縷陽光</div>
             <figure class="article-inline-image">
-                <img src="images/live-orchard-morning.jpg" alt="清晨柑園直擊：第一縷陽光下的柑園直播">
+                <img src="images/live-orchard-morning.webp" loading="lazy" alt="清晨柑園直擊：第一縷陽光下的柑園直播">
             </figure>
                     <div class="schedule-tag">🔴 正在直播</div>
                 </div>
@@ -65,7 +65,7 @@
                     <div class="schedule-time">15:00 - 17:00</div>
                     <div class="schedule-topic">🍊 主題：現場開皮！從摘柑到翻曬全過程</div>
             <figure class="article-inline-image">
-                <img src="images/live-kaipi.jpg" alt="現場開皮：從摘柑到翻曬全過程">
+                <img src="images/live-kaipi.webp" loading="lazy" alt="現場開皮：從摘柑到翻曬全過程">
             </figure>
                 </div>
                 <div class="schedule-item">
@@ -73,7 +73,7 @@
                     <div class="schedule-time">15:00 - 16:30</div>
                     <div class="schedule-topic">🍵 主題：十年陳皮煮飲教學，直播間現場泡</div>
             <figure class="article-inline-image">
-                <img src="images/live-brewing.jpg" alt="十年陳皮煮飲教學：直播間現場衝泡">
+                <img src="images/live-brewing.webp" loading="lazy" alt="十年陳皮煮飲教學：直播間現場衝泡">
             </figure>
                 </div>
                 <div class="schedule-item">
@@ -81,7 +81,7 @@
                     <div class="schedule-time">15:00 - 16:30</div>
                     <div class="schedule-topic">💬 主題：你問我答！陳皮鑑別、選購、保存問題全解答</div>
             <figure class="article-inline-image">
-                <img src="images/live-qa.jpg" alt="你問我答：陳皮鑑別選購保存全解答">
+                <img src="images/live-qa.webp" loading="lazy" alt="你問我答：陳皮鑑別選購保存全解答">
             </figure>
                 </div>
                 <div class="schedule-item">
@@ -89,7 +89,7 @@
                     <div class="schedule-time">15:00 - 17:00</div>
                     <div class="schedule-topic">🏭 主題：帶你看倉庫！滢滢家的幹倉長什麼樣</div>
             <figure class="article-inline-image">
-                <img src="images/live-warehouse.jpg" alt="帶你看倉庫：滢滢家的幹倉陳化">
+                <img src="images/live-warehouse.webp" loading="lazy" alt="帶你看倉庫：滢滢家的幹倉陳化">
             </figure>
                 </div>
             </div>
@@ -99,7 +99,7 @@
         <section class="fan-wall">
             <h3>💬 粉絲們在直播間説的話</h3>
             <figure class="article-inline-image">
-                <img src="images/live-fans.jpg" alt="粉絲在直播間：真實評價與互動">
+                <img src="images/live-fans.webp" loading="lazy" alt="粉絲在直播間：真實評價與互動">
             </figure>
             <div class="comment-list">
                 <div class="comment-item">
@@ -144,7 +144,7 @@
         <section class="fan-group">
             <h3>👥 加入滢滢的陳皮交流羣</h3>
             <figure class="article-inline-image">
-                <img src="images/live-group.jpg" alt="加入陳皮交流羣：老粉帶新粉">
+                <img src="images/live-group.webp" loading="lazy" alt="加入陳皮交流羣：老粉帶新粉">
             </figure>
             <p>羣裏每天分享陳皮小知識，滢滢也會在羣裏回答大家的問題。買不買沒關係，交個朋友。</p>
             <div class="group-benefits">
@@ -184,5 +184,74 @@
             el.style.display = el.style.display === 'none' ? 'block' : 'none';
         }
     </script>
+
+    <!-- Cookie 提示條 -->
+    <div id="cookieBar" class="cookie-bar" style="display:none">
+        <div class="cookie-bar-content">
+            <p>🍪 呢個網站用 cookie 同 localStorage 記住你嘅偏好（例如直播時區、語言）。繼續瀏覽即代表你同意我哋嘅 <a href="about.html">隱私政策</a>。</p>
+            <div class="cookie-bar-actions">
+                <button class="cookie-btn cookie-btn-primary" onclick="acceptCookies()">同意</button>
+                <button class="cookie-btn cookie-btn-secondary" onclick="dismissCookies()">稍後再講</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+    .cookie-bar{
+        position:fixed;left:0;right:0;bottom:0;z-index:9999;
+        background:#FAF7F2;border-top:3px solid #8B4513;
+        box-shadow:0 -4px 16px rgba(139,69,19,.18);
+        padding:14px 20px;
+        animation:slideUp .4s ease-out;
+    }
+    .cookie-bar-content{
+        max-width:1280px;margin:0 auto;
+        display:flex;align-items:center;gap:20px;flex-wrap:wrap;
+        justify-content:space-between;
+    }
+    .cookie-bar p{
+        margin:0;font-size:.92rem;color:#5a4a3a;line-height:1.6;flex:1;min-width:280px;
+    }
+    .cookie-bar a{color:#8B4513;text-decoration:underline}
+    .cookie-bar-actions{display:flex;gap:10px;flex-shrink:0}
+    .cookie-btn{
+        padding:8px 20px;border-radius:18px;border:none;
+        font-size:.88rem;font-weight:600;cursor:pointer;
+        transition:all .2s;font-family:inherit;
+    }
+    .cookie-btn-primary{background:#8B4513;color:#fff}
+    .cookie-btn-primary:hover{background:#6b3410}
+    .cookie-btn-secondary{background:transparent;color:#8B4513;border:1px solid #8B4513}
+    .cookie-btn-secondary:hover{background:#8B4513;color:#fff}
+    @keyframes slideUp{
+        from{transform:translateY(100%);opacity:0}
+        to{transform:translateY(0);opacity:1}
+    }
+    @media(max-width:640px){
+        .cookie-bar{padding:12px 16px}
+        .cookie-bar-content{flex-direction:column;align-items:stretch;gap:10px}
+        .cookie-bar-actions{justify-content:flex-end}
+    }
+    </style>
+
+    <script>
+    (function(){
+        const consent = localStorage.getItem('cookie_consent_chenpi');
+        if(!consent){
+            document.getElementById('cookieBar').style.display='block';
+        }
+    })();
+    function acceptCookies(){
+        localStorage.setItem('cookie_consent_chenpi','accepted');
+        localStorage.setItem('cookie_consent_chenpi_time',new Date().toISOString());
+        document.getElementById('cookieBar').style.display='none';
+    }
+    function dismissCookies(){
+        localStorage.setItem('cookie_consent_chenpi','dismissed');
+        localStorage.setItem('cookie_consent_chenpi_time',new Date().toISOString());
+        document.getElementById('cookieBar').style.display='none';
+    }
+    </script>
+
 </body>
 </html>

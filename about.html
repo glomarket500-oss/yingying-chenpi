@@ -10,8 +10,9 @@
 <body>
     <nav class="nav">
         <a href="index.html" class="logo"><h1>溢豐堂</h1><span>滢滢家新會陳皮</span></a>
-                                <div class="nav-links" style="overflow-x:auto;white-space:nowrap">
+                                        <div class="nav-links" style="overflow-x:auto;white-space:nowrap">
             <a href="index.html">首頁</a>
+            <a href="products.html">產品目錄</a>
             <a href="articles.html">陳皮故事</a>
             <a href="videos.html">短視頻</a>
             <a href="live.html">直播間</a>
@@ -36,7 +37,7 @@
             <p>新會陳皮是廣東省江門市新會區特產，中國國家地理標誌產品。以茶枝柑皮為原料，經採摘、開皮、翻皮、曬乾、陳化等工序製成。</p>
             <p>2006年獲國家地理標誌產品保護，2020年入選國家級非物質文化遺產。</p>
             <figure class="article-inline-image">
-                <img src="images/about-what-is.jpg" alt="新會茶枝柑果園：陳皮的道地源頭">
+                <img src="images/about-what-is.webp" loading="lazy" alt="新會茶枝柑果園：陳皮的道地源頭">
             </figure>
         </section>
 
@@ -52,7 +53,7 @@
                 <tr><td><strong>東甲</strong></td><td>品質最優、產量稀少</td><td>¥1200-3000+</td></tr>
             </table>
             <figure class="article-inline-image">
-                <img src="images/about-origin-map.jpg" alt="新會水系與柑園分佈：天馬梅江茶坑東甲">
+                <img src="images/about-origin-map.webp" loading="lazy" alt="新會水系與柑園分佈：天馬梅江茶坑東甲">
             </figure>
         </section>
 
@@ -66,7 +67,7 @@
                 <div class="year-card"><strong>15年+</strong><br>珍品級，極度稀缺，投資屬性</div>
             </div>
             <figure class="article-inline-image">
-                <img src="images/about-aging-years.jpg" alt="不同年份陳皮色澤對比：由金黃到深褐">
+                <img src="images/about-aging-years.webp" loading="lazy" alt="不同年份陳皮色澤對比：由金黃到深褐">
             </figure>
         </section>
 
@@ -80,7 +81,7 @@
                 <li><strong>抗氧化</strong> — 清除自由基，延緩衰老</li>
             </ul>
             <figure class="article-inline-image">
-                <img src="images/about-benefits.jpg" alt="陳皮茶湯：琥珀色茶境與日常品飲">
+                <img src="images/about-benefits.webp" loading="lazy" alt="陳皮茶湯：琥珀色茶境與日常品飲">
             </figure>
         </section>
 
@@ -91,7 +92,7 @@
             <p><strong>衝泡法（3-10年）</strong>：95℃以上熱水，浸泡3-5分鐘，可衝泡5-8次。</p>
             <p><strong>搭配</strong>：陳皮+普洱、陳皮+白茶、陳皮+雪梨，風味更佳。</p>
             <figure class="article-inline-image">
-                <img src="images/about-brewing.jpg" alt="陳皮衝泡：煮飲與衝泡方法">
+                <img src="images/about-brewing.webp" loading="lazy" alt="陳皮衝泡：煮飲與衝泡方法">
             </figure>
         </section>
 
@@ -100,7 +101,7 @@
             <h3>存儲技巧</h3>
             <p>避光保存、通風透氣、濕度60%-70%、每年翻曬2-3次。用棉麻袋或陶瓷罐存放，忌用膠袋密封。</p>
             <figure class="article-inline-image">
-                <img src="images/about-storage.jpg" alt="陳皮幹倉存儲：陶罐麻袋通風陳化">
+                <img src="images/about-storage.webp" loading="lazy" alt="陳皮幹倉存儲：陶罐麻袋通風陳化">
             </figure>
         </section>
 
@@ -112,7 +113,7 @@
             <p><strong>摸</strong>：柔軟有韌性，不易折斷。</p>
             <p><strong>嘗</strong>：微苦回甘，無酸澀味。</p>
             <figure class="article-inline-image">
-                <img src="images/about-authentication.jpg" alt="陳皮真偽鑑別：看聞摸嘗四步">
+                <img src="images/about-authentication.webp" loading="lazy" alt="陳皮真偽鑑別：看聞摸嘗四步">
             </figure>
         </section>
     </main>
@@ -126,5 +127,74 @@
             <a href="mailto:yingying@yifengtang.com" class="social-icon" title="Email 訂閱" data-platform="email">📧</a>
         </p>
     </footer>
+
+    <!-- Cookie 提示條 -->
+    <div id="cookieBar" class="cookie-bar" style="display:none">
+        <div class="cookie-bar-content">
+            <p>🍪 呢個網站用 cookie 同 localStorage 記住你嘅偏好（例如直播時區、語言）。繼續瀏覽即代表你同意我哋嘅 <a href="about.html">隱私政策</a>。</p>
+            <div class="cookie-bar-actions">
+                <button class="cookie-btn cookie-btn-primary" onclick="acceptCookies()">同意</button>
+                <button class="cookie-btn cookie-btn-secondary" onclick="dismissCookies()">稍後再講</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+    .cookie-bar{
+        position:fixed;left:0;right:0;bottom:0;z-index:9999;
+        background:#FAF7F2;border-top:3px solid #8B4513;
+        box-shadow:0 -4px 16px rgba(139,69,19,.18);
+        padding:14px 20px;
+        animation:slideUp .4s ease-out;
+    }
+    .cookie-bar-content{
+        max-width:1280px;margin:0 auto;
+        display:flex;align-items:center;gap:20px;flex-wrap:wrap;
+        justify-content:space-between;
+    }
+    .cookie-bar p{
+        margin:0;font-size:.92rem;color:#5a4a3a;line-height:1.6;flex:1;min-width:280px;
+    }
+    .cookie-bar a{color:#8B4513;text-decoration:underline}
+    .cookie-bar-actions{display:flex;gap:10px;flex-shrink:0}
+    .cookie-btn{
+        padding:8px 20px;border-radius:18px;border:none;
+        font-size:.88rem;font-weight:600;cursor:pointer;
+        transition:all .2s;font-family:inherit;
+    }
+    .cookie-btn-primary{background:#8B4513;color:#fff}
+    .cookie-btn-primary:hover{background:#6b3410}
+    .cookie-btn-secondary{background:transparent;color:#8B4513;border:1px solid #8B4513}
+    .cookie-btn-secondary:hover{background:#8B4513;color:#fff}
+    @keyframes slideUp{
+        from{transform:translateY(100%);opacity:0}
+        to{transform:translateY(0);opacity:1}
+    }
+    @media(max-width:640px){
+        .cookie-bar{padding:12px 16px}
+        .cookie-bar-content{flex-direction:column;align-items:stretch;gap:10px}
+        .cookie-bar-actions{justify-content:flex-end}
+    }
+    </style>
+
+    <script>
+    (function(){
+        const consent = localStorage.getItem('cookie_consent_chenpi');
+        if(!consent){
+            document.getElementById('cookieBar').style.display='block';
+        }
+    })();
+    function acceptCookies(){
+        localStorage.setItem('cookie_consent_chenpi','accepted');
+        localStorage.setItem('cookie_consent_chenpi_time',new Date().toISOString());
+        document.getElementById('cookieBar').style.display='none';
+    }
+    function dismissCookies(){
+        localStorage.setItem('cookie_consent_chenpi','dismissed');
+        localStorage.setItem('cookie_consent_chenpi_time',new Date().toISOString());
+        document.getElementById('cookieBar').style.display='none';
+    }
+    </script>
+
 </body>
 </html>
