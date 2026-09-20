@@ -10,8 +10,9 @@
 <body>
     <nav class="nav">
         <a href="index.html" class="logo"><h1>溢豐堂</h1><span>滢滢家新會陳皮</span></a>
-                                <div class="nav-links" style="overflow-x:auto;white-space:nowrap">
+                                        <div class="nav-links" style="overflow-x:auto;white-space:nowrap">
             <a href="index.html">首頁</a>
+            <a href="products.html">產品目錄</a>
             <a href="articles.html">陳皮故事</a>
             <a href="videos.html">短視頻</a>
             <a href="live.html">直播間</a>
@@ -31,13 +32,85 @@
         <section>
             <h3>產品目錄</h3>
             <table>
-                <tr><th>產品</th><th>產區</th><th>年份</th><th>起訂量</th></tr>
-                <tr><td>天馬陳皮</td><td>天馬村</td><td>5年 / 10年</td><td>3-5斤起</td></tr>
-                <tr><td>梅江陳皮</td><td>梅江村</td><td>5年 / 10年</td><td>3-5斤起</td></tr>
-                <tr><td>茶坑陳皮</td><td>茶坑村</td><td>3年 / 5年</td><td>5-10斤起</td></tr>
-                <tr><td>東甲陳皮</td><td>東甲村</td><td>10年 / 15年</td><td>1-2斤起</td></tr>
+                <tr><th>產品</th><th>產區</th><th>年份</th><th>起訂量</th><th>適合人群</th><th>建議用途</th><th>與其他款比較</th></tr>
+                <tr>
+                    <td>天馬陳皮</td><td>天馬村</td><td>5年 / 10年</td><td>3-5斤起</td>
+                    <td>入門自飲、辦公室日常</td>
+                    <td>泡水、煲湯、入菜</td>
+                    <td>性價比最高；比茶坑多 2 年陳化、香氣更穩</td>
+                </tr>
+                <tr>
+                    <td>梅江陳皮</td><td>梅江村</td><td>5年 / 10年</td><td>3-5斤起</td>
+                    <td>送禮、收藏、懂行老饕</td>
+                    <td>中秋禮盒、高端茶桌、私人收藏</td>
+                    <td>梅江「老樹」油室飽滿，藥香突出；同年份比天馬貴 30-50%</td>
+                </tr>
+                <tr>
+                    <td>茶坑陳皮</td><td>茶坑村</td><td>3年 / 5年</td><td>5-10斤起</td>
+                    <td>預算敏感、餐飲渠道</td>
+                    <td>餐廳大批量、員工福利、煲湯料</td>
+                    <td>價格最平；陳化時間短，適合即飲</td>
+                </tr>
+                <tr>
+                    <td>東甲陳皮</td><td>東甲村</td><td>10年 / 15年</td><td>1-2斤起</td>
+                    <td>高端藏家、藥用、長期投資</td>
+                    <td>15 年老皮入藥、私人珍藏</td>
+                    <td>東甲「老樹」存量最少；15 年起步，價格為同年份梅江 1.5-2 倍</td>
+                </tr>
             </table>
             <p class="note">* 價格根據採購量、包裝要求浮動，請聯繫獲取正式報價。</p>
+        </section>
+
+        <!-- 產品卡 hover 快速詢價 -->
+        <section>
+            <h3>快速選購</h3>
+            <p style="color: var(--text-light); font-size: 14px; margin-bottom: 20px;">將鼠標移上產品卡片，可即時查看快速詢價。</p>
+            <div class="product-list">
+                <div class="product-card" tabindex="0">
+                    <div class="product-img"><img src="images/contact-products.jpg" alt="天馬村陳皮"></div>
+                    <h3>天馬陳皮</h3>
+                    <p>天馬村 · 5年 / 10年 · 3-5斤起</p>
+                    <span class="tag">核心產區</span>
+                    <div class="quick-inquiry" role="dialog" aria-label="天馬陳皮快速詢價">
+                        <div class="qi-name">天馬陳皮</div>
+                        <div class="qi-tag">天馬村核心產區 · 5年 / 10年</div>
+                        <a class="qi-btn" href="contact.html#inquiry?product=天馬陳皮">快速詢價</a>
+                    </div>
+                </div>
+                <div class="product-card" tabindex="0">
+                    <div class="product-img"><img src="images/contact-products.jpg" alt="梅江村陳皮"></div>
+                    <h3>梅江陳皮</h3>
+                    <p>梅江村 · 5年 / 10年 · 3-5斤起</p>
+                    <span class="tag">高端產區</span>
+                    <div class="quick-inquiry" role="dialog" aria-label="梅江陳皮快速詢價">
+                        <div class="qi-name">梅江陳皮</div>
+                        <div class="qi-tag">梅江村高端產區 · 5年 / 10年</div>
+                        <a class="qi-btn" href="contact.html#inquiry?product=梅江陳皮">快速詢價</a>
+                    </div>
+                </div>
+                <div class="product-card" tabindex="0">
+                    <div class="product-img"><img src="images/contact-products.jpg" alt="茶坑村陳皮"></div>
+                    <h3>茶坑陳皮</h3>
+                    <p>茶坑村 · 3年 / 5年 · 5-10斤起</p>
+                    <span class="tag">性價比之選</span>
+                    <div class="quick-inquiry" role="dialog" aria-label="茶坑陳皮快速詢價">
+                        <div class="qi-name">茶坑陳皮</div>
+                        <div class="qi-tag">茶坑村 · 3年 / 5年 · 大宗起</div>
+                        <a class="qi-btn" href="contact.html#inquiry?product=茶坑陳皮">快速詢價</a>
+                    </div>
+                </div>
+                <div class="product-card" tabindex="0">
+                    <div class="product-img"><img src="images/contact-products.jpg" alt="東甲村陳皮"></div>
+                    <h3>東甲陳皮</h3>
+                    <p>東甲村 · 10年 / 15年 · 1-2斤起</p>
+                    <span class="tag">老陳皮</span>
+                    <div class="quick-inquiry" role="dialog" aria-label="東甲陳皮快速詢價">
+                        <div class="qi-name">東甲陳皮</div>
+                        <div class="qi-tag">東甲村 · 10年 / 15年老陳皮</div>
+                        <a class="qi-btn" href="contact.html#inquiry?product=東甲陳皮">快速詢價</a>
+                    </div>
+                </div>
+            </div>
             <figure class="article-inline-image">
                 <img src="images/contact-products.jpg" alt="產品目錄：四款產區陳皮按年份陳列">
             </figure>
@@ -72,7 +145,7 @@
         </section>
 
         <!-- 詢價表單 -->
-        <section class="form-section">
+        <section class="form-section" id="inquiry">
             <h3>獲取報價</h3>
             <form>
                 <div class="form-row">
@@ -98,6 +171,49 @@
             <figure class="article-inline-image">
                 <img src="images/contact-quote.jpg" alt="獲取報價：茶桌洽談報價諮詢">
             </figure>
+        </section>
+
+
+        <!-- 國際客戶須知 -->
+        <section class="intl-notice" style="background:linear-gradient(135deg,#fff8ee 0%,#fff0d8 100%);border:1px solid #f0e0c8;border-left:4px solid #8B4513;padding:24px 28px;border-radius:8px;margin:32px 0">
+            <h3>🌏 國際客戶須知</h3>
+            <p style="color:#555;line-height:1.8;margin-bottom:16px">海外華人、外貿客戶、企業禮品定製，請特別留意以下事項：</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+                <div style="background:#fff;padding:14px 16px;border-radius:6px">
+                    <strong>📦 物流</strong>
+                    <p style="font-size:.88rem;color:#666;margin-top:6px">香港／澳門：順豐速運 1-2 日；東南亞：DHL 3-5 日；歐美澳：DHL Express 5-8 日。運費按重量體積實報，500 港幣以上可協商分攤。</p>
+                </div>
+                <div style="background:#fff;padding:14px 16px;border-radius:6px">
+                    <strong>💳 付款</strong>
+                    <p style="font-size:.88rem;color:#666;margin-top:6px">支持 PayPal、支付寶國際、微信支付（跨境）、銀行電匯（USD/HKD/CNY）。新客戶首單 50% 定金，餘款發貨前結清。</p>
+                </div>
+                <div style="background:#fff;padding:14px 16px;border-radius:6px">
+                    <strong>📜 檢疫證書</strong>
+                    <p style="font-size:.88rem;color:#666;margin-top:6px">出口歐美澳客戶可提供：植物檢疫證書（Phytosanitary Certificate）、產地證明（Certificate of Origin）、品質檢驗報告。新加坡／馬來西亞客戶需提前告知，我方代辦 CITES 申報。</p>
+                </div>
+                <div style="background:#fff;padding:14px 16px;border-radius:6px">
+                    <strong>⏰ Cut-off 時間</strong>
+                    <p style="font-size:.88rem;color:#666;margin-top:6px">中秋檔期（9-10月）為出貨高峰，建議提前 4 週下單。海外急件需另加急件附加費 30-50%。當日下午 3 點前下單即日發貨，3 點後順延一日。</p>
+                </div>
+                <div style="background:#fff;padding:14px 16px;border-radius:6px">
+                    <strong>🌐 時差與回覆</strong>
+                    <p style="font-size:.88rem;color:#666;margin-top:6px">WhatsApp／微信全天候；郵箱 24 小時內回覆。直播時段 GMT+8 7am-12pm 適合亞洲客戶；歐美客戶建議電郵預約視像會議。</p>
+                </div>
+                <div style="background:#fff;padding:14px 16px;border-radius:6px">
+                    <strong>🎁 企業禮品定製</strong>
+                    <p style="font-size:.88rem;color:#666;margin-top:6px">支持 LOGO 印刷、多語言賀卡（中英日韓）、獨立包裝。100 份以上可定製禮盒，最少 4 週交貨。發票支援形式發票（Formal Invoice）。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 國際客戶 FAQ -->
+        <section class="faq" style="margin-top:32px">
+            <h3>🌏 國際客戶 FAQ</h3>
+            <details><summary>你哋出口到邊啲國家？</summary><p>主要出口：香港、澳門、新加坡、馬來西亞、美國、加拿大、澳洲、英國。歐盟國家需提前確認檢疫要求。過去 26 年累計出口至 23 個國家及地區。</p></details>
+            <details><summary>DHL 運費幾錢？大概幾耐到？</summary><p>1 斤裝到新加坡/馬來西亞大約 HKD 180-220，3-5 個工作天；到歐美澳大約 HKD 380-580，5-8 個工作天。旺季（聖誕、中秋、農曆新年）可能延遲 1-2 日。急件可加 DHL Express Worldwide，2-3 日到。</p></details>
+            <details><summary>可以用 PayPal 付款嗎？有冇手續費？</summary><p>可以。PayPal 商業帳戶收款，USD/HKD 結算，我哋承擔 3-4% 手續費，你睇到嘅價就係實際價。超過 USD 2000 嘅訂單建議用電匯（Wire Transfer），手續費較低。</p></details>
+            <details><summary>寄到新加坡要唔要植物檢疫證書？</summary><p>新加坡農糧獸醫局（AVA）要求所有植物類產品入口申報。我哋可以代辦：植物檢疫證書（內地出入境檢驗檢疫局發出）費用 RMB 80-150/份。新加坡客戶預訂時請註明，我哋會喺發貨前準備齊全。</p></details>
+            <details><summary>中秋送禮可以寄到海外嗎？點樣保證準時送達？</summary><p>可以。建議海外客戶提前 4-6 週落單（中秋前一星期為海運/快遞高峰期）。我哋提供「準時保證」服務：如因我方延誤導致錯過中秋佳節，免費補寄或全額退款（限指定國家）。中秋禮盒可加急件附加費 30%，保證 5 個工作天內到。</p></details>
         </section>
 
         <!-- 關注我們：微信/视频号/抖音按钮，点击展开二维码 -->
@@ -143,13 +259,44 @@
             });
             if (!showing) el.style.display = 'block';
         }
+
+        // 处理 URL 参数 ?product=xxx → 预选询价表单 + 滚动 + 高亮
+        (function(){
+            var hash = window.location.hash || '';
+            var q = '';
+            var m = hash.match(/[?&]product=([^&]+)/);
+            if (m) q = decodeURIComponent(m[1]);
+            if (!q) {
+                var s = window.location.search || '';
+                var m2 = s.match(/[?&]product=([^&]+)/);
+                if (m2) q = decodeURIComponent(m2[1]);
+            }
+            if (!q) return;
+            var sel = document.querySelector('.form-section select');
+            if (sel) {
+                for (var i = 0; i < sel.options.length; i++) {
+                    if (sel.options[i].text === q) {
+                        sel.selectedIndex = i;
+                        break;
+                    }
+                }
+            }
+            var sec = document.getElementById('inquiry');
+            if (sec) {
+                sec.classList.add('highlight');
+                setTimeout(function(){
+                    sec.scrollIntoView({behavior:'smooth', block:'start'});
+                    setTimeout(function(){ sec.classList.remove('highlight'); }, 2200);
+                }, 50);
+            }
+        })();
         </script>
 
         <!-- 聯繫方式 -->
         <section class="contact-info">
             <h3>直接聯繫我們</h3>
             <div class="contact-grid">
-                <div><strong>📺 直播號</strong><br>滢滢家新會陳皮<br>每天早上7點至中午</div>
+                <div><strong>📺 直播號</strong><br>滢滢家新會陳皮<br>每天 7am–12pm (GMT+8)</div>
                 <div><strong>💬 微信</strong><br>chenpi-yingying<br>掃碼添加</div>
                 <div><strong>📧 郵箱</strong><br>glomarket@agent.qq.com<br>24小時內回復</div>
                 <div><strong>📍 地址</strong><br>江門市新會區新會碧桂園水榭9街8座101<br>歡迎預約參觀</div>
