@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>連結與訂閱 | Links & Subscribe - 溢豐堂</title>
+    <meta name="description" content="滢滢嘅 Email 訂閱 + 7 大社媒平台入口：按轉化價值排序，第一時間收到新會陳皮嘅茶桌故事。">
+    <meta name="keywords" content="新會陳皮,滢滢,溢豐堂,Email 訂閱,小紅書,YouTube,LinkedIn,Facebook,Instagram,TikTok,X">
+    <link rel="canonical" href="https://www.yiyichenpi.com/links.html">
+    <meta property="og:url" content="https://www.yiyichenpi.com/links.html">
+    <meta property="og:title" content="連結與訂閱 | 滢滢家新會陳皮">
+    <meta property="og:description" content="Email 訂閱 + 7 大社媒平台入口，轉化價值排序。">
+    <meta property="og:image" content="https://www.yiyichenpi.com/images/home-yingying-portrait.jpg">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="css/style.css?v=5">
+    <style>
+        .links-hero{
+            background:linear-gradient(135deg,#8B4513 0%,#c9a96e 100%);
+            color:#fff;padding:60px 5% 50px;text-align:center;
+        }
+        .links-hero h1{font-size:2.4rem;font-weight:700;margin-bottom:12px;letter-spacing:1px}
+        .links-hero .en{opacity:.9;font-size:1rem;margin-bottom:20px}
+        .links-hero p{opacity:.92;font-size:1rem;max-width:680px;margin:0 auto 18px}
+
+        /* Email 訂閱區塊（最前，轉化最高） */
+        .email-block{
+            max-width:680px;margin:0 auto;padding:32px 28px;
+            background:#fff;border:2px solid #8B4513;border-radius:16px;
+            box-shadow:0 4px 14px rgba(139,69,19,.12);
+            text-align:center;
+        }
+        .email-block h2{color:#8B4513;font-size:1.5rem;margin-bottom:10px}
+        .email-block p{color:#555;font-size:.95rem;line-height:1.7;margin-bottom:20px}
+        .email-form{display:flex;gap:10px;max-width:480px;margin:0 auto;flex-wrap:wrap}
+        .email-form input[type="email"]{
+            flex:1;min-width:240px;padding:12px 16px;
+            border:1px solid #d0c8b8;border-radius:10px;
+            font-size:1rem;outline:none;transition:border-color .2s;
+        }
+        .email-form input[type="email"]:focus{border-color:#8B4513}
+        .email-form button{
+            padding:12px 24px;background:#8B4513;color:#fff;
+            border:none;border-radius:10px;font-size:1rem;font-weight:600;
+            cursor:pointer;transition:background .2s;
+        }
+        .email-form button:hover{background:#6b3410}
+        .email-note{font-size:.78rem;color:#888;margin-top:10px}
+
+        /* 平台卡網格 */
+        .links-grid{
+            display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+            gap:20px;padding:40px 5% 50px;max-width:1280px;margin:0 auto;
+        }
+        .link-card{
+            background:#fff;border-radius:14px;overflow:hidden;
+            box-shadow:0 4px 14px rgba(139,69,19,.08);
+            transition:transform .25s ease,box-shadow .25s ease;
+            display:flex;flex-direction:column;
+        }
+        .link-card:hover{
+            transform:translateY(-4px);
+            box-shadow:0 10px 24px rgba(139,69,19,.16);
+        }
+        .link-card-top{
+            padding:22px 20px 16px;display:flex;align-items:center;gap:14px;
+        }
+        .link-card .emoji{
+            font-size:2.2rem;line-height:1;flex-shrink:0;
+        }
+        .link-card h3{
+            font-size:1.1rem;color:#8B4513;font-weight:700;margin:0;
+        }
+        .link-card .en-name{font-size:.78rem;color:#999;margin-top:2px}
+        .link-card-body{padding:0 20px 20px;flex:1;display:flex;flex-direction:column}
+        .link-card .desc{
+            font-size:.85rem;color:#666;line-height:1.6;margin-bottom:14px;flex:1;
+        }
+        .link-card .actions{display:flex;gap:8px;flex-wrap:wrap}
+        .link-btn{
+            flex:1;min-width:90px;padding:9px 12px;border-radius:10px;
+            font-size:.82rem;text-align:center;text-decoration:none;
+            border:none;cursor:pointer;font-weight:500;transition:opacity .2s;
+            color:#fff;
+        }
+        .link-btn:hover{opacity:.85}
+        .link-btn-primary{background:#8B4513}
+        .link-btn-secondary{background:#f5f5f5;color:#333;border:1px solid #e0e0e0}
+
+        .links-note{
+            background:linear-gradient(135deg,#fff8ee 0%,#fff0d8 100%);
+            border:1px solid #f0e0c8;border-left:4px solid #8B4513;
+            padding:18px 22px;border-radius:8px;
+            margin:24px 5% 32px;max-width:1280px;margin-left:auto;margin-right:auto;
+        }
+        .links-note h3{color:#8B4513;font-size:1rem;margin-bottom:8px;font-weight:600}
+        .links-note p{font-size:.88rem;color:#555;line-height:1.7}
+
+        @media(max-width:640px){
+            .links-hero{padding:40px 6% 36px}
+            .links-hero h1{font-size:1.6rem}
+            .links-grid{grid-template-columns:1fr;padding:30px 5%;gap:14px}
+            .email-form{flex-direction:column}
+            .email-form input[type="email"]{min-width:auto}
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="index.html" class="logo"><h1>溢豐堂</h1><span>滢滢家新會陳皮</span></a>
+                <div class="nav-links" style="overflow-x:auto;white-space:nowrap">
+            <a href="index.html">首頁</a>
+            <a href="articles.html">陳皮故事</a>
+            <a href="videos.html">短視頻</a>
+            <a href="live.html">直播間</a>
+            <a href="about.html">認識滢滢</a>
+            <a href="contact.html">銷售陳皮</a>
+            <a href="links.html">🔗 連結</a>
+        </div>
+    </nav>
+
+    <header class="links-hero">
+        <h1>🔗 連結與訂閱</h1>
+        <p class="en">Links & Subscribe · Stay Connected with Yingying</p>
+        <p>新會陳皮嘅茶桌故事，每個平台都有唔同切法。揀你最常用嘅方式，第一時間收到新文章、新皮上市、中秋送禮攻略。</p>
+    </header>
+
+    <!-- Email 訂閱（最前，轉化價值最高） -->
+    <div class="email-block" style="margin-top:32px">
+        <h2>📧 Email 訂閱</h2>
+        <p>每週一封 email，整理本週新會陳皮嘅茶桌故事、預售季動向、中秋禮盒攻略。<br>唔會轟炸，只揀最值得睇嘅。</p>
+        <form class="email-form" onsubmit="subscribeEmail(event)">
+            <input type="email" id="emailInput" placeholder="你嘅 email" required>
+            <button type="submit">訂閱</button>
+        </form>
+        <p class="email-note">🔒 唔會出售你嘅 email，可以隨時退訂</p>
+    </div>
+
+    <div class="links-note">
+        <h3>📌 按轉化價值排序</h3>
+        <p>Email 最直接（直達收件箱，唔受演算法影響）；小紅書同 YouTube 適合睇圖文同視頻；LinkedIn 畀 B2B 行業；Facebook/Instagram 適合海外華人；TikTok 短視頻；X 即時熱點。</p>
+    </div>
+
+    <main class="links-grid">
+
+        <article class="link-card">
+            <div class="link-card-top">
+                <span class="emoji">📕</span>
+                <div>
+                    <h3>小紅書</h3>
+                    <p class="en-name">Xiaohongshu / RED</p>
+                </div>
+            </div>
+            <div class="link-card-body">
+                <p class="desc">內地女性創業圈 · 中秋送禮 · 衝泡技巧</p>
+                <div class="actions">
+                    <a href="xhs.html" class="link-btn link-btn-primary">查看同步頁</a>
+                    <a href="https://www.xiaohongshu.com/user/yingying_chenpi" target="_blank" rel="noopener" class="link-btn" style="background:#ff2442">去主頁</a>
+                </div>
+            </div>
+        </article>
+
+        <article class="link-card">
+            <div class="link-card-top">
+                <span class="emoji">📺</span>
+                <div>
+                    <h3>YouTube</h3>
+                    <p class="en-name">YouTube</p>
+                </div>
+            </div>
+            <div class="link-card-body">
+                <p class="desc">5-15分鐘中長視頻 · 茶桌實錄 · 柑園實拍</p>
+                <div class="actions">
+                    <a href="youtube.html" class="link-btn link-btn-primary">查看同步頁</a>
+                    <a href="https://www.youtube.com/@yingying_chenpi" target="_blank" rel="noopener" class="link-btn" style="background:#c4302b">去主頁</a>
+                </div>
+            </div>
+        </article>
+
+        <article class="link-card">
+            <div class="link-card-top">
+                <span class="emoji">💼</span>
+                <div>
+                    <h3>LinkedIn</h3>
+                    <p class="en-name">LinkedIn</p>
+                </div>
+            </div>
+            <div class="link-card-body">
+                <p class="desc">B2B 行業動態 · 產區溯源 · 外貿經驗</p>
+                <div class="actions">
+                    <a href="linkedin.html" class="link-btn link-btn-primary">查看同步頁</a>
+                    <a href="https://www.linkedin.com/in/yingying-chenpi/" target="_blank" rel="noopener" class="link-btn" style="background:#0a66c2">去主頁</a>
+                </div>
+            </div>
+        </article>
+
+        <article class="link-card">
+            <div class="link-card-top">
+                <span class="emoji">📘</span>
+                <div>
+                    <h3>Facebook</h3>
+                    <p class="en-name">Facebook</p>
+                </div>
+            </div>
+            <div class="link-card-body">
+                <p class="desc">海外華人 · 香港新加坡馬來西亞受眾</p>
+                <div class="actions">
+                    <a href="facebook.html" class="link-btn link-btn-primary">查看同步頁</a>
+                    <a href="https://www.facebook.com/yingying.chenpi" target="_blank" rel="noopener" class="link-btn" style="background:#1877f2">去主頁</a>
+                </div>
+            </div>
+        </article>
+
+        <article class="link-card">
+            <div class="link-card-top">
+                <span class="emoji">📸</span>
+                <div>
+                    <h3>Instagram</h3>
+                    <p class="en-name">Instagram</p>
+                </div>
+            </div>
+            <div class="link-card-body">
+                <p class="desc">圖文排版 · 曬皮美學 · 柑園場景</p>
+                <div class="actions">
+                    <a href="instagram.html" class="link-btn link-btn-primary">查看同步頁</a>
+                    <a href="https://www.instagram.com/yingying_chenpi/" target="_blank" rel="noopener" class="link-btn" style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)">去主頁</a>
+                </div>
+            </div>
+        </article>
+
+        <article class="link-card">
+            <div class="link-card-top">
+                <span class="emoji">🎵</span>
+                <div>
+                    <h3>TikTok</h3>
+                    <p class="en-name">TikTok</p>
+                </div>
+            </div>
+            <div class="link-card-body">
+                <p class="desc">15-60秒短視頻 · 快剪鉤子 · BGM</p>
+                <div class="actions">
+                    <a href="tiktok.html" class="link-btn link-btn-primary">查看同步頁</a>
+                    <a href="https://www.tiktok.com/@yingying_chenpi" target="_blank" rel="noopener" class="link-btn" style="background:#000">去主頁</a>
+                </div>
+            </div>
+        </article>
+
+        <article class="link-card">
+            <div class="link-card-top">
+                <span class="emoji">🐦</span>
+                <div>
+                    <h3>X (Twitter)</h3>
+                    <p class="en-name">X / Twitter</p>
+                </div>
+            </div>
+            <div class="link-card-body">
+                <p class="desc">140字爆點 · 即時熱點 · 行業評論</p>
+                <div class="actions">
+                    <a href="twitter.html" class="link-btn link-btn-primary">查看同步頁</a>
+                    <a href="https://x.com/yingying_chenpi" target="_blank" rel="noopener" class="link-btn" style="background:#000">去主頁</a>
+                </div>
+            </div>
+        </article>
+
+    </main>
+
+        <footer>
+        <p>© 2024 溢豐堂 | <a href="index.html">返回首頁</a> | <a href="contact.html">買陳皮</a> | <a href="links.html">🔗 連結</a></p>
+        <p class="footer-socials" style="margin-top:10px;font-size:.95rem">
+            <a href="https://x.com/yingying_chenpi" target="_blank" rel="noopener" class="social-icon" title="X (Twitter)" data-platform="x">🐦</a>
+            <a href="https://www.linkedin.com/in/yingying-chenpi/" target="_blank" rel="noopener" class="social-icon" title="LinkedIn" data-platform="linkedin">💼</a>
+            <a href="https://www.youtube.com/@yingying_chenpi" target="_blank" rel="noopener" class="social-icon" title="YouTube" data-platform="youtube">📺</a>
+            <a href="mailto:yingying@yifengtang.com" class="social-icon" title="Email 訂閱" data-platform="email">📧</a>
+        </p>
+    </footer>
+
+    <script>
+        function subscribeEmail(e){
+            e.preventDefault();
+            const email = document.getElementById('emailInput').value;
+            if(!email) return;
+            // TODO: 接 ConvertKit / Mailchimp / 自家 newsletter
+            alert('✓ 已收到 ' + email + '\n\n稍後會收到確認 email。\n（本頁示範，未接實際訂閱服務）');
+            document.getElementById('emailInput').value = '';
+        }
+    </script>
+</body>
+</html>
+<!-- deploy-trigger: 2026-09-20 06:00 -->

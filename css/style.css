@@ -1525,3 +1525,32 @@ footer a:hover { color: var(--accent); }
         padding: 24px 4vw 0;
     }
 }
+
+/* ===== Footer social icons (icon-only, hover reveal) ===== */
+.footer-socials{display:flex;gap:14px;align-items:center;justify-content:center;margin-top:12px}
+.footer-socials .social-icon{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:36px;height:36px;border-radius:50%;
+    background:#f5f0e8;color:#666;font-size:1.2rem;
+    text-decoration:none;transition:transform .2s,background .2s,color .2s;
+    position:relative;
+}
+.footer-socials .social-icon:hover{
+    transform:translateY(-3px) scale(1.1);
+    background:#8B4513;color:#fff;
+}
+.footer-socials .social-icon[data-platform="x"]:hover{background:#000}
+.footer-socials .social-icon[data-platform="linkedin"]:hover{background:#0a66c2}
+.footer-socials .social-icon[data-platform="youtube"]:hover{background:#c4302b}
+.footer-socials .social-icon[data-platform="email"]:hover{background:#8B4513}
+.footer-socials .social-icon::after{
+    content:attr(title);
+    position:absolute;bottom:110%;left:50%;transform:translateX(-50%);
+    background:#333;color:#fff;font-size:.75rem;padding:4px 8px;border-radius:6px;
+    white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;
+}
+.footer-socials .social-icon:hover::after{opacity:1}
+@media(max-width:640px){
+    .footer-socials{gap:10px}
+    .footer-socials .social-icon{width:32px;height:32px;font-size:1.05rem}
+}
