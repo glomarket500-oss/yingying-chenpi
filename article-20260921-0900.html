@@ -40,10 +40,11 @@
     <style>
         body{font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif;color:#333;background:#faf8f3;line-height:1.8;margin:0;padding:0}
         .nav{display:flex;justify-content:space-between;align-items:center;padding:16px 5vw;background:#fff;border-bottom:1px solid #eee;position:sticky;top:0;z-index:100}
-        .nav-logo{font-size:1.2rem;font-weight:700;color:#8B4513;text-decoration:none}
+        .nav-logo{/* placeholder */font-size:1.2rem;font-weight:700;color:#8B4513;text-decoration:none}
         .nav-logo span{font-weight:400;font-size:.75rem;color:#999;display:block}
         .nav-links{display:flex;gap:18px;flex-wrap:nowrap;overflow-x:auto;white-space:nowrap}
         .nav-links a{font-size:.9rem;color:#666;text-decoration:none;padding:8px 0;transition:color .3s}
+        .logo .brand{font-size:1.2rem;font-weight:700;color:#8B4513;display:block;line-height:1.2}
         .nav-links a:hover,.nav-links a.active{color:#8B4513}
         .article-wrap{max-width:720px;margin:0 auto;padding:40px 5vw 60px;background:#fff}
         .breadcrumb{font-size:.82rem;color:#999;padding:12px 5vw;background:#fff;border-bottom:1px solid #f0e8d8}
@@ -103,7 +104,7 @@
 <body>
 <header class="nav">
     <a href="index.html" class="logo">
-        <h1 style="font-size:1.2rem;margin:0;color:#8B4513">溢豐堂</h1>
+        <span class="brand">溢豐堂</span>
         <span>滢滢家新會陳皮</span>
     </a>
     <div class="nav-links">
