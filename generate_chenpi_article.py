@@ -1,22 +1,25 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-陈皮文章生成 + 发布系统 v3
+陈皮文章生成 + 发布系统 v4
 
 【工作流程】
 1. 搜索当天热点
 2. 基于热点写全新陈皮文章（AI生成）
-3. 保存到草稿文件夹
-4. 给用户确认（必须等用户说「确定」）
-5. 用户确认后 → 发布上网
+3. 保存到草稿文件夹（等待确认）
+4. 确认后 → python scripts/publish_chenpi.py --publish "草稿路径.md"
 
 【时间格式】
 网页显示：xxxx年x月x日 xx:xx:xx（精确到秒）
 文件名：YYYY-MM-DD-HHMM-标题.md
 
+【骨架来源】
+所有新文章统一使用 template_article.html 骨架，
+不得使用 create_html.py / create_html2.py / create_clean_html.py
+
 【使用方式】
 - 生成文章：python generate_chenpi_article.py
-- 发布文章：python publish_chenpi_v3.py --input "草稿路径.md"
+- 发布文章：python scripts/publish_chenpi.py --publish "草稿路径.md"
 """
 
 import argparse
@@ -34,7 +37,7 @@ REPO_DIR = r"C:\Users\a\Desktop\chenpi-website"
 INDEX_HTML = os.path.join(REPO_DIR, "index.html")
 ARTICLES_HTML = os.path.join(REPO_DIR, "articles.html")
 VAULT_DIR = r"C:\Users\a\Desktop\MianAI知识库\MianAI知识库\vault\滢滢姐讲陈皮故事"
-VERCEL_URL = "https://yingying-chenpi.vercel.app"
+VERCEL_URL = "https://www.yiyichenpi.com"
 
 
 def search_hot_news():

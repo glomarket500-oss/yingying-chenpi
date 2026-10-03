@@ -21,6 +21,9 @@
     <!-- Canonical -->
     <link rel="canonical" href="{url}">
     
+    <!-- CSS v=5 -->
+    <link rel="stylesheet" href="css/style.css?v=5">
+
     <!-- Open Graph -->
     <meta property="og:title" content="{title} | 溢豐堂">
     <meta property="og:description" content="{description}">
@@ -300,39 +303,47 @@
                 {tags_html}
             </div>
         </header>
-        
+
         <!-- 熱點關聯 -->
         {hotspot_section}
-        
+
         <!-- 文章正文 -->
-        <div class="article-content">
+        <article class="article-detail">
+        <div class="article-body">
             {body_html}
         </div>
-        
+        </article>
+
         <!-- CTA -->
         <div class="cta-box">
             <h3>想買正宗新會陳皮？</h3>
             <p>滢滢家天馬村果園直發，手工開皮、自然生曬、幹倉陳化。<br>不滿意七天無理由退，我敢這麼説，是因為我對自己的陳皮有信心。</p>
             <a href="contact.html">📱 加滢滢微信，了解詳情</a>
         </div>
-        
+
         <!-- 相關文章 -->
         <div class="related">
             <h3>📖 你可能還想看</h3>
             <a href="articles.html" style="color: #8b4513;">查看全部陳皮故事 →</a>
         </div>
-        
+
     </div>
 
     <!-- Footer -->
     <footer>
-        <p>© 溢豐堂 · 滢滢 · 新會天馬村 · <a href="contact.html">聯繫我們</a></p>
-        <div class="social">
-            <a href="#">📕 小紅書</a>
-            <a href="#">📱 微信</a>
-            <a href="#">🎵 抖音</a>
-        </div>
+        <p>© 2026 溢豐堂 · 滢滢家新會陳皮 ｜
+            <a href="contact.html" style="color:#8B4513">聯繫我們</a></p>
     </footer>
+
+    <!-- Cookie Bar -->
+    <div id="cookie-bar" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#8B4513;color:#fff;padding:12px 20px;text-align:center;z-index:9999;font-size:.85rem;">
+        本網站使用 Cookie 改善您的體驗。
+        <button onclick="document.getElementById('cookie-bar').style.display='none';localStorage.setItem('cookie_consent_chenpi','yes')"
+                style="background:#fff;color:#8B4513;border:none;padding:6px 16px;border-radius:16px;margin-left:12px;cursor:pointer">
+            確定
+        </button>
+    </div>
+    <script>if(!localStorage.getItem('cookie_consent_chenpi')){document.getElementById('cookie-bar').style.display='block';}</script>
 
 </body>
 </html>

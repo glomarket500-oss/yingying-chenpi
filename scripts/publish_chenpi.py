@@ -23,7 +23,7 @@ except ImportError:
     HK_CONVERTER = None
 
 REPO_DIR = r"C:\Users\a\Desktop\chenpi-website"
-SITE_URL = "https://yingying-chenpi.vercel.app"
+SITE_URL = "https://www.yiyichenpi.com"
 CHAR_CORRECT = chr(0x6EE2)
 VAULT_DIR = f"C:\\Users\\a\\Desktop\\MianAI知识库\\MianAI知识库\\vault\\{CHAR_CORRECT}{CHAR_CORRECT}姐讲陈皮故事"
 
@@ -168,7 +168,7 @@ def build_html(title, body_html, tags, date_str, time_str, faqs, image_url, url,
     local_business = {"@context": "https://schema.org", "@type": "LocalBusiness", "name": "溢豐堂 · 滢滢家新會陳皮", "address": {"@type": "PostalAddress", "addressLocality": "新會區", "addressRegion": "廣東省", "addressCountry": "CN"}, "geo": {"@type": "GeoCoordinates", "latitude": 22.5317, "longitude": 113.0286}}
 
     return f'''<!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-HK">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -188,65 +188,82 @@ def build_html(title, body_html, tags, date_str, time_str, faqs, image_url, url,
 <meta property="og:image" content="{image_url}">
 <meta property="og:locale" content="zh_HK">
 <meta property="article:published_time" content="{iso_date}">
+<meta property="article:modified_time" content="{iso_date}">
 <meta property="article:author" content="滢滢">
+<meta property="article:section" content="陳皮故事">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{meta_description}">
 <meta name="twitter:image" content="{image_url}">
-<link rel="stylesheet" href="css/style.css">
-<script type="application/ld+json">\n{json.dumps(blog, ensure_ascii=False, indent=2)}\n</script>
-<script type="application/ld+json">\n{json.dumps(local_business, ensure_ascii=False, indent=2)}\n</script>
+<link rel="stylesheet" href="css/style.css?v=5">
 {faq_schema}
 </head>
 <body>
-<header class="site-header">
-  <nav class="main-nav">
-    <a href="index.html" class="logo">溢豐堂 · 滢滢家新會陳皮</a>
-    <ul>
-      <li><a href="index.html">首頁</a></li>
-      <li><a href="articles.html" class="active">陳皮故事</a></li>
-      <li><a href="videos.html">短視頻</a></li>
-      <li><a href="live.html">直播間</a></li>
-      <li><a href="about.html">認識滢滢</a></li>
-      <li><a href="contact.html">銷售陳皮</a></li>
-    </ul>
-  </nav>
-</header>
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">
+            <span class="brand">溢豐堂</span>
+            <span>滢滢家新會陳皮</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">首頁</a>
+            <a href="articles.html" class="active">陳皮故事</a>
+            <a href="videos.html">短視頻</a>
+            <a href="live.html">直播間</a>
+            <a href="about.html">認識滢滢</a>
+            <a href="contact.html">銷售陳皮</a>
+        </div>
+    </nav>
 
-<div class="breadcrumb">
-  <a href="index.html">首頁</a> ·
-  <a href="articles.html">陳皮故事</a> ·
-  {title}
-</div>
-
-<article class="article-detail">
-  <header class="article-header">
-    <h1>{title}</h1>
-    <div class="article-meta">
-      <span>📅 {display_date} {time_str}</span>
-      <span>👤 滢滢</span>
-      <span>📍 新會天馬村</span>
-      <span>🕐 閱讀約8分鐘</span>
+    <div class="breadcrumb">
+        <a href="index.html">首頁</a> &gt;
+        <a href="articles.html">陳皮故事</a> &gt;
+        <span>{title}</span>
     </div>
-    <div class="article-tags">{tags_html}</div>
-  </header>
-  {article_image}
-  <div class="article-content">{body_html}</div>
-  <div class="cta-box">
-    <h3>想買正宗新會陳皮？</h3>
-    <p>滢滢家天馬村果園直發，手工開皮、自然生曬、乾倉陳化。</p>
-    <p>📱 加滢滢微信，了解詳情</p>
-  </div>
-  <div class="related">
-    <h3>📖 你可能還想看</h3>
-    <p><a href="articles.html">查看全部陳皮故事 →</a></p>
-  </div>
-</article>
 
-<footer>
-  <p>📍 新會陳皮村南門牌坊 G04 | 滢滢姐陳皮文化傳播 | 📞 19307501495</p>
-  <p>© 溢豐堂 · 滢滢 · 新會天馬村 · <a href="contact.html">聯繫我們</a></p>
-</footer>
+    <main class="article-wrap">
+        <article class="article-detail">
+            <header class="article-header">
+                <h1>{title}</h1>
+                <div class="article-meta">
+                    <span>📅 {display_date} {time_str}</span>
+                    <span>👤 滢滢</span>
+                    <span>📍 新會天馬村</span>
+                    <span>🕐 閱讀約8分鐘</span>
+                </div>
+                <div class="article-tags">{tags_html}</div>
+            </header>
+            {article_image}
+            <div class="article-body">{body_html}</div>
+            <div class="cta-box">
+                <h3>想買正宗新會陳皮？</h3>
+                <p>滢滢家天馬村果園直發，手工開皮、自然生曬、幹倉陳化。<br>不滿意七天無理由退，我敢這麼說，是因為我對自己的陳皮有信心。</p>
+                <a href="contact.html">📱 加滢滢微信，了解詳情</a>
+            </div>
+            <div class="related">
+                <h3>📖 你可能還想看</h3>
+                <div class="related-item">
+                    <a href="articles.html">
+                        <h4>查看全部陳皮故事</h4>
+                        <p>傾聽每一塊陳皮的聲音</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>© 2026 溢豐堂 · 滢滢家新會陳皮 ｜
+            <a href="contact.html" style="color:#8B4513">聯繫我們</a></p>
+    </footer>
+
+    <div id="cookie-bar" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#8B4513;color:#fff;padding:12px 20px;text-align:center;z-index:9999;font-size:.85rem;">
+        本網站使用 Cookie 改善您的體驗。
+        <button onclick="document.getElementById('cookie-bar').style.display='none';localStorage.setItem('cookie_consent_chenpi','yes')"
+                style="background:#fff;color:#8B4513;border:none;padding:6px 16px;border-radius:16px;margin-left:12px;cursor:pointer">
+            確定
+        </button>
+    </div>
+    <script>if(!localStorage.getItem('cookie_consent_chenpi')){{document.getElementById('cookie-bar').style.display='block';}}</script>
 </body>
 </html>'''
 
@@ -293,7 +310,19 @@ def update_index(title, abstract, display_date, time_str, file_name, image_url="
 
 
 def update_articles(file_name, title, abstract, display_date, time_str, tags):
+    """先 fetch 线上 sha，再在内存中修改，最后推送。"""
+    import urllib.request
     art_path = os.path.join(REPO_DIR, "articles.html")
+    API = "https://api.github.com/repos/glomarket500-oss/yingying-chenpi/contents/articles.html"
+    try:
+        req = urllib.request.Request(API,
+            headers={"Authorization": f"Bearer {os.environ.get('GITHUB_TOKEN','')}",
+                     "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28"})
+        with urllib.request.urlopen(req, timeout=15) as r:
+            online_sha = json.loads(r.read()).get("sha", "")
+    except:
+        online_sha = ""
+
     with open(art_path, encoding='utf-8') as f:
         html = f.read()
 
@@ -309,8 +338,82 @@ def update_articles(file_name, title, abstract, display_date, time_str, tags):
 
     html = html.replace('<section class="article-list">', '<section class="article-list">\n      ' + new_item, 1)
 
-    with open(art_path, 'w', encoding='utf-8') as f:
-        f.write(html)
+    import base64
+    body = json.dumps({
+        "message": f"update articles.html: add {file_name}",
+        "sha": online_sha,
+        "content": base64.b64encode(html.encode("utf-8")).decode()
+    }).encode()
+    req = urllib.request.Request(API, data=body,
+        headers={"Authorization": f"Bearer {os.environ.get('GITHUB_TOKEN','')}",
+                 "Content-Type": "application/json",
+                 "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28"},
+        method="PUT")
+    try:
+        with urllib.request.urlopen(req, timeout=20) as r:
+            result = json.loads(r.read())
+            print(f"   ✅ articles.html 更新: {result.get('commit',{}).get('sha','')[:8]}")
+    except Exception as e:
+        print(f"   ⚠️ articles.html 更新失敗: {e}")
+        # 回写到本地文件，不阻断
+        with open(art_path, 'w', encoding='utf-8') as f:
+            f.write(html)
+
+
+def update_sitemap(file_name):
+    """更新 sitemap.xml，fetch 线上 sha。"""
+    import urllib.request, base64
+    sm_path = os.path.join(REPO_DIR, "sitemap.xml")
+    API = "https://api.github.com/repos/glomarket500-oss/yingying-chenpi/contents/sitemap.xml"
+    try:
+        req = urllib.request.Request(API,
+            headers={"Authorization": f"Bearer {os.environ.get('GITHUB_TOKEN','')}",
+                     "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28"})
+        with urllib.request.urlopen(req, timeout=15) as r:
+            online_sha = json.loads(r.read()).get("sha", "")
+    except:
+        online_sha = ""
+
+    with open(sm_path, encoding='utf-8') as f:
+        xml = f.read()
+    url_tag = f"<url><loc>{SITE_URL}/{file_name}</loc></url>"
+    if url_tag not in xml:
+        xml = xml.replace("</urlset>", f"  {url_tag}\n</urlset>")
+        body = json.dumps({
+            "message": f"update sitemap.xml: add {file_name}",
+            "sha": online_sha,
+            "content": base64.b64encode(xml.encode("utf-8")).decode()
+        }).encode()
+        req = urllib.request.Request(API, data=body,
+            headers={"Authorization": f"Bearer {os.environ.get('GITHUB_TOKEN','')}",
+                     "Content-Type": "application/json",
+                     "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28"},
+            method="PUT")
+        try:
+            with urllib.request.urlopen(req, timeout=20) as r:
+                result = json.loads(r.read())
+                print(f"   ✅ sitemap.xml 更新: {result.get('commit',{}).get('sha','')[:8]}")
+        except Exception as e:
+            print(f"   ⚠️ sitemap.xml 更新失敗: {e}")
+            with open(sm_path, 'w', encoding='utf-8') as f:
+                f.write(xml)
+
+
+def verify_online(url):
+    """验证线上页面 HTTP 200。"""
+    import urllib.request
+    for attempt in range(3):
+        try:
+            req = urllib.request.Request(url, headers={"Accept": "text/html"})
+            with urllib.request.urlopen(req, timeout=20) as r:
+                status = r.status
+                ct = r.headers.get("Content-Type", "")
+                return status == 200, f"HTTP {status} ({ct[:40]})"
+        except Exception as e:
+            if attempt < 2:
+                import time; time.sleep(5)
+            continue
+    return False, str(e)[:80]
 
 
 def git_push():
@@ -348,7 +451,7 @@ def publish(draft_path):
     image = fm.get("image", "").strip()
     image_source = fm.get("image_source", "公開報道配圖").strip()
     if not image or "homepage-hero" in image or image.endswith("/images/chenpi-hero.jpg"):
-        raise ValueError("每篇文章必须先搜索并填写独立主题图片，不能使用首页统一图片")
+        raise ValueError("❌ 发布错误：每篇文章必须先搜索并填写独立主题图片，不能使用首页统一图片")
 
     # 生成HTML
     faqs = extract_faqs(body)
@@ -364,23 +467,30 @@ def publish(draft_path):
     display_date = f"{date_str[:4]}年{date_str[5:7]}月{date_str[8:10]}日"
     update_index(title, abstract, display_date, time_str, file_name, image, image_source)
     update_articles(file_name, title, abstract, display_date, time_str, tags)
+    update_sitemap(file_name)
 
     ok, msg = git_push()
     if not ok:
-        print(f"   ⚠️ {msg}（本地已落盘，稍后自动补推）")
-    else:
-        print(f"   ✅ {msg}")
+        print(f"   ❌ GitHub 推送失败: {msg}")
+        raise RuntimeError(f"❌ 发布错误：GitHub 推送失败 — {msg}")
 
-    # 移动草稿：无论推送成败，本地产物先归档，不挡下一环节
+    # 推后验证
+    print(f"   🔍 验证线上: {url}")
+    ok_verify, detail = verify_online(url)
+    if not ok_verify:
+        raise RuntimeError(f"❌ 发布错误：线上验证失败 — {detail}")
+
+    print(f"   ✅ 验证通过")
+
+    # 验证通过后再归档草稿
     pub_dir = f"{VAULT_DIR}\\已发布"
     os.makedirs(pub_dir, exist_ok=True)
     shutil.move(draft_path, os.path.join(pub_dir, os.path.basename(draft_path)))
-
-    # 记录待推送状态，供下次补推
+    # 清理待推送标记
     pending_flag = os.path.join(REPO_DIR, ".pending_push")
-    if not ok:
-        with open(pending_flag, 'a', encoding='utf-8') as f:
-            f.write(f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} {file_name} 待推送\n")
+    if os.path.exists(pending_flag):
+        os.remove(pending_flag)
+
     print(f"\n🎉 {url}")
     return True
 
