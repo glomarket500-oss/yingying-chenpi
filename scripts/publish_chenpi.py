@@ -67,7 +67,7 @@ def read_md(md_path):
 
 def md_to_html(body):
     lines = body.split('\n')
-    out, in_p, in_list = [], False, False
+    out, in_p, in_list, in_scene = [], False, False, False
 
     def close_p():
         nonlocal in_p
@@ -75,31 +75,42 @@ def md_to_html(body):
     def close_list():
         nonlocal in_list
         if in_list: out.append('</ul>'); in_list = False
+    def open_scene():
+        nonlocal in_scene
+        if not in_scene:
+            out.append('<section class="scene">')
+            in_scene = True
+    def close_scene():
+        nonlocal in_scene
+        if in_scene:
+            out.append('</section>')
+            in_scene = False
+    def format_dialogue(s):
+        """把 > xxx說：「...」 转为 dialogue 区块，否则回 <blockquote>"""
+        text = s[2:].strip()
+        m = re.match(r'^(.+?)[說称讲问答叫喊叹][：:「『"\'](.+)[」』"\'。？?！!]*$', text)
+        if m:
+            who = m.group(1).strip()
+            words = m.group(2).strip()
+            return (f'<div class="dialogue"><div class="who">{html.escape(who)}</div>'
+                    f'<p>{html.escape(words)}</p></div>')
+        return f'<blockquote>{html.escape(text)}</blockquote>'
 
     for s in (l.rstrip() for l in lines):
         if s.startswith('## '):
-            close_p(); close_list()
-            heading = s[3:]
-            heading_class = 'section-heading'
-            if '開場' in heading:
-                heading_class += ' section-opening'
-            elif re.match(r'^[一二三四五六七八九十]+、', heading):
-                heading_class += ' section-act'
-            elif '常見問題' in heading:
-                heading_class += ' section-faq'
-            elif '茶識' in heading or '小貼士' in heading:
-                heading_class += ' section-tips'
-            elif '結語' in heading:
-                heading_class += ' section-ending'
-            out.append(f'<h2 class="{heading_class}">{heading}</h2>')
+            close_p(); close_list(); close_scene()
+            open_scene()
+            out.append(f'<h2>{s[3:]}</h2>')
         elif s.startswith('### '):
-            close_p(); close_list(); out.append(f'<h3>{s[4:]}</h3>')
+            close_p(); close_list()
+            out.append(f'<h3>{s[4:]}</h3>')
         elif s.startswith('- '):
             close_p()
             if not in_list: out.append('<ul>'); in_list = True
             out.append(f'<li>{s[2:]}</li>')
         elif s.startswith('> '):
-            close_p(); close_list(); out.append(f'<blockquote>{s[2:]}</blockquote>')
+            close_p(); close_list()
+            out.append(format_dialogue(s))
         elif s == '---':
             close_p(); close_list(); out.append('<hr>')
         elif not s:
@@ -107,21 +118,21 @@ def md_to_html(body):
         else:
             close_list()
             if not in_p: out.append('<p>'); in_p = True
-            # 先转义正文，再恢复 Markdown 粗体，避免生成的 <strong> 被再次转义。
             escaped = html.escape(s, quote=False)
             escaped = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', escaped)
             escaped = re.sub(r'(?<!\*)\*(?!\s)(.+?)(?<!\s)\*(?!\*)', r'<em>\1</em>', escaped)
             out.append(escaped + ' ')
-    close_p(); close_list()
+
+    close_p(); close_list(); close_scene()
     html_out = '\n'.join(out)
-    # 将 FAQ 的 Markdown 段落转换成独立问答卡片，避免问题和答案挤在一个 p 内。
+    # FAQ items → faq-item
     html_out = re.sub(
         r'<p>\s*<strong>(Q\d+[：:].*?)</strong>\s*(A：[\s\S]*?)</p>',
         r'<div class="faq-item"><p class="faq-question">\1</p><p class="faq-answer">\2</p></div>',
         html_out,
     )
     html_out = re.sub(
-        r'(<h2(?: class="[^"]+")?>(?:FAQ )?常見問題</h2>)\s*((?:<div class="faq-item">[\s\S]*?</div>\s*)+)',
+        r'(<h2>(?:FAQ )?常見問題</h2>)\s*((?:<div class="faq-item">[\s\S]*?</div>\s*)+)',
         r'\1\n<div class="faq-list">\n\2</div>',
         html_out,
     )
@@ -159,13 +170,44 @@ def build_html(title, body_html, tags, date_str, time_str, faqs, image_url, url,
     <figcaption>圖片來源：{safe_caption}</figcaption>
   </figure>'''
 
-    faq_schema = ""
+    # FAQ tip-box HTML（插入文章正文结尾、CTA 之前）
+    faq_html = ""
     if faqs:
-        items = [{"@type": "Question", "name": f["q"], "acceptedAnswer": {"@type": "Answer", "text": f["a"]}} for f in faqs]
-        faq_schema = f'<script type="application/ld+json">\n{json.dumps({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": items}, ensure_ascii=False, indent=2)}\n</script>'
+        faq_items_html = "\n".join(
+            f'                <p><strong>Q：{html.escape(f["q"])}</strong></p>\n                <p>A：{html.escape(f["a"])}</p>'
+            for f in faqs
+        )
+        faq_html = f'''
+        <div class="tip-box">
+            <div class="label">常見問題</div>
+{faq_items_html}
+        </div>
+'''
 
     blog = {"@context": "https://schema.org", "@type": "BlogPosting", "headline": title, "description": description or title, "image": image_url, "datePublished": iso_date, "dateModified": iso_date, "author": {"@type": "Person", "name": "滢滢"}, "publisher": {"@type": "Organization", "name": "溢豐堂"}, "articleSection": "陳皮故事", "inLanguage": "zh-Hant", "contentLocation": {"@type": "Place", "name": "新會天馬村"}}
+
     local_business = {"@context": "https://schema.org", "@type": "LocalBusiness", "name": "溢豐堂 · 滢滢家新會陳皮", "address": {"@type": "PostalAddress", "addressLocality": "新會區", "addressRegion": "廣東省", "addressCountry": "CN"}, "geo": {"@type": "GeoCoordinates", "latitude": 22.5317, "longitude": 113.0286}}
+
+    faq_schema = ""
+    if faqs:
+        faq_items = [{"@type": "Question", "name": f["q"], "acceptedAnswer": {"@type": "Answer", "text": f["a"]}} for f in faqs]
+        faq_schema = f'\n<script type="application/ld+json">\n{json.dumps({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": faq_items}, ensure_ascii=False, indent=2)}\n</script>'
+
+    embedded_style = '''
+    <style>
+        .article-wrap { max-width: 720px; margin: 0 auto; padding: 40px 5vw 60px; background: #fff; }
+        .article-body { font-size: 1rem; line-height: 1.9; color: #333; }
+        .article-body h2 { font-size: 1.4rem; color: #8B4513; margin: 36px 0 16px; padding-left: 14px; border-left: 4px solid #c9a96e; line-height: 1.4; font-weight: 700; }
+        .article-body h3 { font-size: 1.1rem; color: #6b3410; margin: 20px 0 10px; font-weight: 700; }
+        .article-body p { margin: 14px 0; }
+        .article-body strong { color: #6b3410; }
+        .article-body .scene { margin-bottom: 32px; }
+        .article-body .dialogue { background: #fff; border-left: 3px solid #8B4513; padding: 14px 18px; margin: 20px 0; border-radius: 0 8px 8px 0; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
+        .article-body .dialogue .who { font-weight: 700; color: #8B4513; font-size: .85rem; margin-bottom: 6px; }
+        .article-body .dialogue p { font-size: .94rem; margin: 0; color: #555; }
+        .article-body .faq-item { margin-bottom: 16px; padding: 12px; background: #faf8f3; border-radius: 8px; }
+        .article-body .faq-item p { margin: 4px 0; }
+    </style>'''
 
     return f'''<!DOCTYPE html>
 <html lang="zh-HK">
@@ -196,6 +238,13 @@ def build_html(title, body_html, tags, date_str, time_str, faqs, image_url, url,
 <meta name="twitter:description" content="{meta_description}">
 <meta name="twitter:image" content="{image_url}">
 <link rel="stylesheet" href="css/style.css?v=5">
+{embedded_style}
+<script type="application/ld+json">
+{json.dumps(blog, ensure_ascii=False, indent=2)}
+</script>
+<script type="application/ld+json">
+{json.dumps(local_business, ensure_ascii=False, indent=2)}
+</script>
 {faq_schema}
 </head>
 <body>
@@ -234,6 +283,7 @@ def build_html(title, body_html, tags, date_str, time_str, faqs, image_url, url,
             </header>
             {article_image}
             <div class="article-body">{body_html}</div>
+            {faq_html}
             <div class="cta-box">
                 <h3>想買正宗新會陳皮？</h3>
                 <p>滢滢家天馬村果園直發，手工開皮、自然生曬、幹倉陳化。<br>不滿意七天無理由退，我敢這麼說，是因為我對自己的陳皮有信心。</p>
