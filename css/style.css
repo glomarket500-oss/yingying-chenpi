@@ -1282,6 +1282,13 @@ footer a:hover { color: var(--accent); }
     top: 0;
     left: 0;
 }
+.video-thumb video {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    position: relative;
+}
 .play-icon {
     font-size: 40px;
     color: var(--white);
