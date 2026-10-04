@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>🔧 直播練習測試頁（不對外） | 溢豐堂</title>
+<link rel="stylesheet" href="css/style.css?v=5">
+<style>
+  .lt-wrap{max-width:900px;margin:0 auto;padding:24px 18px 60px}
+  .lt-badge{display:inline-block;background:#fff3cd;color:#8a6d3b;border:1px solid #ffe08a;
+            padding:4px 12px;border-radius:20px;font-size:13px;font-weight:600;margin-bottom:14px}
+  .lt-box{background:#fff;border:1px solid #e6e0d8;border-radius:12px;padding:18px;margin-bottom:18px}
+  .lt-box h2{margin:0 0 10px;font-size:18px}
+  .lt-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .lt-input{flex:1;min-width:260px;padding:11px 13px;border:1px solid #d8d2c8;border-radius:8px;font-size:14px}
+  .lt-btn{padding:11px 20px;border:none;border-radius:8px;background:#8B4513;color:#fff;font-size:14px;font-weight:600;cursor:pointer}
+  .lt-btn.sec{background:#eee;color:#444}
+  .lt-video{width:100%;max-width:860px;background:#000;border-radius:10px;display:block}
+  .lt-stat{font-family:ui-monospace,Consolas,monospace;font-size:13px;color:#333;background:#faf7f2;
+           border:1px solid #eee;border-radius:8px;padding:12px;margin-top:12px;white-space:pre-wrap;line-height:1.6}
+  .lt-hint{color:#8a6d3b;background:#fffaf0;border-left:3px solid #e0b060;padding:10px 14px;
+           border-radius:6px;font-size:13.5px;line-height:1.7;margin-top:12px}
+  .lt-ok{color:#1a7f37}.lt-bad{color:#c0392b}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="index.html" class="logo"><h1>溢豐堂</h1><span>滢滢家新會陳皮</span></a>
+  <div class="nav-links" style="overflow-x:auto;white-space:nowrap">
+    <a href="index.html">首頁</a>
+    <a href="live.html">直播間</a>
+    <a href="contact.html">銷售陳皮</a>
+  </div>
+</nav>
+
+<div class="lt-wrap">
+  <span class="lt-badge">🔧 練習模式 · 此頁不對外、不被搜尋引擎收錄</span>
+  <h1 style="font-size:24px;margin:0 0 6px">直播練習測試頁</h1>
+  <p style="color:#777;font-size:14px;margin:0 0 20px">
+    用途：把騰訊雲直播的<b>播放地址（.m3u8）</b>貼到下面，就能在瀏覽器裡看自己推的流，測延遲、測網路、練習流程。
+    本頁不會出現在任何導覽或 sitemap 中。
+  </p>
+
+  <div class="lt-box">
+    <h2>① 貼上播放地址</h2>
+    <div class="lt-row">
+      <input id="url" class="lt-input" type="text" placeholder="https://xxxx.liveplay.myqcloud.com/live/streamname.m3u8" autocomplete="off">
+      <button class="lt-btn" onclick="play()">播放</button>
+      <button class="lt-btn sec" onclick="reload()">重新載入</button>
+      <button class="lt-btn sec" onclick="clearUrl()">清除</button>
+    </div>
+    <div class="lt-hint">
+      <b>注意兩件事：</b><br>
+      1. 網址要用 <b>https://</b>（本頁是 https，用 http 會被瀏覽器攔掉；若你只有 http，貼 http 也可以，本頁會自動試 https）<br>
+      2. 若畫面一直不出來，最可能是<b>騰訊雲那邊沒開 CORS</b>（後台：雲直播 → 域名管理 → 播放域名 → 跨域配置，把
+      <code>https://www.yiyichenpi.com</code> 加入允許來源）
+    </div>
+  </div>
+
+  <div class="lt-box">
+    <h2>② 畫面</h2>
+    <video id="player" class="lt-video" controls playsinline muted preload="metadata"></video>
+    <div id="stat" class="lt-stat">狀態：尚未播放</div>
+  </div>
+
+  <div class="lt-box">
+    <h2>③ 練習用提示</h2>
+    <div class="lt-hint" style="background:#f7fbff;border-left-color:#6aa9e0;color:#2b4a63">
+      · <b>延遲參考</b>：下面會顯示「緩衝領先秒數」，數字越大代表畫面比現場越慢（HLS 通常 10–30 秒）<br>
+      · <b>推流那台機器</b>可以同時用 OBS <b>本地錄製</b>，練習完回看比什麼都有效<br>
+      · 練習時請用<b>跟正式不同的 streamname</b>，避免跟正式流互相干擾<br>
+      · <b>切勿把推流地址＋密鑰給任何人</b>（那是能推你流的密碼）；本頁只需要<b>播放地址</b>
+    </div>
+  </div>
+</div>
+
+<footer style="text-align:center;padding:24px;color:#999;font-size:13px">
+  <p>© 2024 溢豐堂 · <a href="index.html">返回首頁</a> · <a href="live.html">直播間</a></p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1/dist/hls.min.js"></script>
+<script>
+var player = document.getElementById('player');
+var statEl = document.getElementById('stat');
+var urlEl  = document.getElementById('url');
+var hls = null, timer = null;
+
+function fmt(url) {
+  // https 頁面載入 http 資源會被攔；自動嘗試 https 版本
+  if (location.protocol === 'https:' && url.indexOf('http://') === 0) {
+    return { url: 'https://' + url.slice(7), upgraded: true };
+  }
+  return { url: url, upgraded: false };
+}
+
+function show(msg, cls) {
+  var t = new Date().toLocaleTimeString('zh-HK', { hour12: false });
+  statEl.innerHTML = '<span class="' + (cls || '') + '">' + msg + '</span>\n' + statEl.innerHTML.split('\n').slice(1).join('\n');
+  statEl.className = 'lt-stat';
+}
+function setStat(lines) { statEl.textContent = lines; }
+
+function tick() {
+  if (!player) return;
+  var buf = 0;
+  try { if (player.buffered.length) { buf = player.buffered.end(player.buffered.length - 1) - player.currentTime; } } catch (e) {}
+  var res = (player.videoWidth && player.videoHeight) ? (player.videoWidth + '×' + player.videoHeight) : '—';
+  var dur = isNaN(player.duration) ? '直播中（無限長）' : player.duration.toFixed(1) + ' 秒';
+  setStat(
+    '播放狀態：' + (player.paused ? '已暫停' : '播放中') + '\n' +
+    '解析度　：' + res + '\n' +
+    '目前時間：' + player.currentTime.toFixed(1) + ' 秒　·　長度：' + dur + '\n' +
+    '緩衝領先：' + buf.toFixed(1) + ' 秒　（越大＝比現場越慢，HLS 通常 10–30 秒）\n' +
+    '就緒狀態：readyState=' + player.readyState + '　networkState=' + player.networkState + '\n' +
+    '錯誤碼　：' + (player.error ? player.error.code + '（' + (player.error.message || '') + '）' : '無')
+  );
+}
+
+function play() {
+  var raw = (urlEl.value || '').trim();
+  if (!raw) { show('請先貼上播放地址（.m3u8）', 'lt-bad'); return; }
+  try { localStorage.setItem('lt_hls_url', raw); } catch (e) {}
+  var r = fmt(raw);
+  var url = r.url;
+  if (hls) { try { hls.destroy(); } catch (e) {} hls = null; }
+  player.removeAttribute('src'); player.load();
+
+  show('開始載入：' + url + (r.upgraded ? '（已自動改用 https）' : ''));
+
+  if (window.Hls && Hls.isSupported()) {
+    hls = new Hls({ lowLatencyMode: true, liveSyncDurationCount: 3, enableWorker: true });
+    hls.on(Hls.Events.MANIFEST_PARSED, function () {
+      show('取得播放清單，開始播放', 'lt-ok');
+      player.play().catch(function (e) { show('需要手動點一下播放鍵（' + e.name + '）'); });
+      if (timer) clearInterval(timer);
+      timer = setInterval(tick, 1000);
+    });
+    hls.on(Hls.Events.ERROR, function (evt, data) {
+      var msg = '播放錯誤：' + data.type + ' / ' + data.details + (data.fatal ? '（致命）' : '');
+      if (data.type === 'networkError') {
+        msg += '\n→ 常見原因：CORS 未開、網址錯誤、m3u8 已過期、或該流尚未開始推流';
+      }
+      show(msg, 'lt-bad');
+    });
+    hls.loadSource(url);
+    hls.attachMedia(player);
+  } else if (player.canPlayType('application/vnd.apple.mpegurl')) {
+    player.src = url;   // Safari 原生支援 HLS
+    player.addEventListener('loadedmetadata', function () {
+      player.play().catch(function () {});
+      if (timer) clearInterval(timer);
+      timer = setInterval(tick, 1000);
+    });
+  } else {
+    show('此瀏覽器不支援 HLS 播放（建議用 Chrome / Edge / Safari）', 'lt-bad');
+  }
+}
+
+function reload() { if (urlEl.value.trim()) play(); }
+function clearUrl() {
+  try { localStorage.removeItem('lt_hls_url'); } catch (e) {}
+  urlEl.value = '';
+  if (hls) { try { hls.destroy(); } catch (e) {} hls = null; }
+  player.removeAttribute('src'); player.load();
+  setStat('狀態：尚未播放');
+}
+
+// 網址可用 ?hls=... 直接帶入；否則讀上次貼過的
+(function init() {
+  var q = new URLSearchParams(location.search).get('hls');
+  if (q) { urlEl.value = q; return; }
+  try { var s = localStorage.getItem('lt_hls_url'); if (s) urlEl.value = s; } catch (e) {}
+})();
+</script>
+</body>
+</html>
