@@ -1289,6 +1289,9 @@ footer a:hover { color: var(--accent); }
     object-fit: cover;
     display: block;
     border-radius: 6px;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 .play-icon {
     font-size: 40px;
