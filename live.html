@@ -55,6 +55,17 @@
         <button onclick="toggleLiveQR()" style="margin-top: 14px; padding: 8px 20px; background: #eee; border: none; border-radius: 6px; cursor: pointer;">關閉</button>
     </div>
 
+    <!-- 自建直播播放器（有流才顯示，由頁尾 script 自動偵測） -->
+    <section id="livePlayerSection" style="display:none; text-align:center; padding:26px 16px; background:#0f0f18;">
+        <p style="color:#ff6b81; font-weight:700; font-size:16px; margin:0 0 12px;">🔴 滢滢正在直播中</p>
+        <video id="livePlayer" controls playsinline muted autoplay preload="metadata"
+               style="width:100%; max-width:860px; background:#000; border-radius:10px; display:block; margin:0 auto;"></video>
+        <p style="margin:12px 0 0; color:#ccc; font-size:13px;">
+            <button onclick="unmuteLive()" style="padding:8px 18px; border:none; border-radius:20px; background:#e94560; color:#fff; font-size:13px; font-weight:600; cursor:pointer;">🔊 開啟聲音</button>
+            <span id="livePlayerNote" style="margin-left:10px;">畫面會比現場慢十幾秒，屬正常現象</span>
+        </p>
+    </section>
+
     <header class="page-header">
         <h2>📺 滢滢的直播間</h2>
         <p>每天 7am–12pm (GMT+8)視頻號直播 · 現場開皮 · 現場衝泡 · 有問必答</p>
@@ -200,62 +211,129 @@
             el.style.display = el.style.display === 'none' ? 'block' : 'none';
         }
 
-        // ===== 直播狀態（固定時段：每天 07:00–12:00 GMT+8）=====
-        // 如要臨時改狀態，改根目錄 live-status.json：
-        //   {"live": true}  強制顯示直播中；{"live": false} 強制顯示未開播；不加此檔則按時間自動判定
+        // ===== 直播狀態 =====
+        // 判定順序：① live-status.json 的 live 強制值 → ② 實際有沒有流（HLS 探測）
+        //           → ③ 每天 07:00–12:00（GMT+8）時段
         var LIVE = {
             startHour: 7,
             endHour: 12,
-            douyinLive: '',      // ← 抖音直播間連結，例如 https://live.douyin.com/123456789
-            shipinhaoLive: '',   // ← 視頻號直播間分享連結（手機可直達微信）
+            hls: '',             // ← 騰訊雲直播播放地址（.m3u8），由 live-status.json 提供
+            douyinLive: '',      // ← 抖音直播間連結
+            shipinhaoLive: '',   // ← 視頻號直播間分享連結
             override: null
         };
+        var streamState = null;      // null=未知, true=有流, false=沒流
+        var hlsPlayer = null, hlsRetry = null, hlsLoading = false;
 
-        function gmt8Hour() {
-            return (new Date().getUTCHours() + 8) % 24;
+        function gmt8Hour() { return (new Date().getUTCHours() + 8) % 24; }
+        function inLiveWindow() { var h = gmt8Hour(); return h >= LIVE.startHour && h < LIVE.endHour; }
+        function nextStartText() { return (gmt8Hour() < LIVE.startHour) ? '今天 07:00' : '明天 07:00'; }
+
+        function loadHlsLib(cb) {
+            if (window.Hls) return cb();
+            if (hlsLoading) return;
+            hlsLoading = true;
+            var s = document.createElement('script');
+            s.src = 'https://cdn.jsdelivr.net/npm/hls.js@1/dist/hls.min.js';
+            s.onload = function () { hlsLoading = false; cb(); };
+            s.onerror = function () { hlsLoading = false; };
+            document.head.appendChild(s);
         }
-        function inLiveWindow() {
-            var h = gmt8Hour();
-            return h >= LIVE.startHour && h < LIVE.endHour;
+
+        function startStreamProbe() {
+            var v = document.getElementById('livePlayer');
+            if (!LIVE.hls || !v) return;
+            loadHlsLib(function () {
+                if (window.Hls && Hls.isSupported()) {
+                    if (hlsPlayer) { try { hlsPlayer.destroy(); } catch (e) {} hlsPlayer = null; }
+                    hlsPlayer = new Hls({
+                        lowLatencyMode: true,
+                        liveSyncDurationCount: 3,
+                        manifestLoadingTimeOut: 8000,
+                        manifestLoadingMaxRetry: 1
+                    });
+                    hlsPlayer.on(Hls.Events.MANIFEST_PARSED, function () {
+                        streamState = true;
+                        renderLiveStatus();
+                        var p = v.play(); if (p && p.catch) p.catch(function () {});
+                    });
+                    hlsPlayer.on(Hls.Events.ERROR, function (evt, data) {
+                        if (!data.fatal) return;
+                        streamState = false;
+                        renderLiveStatus();
+                        try { hlsPlayer.destroy(); } catch (e) {}
+                        hlsPlayer = null;
+                        if (hlsRetry) clearTimeout(hlsRetry);
+                        hlsRetry = setTimeout(startStreamProbe, 60000);   // 每分鐘重試一次
+                    });
+                    hlsPlayer.loadSource(LIVE.hls);
+                    hlsPlayer.attachMedia(v);
+                } else if (v.canPlayType('application/vnd.apple.mpegurl')) {
+                    v.src = LIVE.hls;                                  // Safari 原生 HLS
+                    v.addEventListener('loadedmetadata', function () { streamState = true; renderLiveStatus(); });
+                    v.addEventListener('error', function () {
+                        streamState = false; renderLiveStatus();
+                        if (hlsRetry) clearTimeout(hlsRetry);
+                        hlsRetry = setTimeout(startStreamProbe, 60000);
+                    });
+                }
+            });
         }
-        function nextStartText() {
-            return (gmt8Hour() < LIVE.startHour) ? '今天 07:00' : '明天 07:00';
-        }
+
         function renderLiveStatus() {
-            var live = (typeof LIVE.override === 'boolean') ? LIVE.override : inLiveWindow();
+            var live;
+            if (typeof LIVE.override === 'boolean') live = LIVE.override;
+            else if (streamState === true) live = true;
+            else if (streamState === false && LIVE.hls) live = false;   // 有設定流就以實際流為準
+            else live = inLiveWindow();
+
             var dot = document.getElementById('liveDot');
             var txt = document.getElementById('liveText');
             var btn = document.getElementById('liveBtn');
             var ps  = document.getElementById('livePanelStatus');
+            var sec = document.getElementById('livePlayerSection');
+
             if (live) {
                 if (dot) { dot.style.background = '#e94560'; dot.style.animation = ''; }
-                if (txt) txt.textContent = '🔴 現在是直播時段（每天 07:00–12:00 GMT+8）— 點右邊進來';
+                if (txt) txt.textContent = '🔴 滢滢正在直播中 — 往下看直播畫面，或點右邊進入直播間';
                 if (btn) { btn.textContent = '進入直播間'; btn.style.background = '#e94560'; btn.style.borderColor = '#e94560'; }
-                if (ps)  ps.textContent = '🔴 現在是直播時段（每天 07:00–12:00 GMT+8）';
+                if (ps)  ps.textContent = '🔴 現在正在直播中';
             } else {
                 if (dot) { dot.style.background = '#8a8a9e'; dot.style.animation = 'none'; }
-                if (txt) txt.textContent = '⚪ 現在非直播時段 · 下一場 ' + nextStartText() + '（GMT+8）';
+                if (txt) txt.textContent = '⚪ 現在未開播 · 下一場 ' + nextStartText() + '（GMT+8）';
                 if (btn) { btn.textContent = '看直播入口'; btn.style.background = '#4a4a63'; btn.style.borderColor = '#4a4a63'; }
-                if (ps)  ps.textContent = '⚪ 現在非直播時段 · 下一場 ' + nextStartText() + '（GMT+8）';
+                if (ps)  ps.textContent = '⚪ 現在未開播 · 下一場 ' + nextStartText() + '（GMT+8）';
             }
+            if (sec) sec.style.display = (live && LIVE.hls) ? 'block' : 'none';
+
             var dw = document.getElementById('liveDouyinWrap'), db = document.getElementById('liveDouyinBtn');
             if (dw && db && LIVE.douyinLive) { db.href = LIVE.douyinLive; dw.style.display = 'block'; }
             var sw = document.getElementById('liveShipinhaoWrap'), sb = document.getElementById('liveShipinhaoBtn');
             if (sw && sb && LIVE.shipinhaoLive) { sb.href = LIVE.shipinhaoLive; sw.style.display = 'block'; }
         }
 
-        (function loadLiveOverride() {
-            if (typeof fetch !== 'function') return;
+        function unmuteLive() {
+            var v = document.getElementById('livePlayer');
+            if (!v) return;
+            v.muted = false;
+            var p = v.play(); if (p && p.catch) p.catch(function () {});
+        }
+
+        (function loadLiveConfig() {
+            if (typeof fetch !== 'function') { renderLiveStatus(); startStreamProbe(); return; }
             fetch('live-status.json', { cache: 'no-store' })
                 .then(function (r) { return r.ok ? r.json() : null; })
                 .then(function (j) {
-                    if (!j) return;
-                    if (typeof j.live === 'boolean') LIVE.override = j.live;
-                    if (typeof j.douyinLive === 'string' && j.douyinLive) LIVE.douyinLive = j.douyinLive;
-                    if (typeof j.shipinhaoLive === 'string' && j.shipinhaoLive) LIVE.shipinhaoLive = j.shipinhaoLive;
+                    if (j) {
+                        if (typeof j.live === 'boolean') LIVE.override = j.live;
+                        if (typeof j.hls === 'string' && j.hls) LIVE.hls = j.hls;
+                        if (typeof j.douyinLive === 'string' && j.douyinLive) LIVE.douyinLive = j.douyinLive;
+                        if (typeof j.shipinhaoLive === 'string' && j.shipinhaoLive) LIVE.shipinhaoLive = j.shipinhaoLive;
+                    }
                     renderLiveStatus();
+                    startStreamProbe();
                 })
-                .catch(function () {});
+                .catch(function () { renderLiveStatus(); startStreamProbe(); });
         })();
 
         renderLiveStatus();

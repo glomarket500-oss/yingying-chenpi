@@ -1,12 +1,24 @@
 {
-  "_說明": "直播狀態開關。live = true 強制顯示「直播中」；live = false 強制顯示「未開播」；live = null（或刪除此檔）則按每天 07:00–12:00（GMT+8）自動判定。",
+  "_說明": "直播狀態開關。live = true 強制顯示「直播中」；live = false 強制顯示「未開播」；live = null（或刪除此檔）則自動判定：優先看 hls 有沒有流，其次按每天 07:00–12:00（GMT+8）。hls 填騰訊雲直播的播放地址（.m3u8）。",
   "live": null,
   "douyinLive": "",
   "shipinhaoLive": "",
   "_使用範例": {
-    "今天臨時不播": { "live": false },
-    "臨時加播": { "live": true },
-    "設定抖音直播間": { "douyinLive": "https://live.douyin.com/123456789" },
-    "設定視頻號直播間分享連結": { "shipinhaoLive": "https://channels.weixin.qq.com/xxx" }
-  }
+    "今天臨時不播": {
+      "live": false
+    },
+    "臨時加播": {
+      "live": true
+    },
+    "設定抖音直播間": {
+      "douyinLive": "https://live.douyin.com/123456789"
+    },
+    "設定視頻號直播間分享連結": {
+      "shipinhaoLive": "https://channels.weixin.qq.com/xxx"
+    },
+    "設定自建直播播放地址": {
+      "hls": "https://235644.liveplay.myqcloud.com/live/test.m3u8"
+    }
+  },
+  "hls": "https://235644.liveplay.myqcloud.com/live/test.m3u8"
 }
