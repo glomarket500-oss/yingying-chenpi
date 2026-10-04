@@ -1,0 +1,12 @@
+{
+  "_說明": "直播狀態開關。live = true 強制顯示「直播中」；live = false 強制顯示「未開播」；live = null（或刪除此檔）則按每天 07:00–12:00（GMT+8）自動判定。",
+  "live": null,
+  "douyinLive": "",
+  "shipinhaoLive": "",
+  "_使用範例": {
+    "今天臨時不播": { "live": false },
+    "臨時加播": { "live": true },
+    "設定抖音直播間": { "douyinLive": "https://live.douyin.com/123456789" },
+    "設定視頻號直播間分享連結": { "shipinhaoLive": "https://channels.weixin.qq.com/xxx" }
+  }
+}
