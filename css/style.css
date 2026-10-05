@@ -1674,3 +1674,12 @@ footer a:hover { color: var(--accent); }
 @media(max-width:640px){
     .size-compare{grid-template-columns:repeat(2,1fr);padding:20px 5%;gap:10px}
 }
+
+/* ===== 文章版面寬度保險（2026-10-06）=====
+   文章模板自帶行內 .article-wrap{max-width:720px}，行內樣式優先於本檔，
+   因此以 !important 統一覆蓋，確保所有文章（含自動發布產生的新文章）皆為 880px。 */
+.article-wrap {
+    max-width: 880px !important;
+    padding-left: 32px !important;
+    padding-right: 32px !important;
+}
