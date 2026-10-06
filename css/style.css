@@ -1727,3 +1727,10 @@ footer a:hover { color: var(--accent); }
         height: 180px;
     }
 }
+
+/* ===== 手機版首屏：店面照排在文字之前（2026-10-06）=====
+   .hero-personal 在手機為 flex-direction: column，
+   用 order 把店面照提到最前面，讓訪客一打開就看到實體門店。 */
+@media (max-width: 768px) {
+    .hero-personal .hero-image { order: -1; }
+}
