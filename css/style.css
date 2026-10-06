@@ -1734,3 +1734,12 @@ footer a:hover { color: var(--accent); }
 @media (max-width: 768px) {
     .hero-personal .hero-image { order: -1; }
 }
+
+/* ===== 手機版：修正導覽列造成的橫向溢出（2026-10-06）=====
+   .nav-links 是 flex 子項但預設 min-width:auto，加上 inline 的
+   white-space:nowrap，會把整個頁面撐得比螢幕寬（手機出現橫向滑動、
+   右側內容被切）。給 min-width:0 後，導覽列改為自身橫向捲動。 */
+.nav-links {
+    min-width: 0;
+    flex: 0 1 auto;
+}
