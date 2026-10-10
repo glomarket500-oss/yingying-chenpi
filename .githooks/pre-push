@@ -1,0 +1,14 @@
+﻿#!/bin/sh
+# 陳皮網站：推送前健康檢查（2026-10-10 建立）
+# 檢查 10 類問題；只有「新增」問題會擋下推送（歷史遺留列在基線內）。
+echo "[pre-push] 執行健康檢查…"
+PY="C:/Users/a/.dsh/dsh-runtimes/dsh-primary-runtime/dependencies/python/python.exe"
+[ -x "$PY" ] || PY=python
+"$PY" .githooks/healthcheck.py
+if [ $? -ne 0 ]; then
+  echo ""
+  echo "❌ 健康檢查發現新問題，已阻止推送。"
+  echo "   修好後再推；急件可用 git push --no-verify（不建議）。"
+  exit 1
+fi
+echo "[pre-push] ✅ 通過"
