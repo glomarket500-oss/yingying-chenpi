@@ -603,4 +603,10 @@
     <priority>0.7</priority>
   </url>
   <url><loc>https://www.yiyichenpi.com/article-20261010-0639.html</loc></url>
+  <url>
+    <loc>https://www.yiyichenpi.com/article-20261010-0800.html</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

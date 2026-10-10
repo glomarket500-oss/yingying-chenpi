@@ -1,1 +1,19 @@
 .vercel
+
+# Hermes 工作檔與含金鑰腳本（2026-10-10 加入，避免誤提交）
+*.bin
+*_raw.bin
+chenpi_new.mp4
+chenpi_cover_new.jpg
+draft_clean.md
+PUBLISH_GUIDE.md
+scripts/set_cos_creds.py
+scripts/set_sf_key.py
+scripts/test_sf_api.py
+scripts/test_sf_auth.py
+scripts/update_key.py
+scripts/push_*.py
+scripts/check_github_images.py
+gen_1900_images.py
+gen_1900_v2.py
+gen_brew_images.py
