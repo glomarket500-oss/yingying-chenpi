@@ -1747,3 +1747,7 @@ footer a:hover { color: var(--accent); }
     height: auto;
     object-fit: initial;
 }
+
+/* 文章頁導覽列品牌字（避免與文章標題的 h1 重複） */
+.logo .logo-brand { font-size: 1.2rem; font-weight: 700; color: #8B4513; line-height: 1.2; }
+.logo .logo-brand + span { font-weight: 400; font-size: .75rem; color: #999; display: block; }
