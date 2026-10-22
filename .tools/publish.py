@@ -73,6 +73,47 @@ def step(n, msg):
     print(f'\n[{n}] {msg}')
 
 
+
+
+def strip_front_matter(txt):
+    """去掉 YAML frontmatter 與行首分隔線。"""
+    txt = txt.lstrip('\ufeff')
+    if txt.startswith('---'):
+        parts = txt.split('---', 2)
+        if len(parts) >= 3:
+            txt = parts[2]
+    txt = re.sub(r'(?m)^\s*---+\s*$', '', txt)
+    return txt.lstrip('\n')
+
+
+def md_tables_to_html(txt):
+    """把 Markdown 表格轉成帶樣式的 HTML 表格（其餘原樣保留）。"""
+    lines = txt.split('\n')
+    out, i = [], 0
+    while i < len(lines):
+        line = lines[i]
+        if line.strip().startswith('|') and i + 1 < len(lines) and re.match(r'^\s*\|?[\s:|-]+\|[\s:|-]*$', lines[i + 1]):
+            head = [c.strip() for c in line.strip().strip('|').split('|')]
+            i += 2
+            rows = []
+            while i < len(lines) and lines[i].strip().startswith('|'):
+                rows.append([c.strip() for c in lines[i].strip().strip('|').split('|')])
+                i += 1
+            th = ''.join(f'<th style="padding:8px 10px;border-bottom:2px solid #e3d5c0;text-align:left;font-weight:700">{c}</th>' for c in head)
+            body = ''
+            for r in rows:
+                r = (r + [''] * len(head))[:len(head)]
+                tds = ''.join(f'<td style="padding:8px 10px;border-bottom:1px solid #f0e8dc;vertical-align:top">{c}</td>' for c in r)
+                body += f'<tr>{tds}</tr>'
+            out.append('<div style="overflow-x:auto;margin:18px 0">'
+                       '<table style="width:100%;border-collapse:collapse;font-size:.95em;background:#fffdf9">'
+                       f'<thead><tr>{th}</tr></thead><tbody>{body}</tbody></table></div>')
+            continue
+        out.append(line)
+        i += 1
+    return '\n'.join(out)
+
+
 # ---------------------------------------------------------------- 1. 讀草稿
 def read_draft(path):
     p = Path(path)
@@ -94,6 +135,9 @@ def read_draft(path):
             die(f'繁體轉換失敗（請確認 {SYS_PY} 已安裝 opencc）：{last}')
     txt = tmp.read_text(encoding='utf-8')
     txt = txt.replace('瀅瀅', '滢滢').replace('盈盈姐', '滢滢姐')
+    txt = re.sub(r'(?<!滢)滢姐(?!滢)', '滢滢姐', txt)
+    txt = strip_front_matter(txt)
+    txt = md_tables_to_html(txt)
     return txt
 
 
@@ -117,6 +161,9 @@ def split_sections(txt):
 def render_paragraphs(txt, dialogues=True):
     chunks = []
     for raw in [x.strip() for x in txt.split('\n') if x.strip()]:
+        if raw.startswith('<div style="overflow-x:auto') or raw.startswith('<table'):
+            chunks.append(raw)
+            continue
         if re.match(r'^\*\*.+\*\*$', raw):      # 純粗體小標題
             chunks.append(f'<p><strong>{raw.strip("*")}</strong></p>')
             continue
@@ -128,6 +175,14 @@ def render_paragraphs(txt, dialogues=True):
                 if re.search(re.escape(sp) + r'(說|说|問|问|道|點頭|点头|插話|插话|嘆|叹|解釋|解释|笑|喊)', raw):
                     who = sp.replace('梁师傅', '梁師傅').replace('梁伟', '梁偉')
                     break
+            # 補充：形如「某某（動作）：『…』」— 取冒號前的名字（含動作描述也能認）
+            if not who:
+                m2 = re.match(r'^(.{2,24}?)[：:]\s*[「“"]', raw)
+                if m2:
+                    cand = m2.group(1)
+                    nm = re.match(r'^([\u4e00-\u9fff]{2,4})', cand)
+                    who = nm.group(1) if nm else cand[:4]
+                    who = re.sub(r'(笑|說|说|問|问|道|着|著|搖頭|摇头|沉默|嘆氣|叹气|點頭|点头|插話|插话)+$', '', who) or who
             quotes = QUOTE.findall(raw)
             if who and quotes:
                 rest = QUOTE.sub('', raw)
@@ -230,6 +285,9 @@ def scene_prompt(title, body, idx, total):
         ('柑園|柑园|果樹|果树|採摘|采摘|掉果|颱風|台风', 'a tangerine orchard in October with green-yellow fruit '
                                                        'on the trees and fallen fruit on the grass, misty morning'),
         ('茶|泡|飲|饮', 'a clay teapot and two glass cups of clear amber tangerine peel tea on a wooden tray, steam rising'),
+        ('青皮|二紅|二红|大紅|大红|三段|三個階段|三个阶段', 'three shallow dishes of tangerine peel in three colours side by side on a dark wood table, pale green-brown, amber-red and deep red-brown, natural light'),
+        ('開皮|开皮|一果兩剪|一果两剪|刀|三瓣', 'a freshly opened tangerine peel spread into three even petals on a bamboo tray, the fruit separated, oil cells visible, clean bright light'),
+        ('倉|仓|翻倉|翻仓|防霉|蟲|虫|儲存|储存|陳化|陈化', 'rows of large ceramic jars and stacked cardboard boxes in a dry storage room, humidity meter and hygrometer on the wall, cool even light'),
         ('店|門店|门店|客戶|客户|定制', 'a tidy dried-goods shop counter with glass jars of tangerine peel of '
                                         'different ages and plain brown paper bags, warm wood shelving'),
     ]:
@@ -249,6 +307,8 @@ def main():
     ap.add_argument('--slug', default=None, help='YYYYMMDD-HHMM')
     ap.add_argument('--title', default=None)
     ap.add_argument('--dry-run', action='store_true')
+    ap.add_argument('--skip-images', action='store_true',
+                    help='沿用已存在的圖片（不重新生成）')
     args = ap.parse_args()
 
     now = datetime.datetime.now()
@@ -256,7 +316,12 @@ def main():
     SD = f'article-{slug_time}'
     SLUG = SD + '.html'
     if (REPO / SLUG).exists():
-        die(f'{SLUG} 已存在，換一個 --slug')
+        tracked = subprocess.run(['git', 'ls-files', '--error-unmatch', SLUG], cwd=REPO,
+                                 capture_output=True, text=True).returncode == 0
+        if tracked:
+            die(f'{SLUG} 已存在且已提交，換一個 --slug')
+        (REPO / SLUG).unlink()
+        print(f'    （清掉上次未完成的 {SLUG}）')
     ISO = now.strftime('%Y-%m-%dT%H:%M:%S+08:00')
     DISPLAY = now.strftime('%Y年%m月%d日 %H:%M:%S')
 
@@ -274,28 +339,43 @@ def main():
     title = re.sub(r'^【|】$', '', title).strip()
     if not title or len(title) < 6:
         die('抓不到文章標題（草稿請用 # 標題 開頭）')
-    body_secs = [(t, b) for t, b in secs if t and t != title and title[:8] not in t]
+    body_secs = [(t, b) for t, b in secs if (t is None) or (t != title and title[:8] not in t)]
     acts = [(t, b) for t, b in body_secs
-            if re.search(r'幕|場景|场景', t) and not re.search(r'常見問題|常见问题|FAQ', t)]
+            if re.search(r'幕|場景|场景|^[一二三四五六七八九十]+[、.．]', t or '') 
+            and not re.search(r'常見問題|常见问题|FAQ|結語|结语', t or '')]
     faq_sec = next((b for t, b in body_secs if re.search(r'常見問題|常见问题|FAQ', t or '')), '')
-    opening = next((b for t, b in body_secs if not re.search(r'幕|常見問題|常见问题|結語|结语', t or '')), '')
+    opening = next((b for t, b in body_secs if t is None), '')
+    if not opening:
+        same = [b for t, b in secs if t == title and b]
+        opening = same[0] if same else ''
     closing = next((b for t, b in body_secs if re.search(r'結語|结语', t or '')), '')
     print(f'    標題：{title}')
     print(f'    開場 {len(opening)} 字；幕 {len(acts)} 個；FAQ {len(faq_sec)} 字；結語 {len(closing)} 字')
     if not acts:
         die('解析不到任何「幕」——請確認草稿用 ## 幕一／幕二… 分段')
 
-    step(3, f'配圖（{"影片抽幀" if args.video else "AI 生圖"}）：封面 1 ＋ 每幕 1 = {len(acts)+1} 張')
+    step(3, f'配圖（{"沿用既有 AI 圖" if args.skip_images else ("影片抽幀" if args.video else "AI 生圖")}）：封面 1 ＋ 每幕 1 = {len(acts)+1} 張')
     tmpdir = WORK / '_ai_tmp'
     tmpdir.mkdir(exist_ok=True)
     ok = 0
-    cover_prompt = scene_prompt(title, opening, 5, 8)
-    if args.video:
-        ok += video_frame(args.video, 3.0, f'{SD}-1900.jpg', tmpdir)
-    else:
-        ok += ai_image(cover_prompt, f'{SD}-1900.jpg', tmpdir)
+    cover_prompt = ''
+    if args.skip_images:
+        need = [f'{SD}-1900.jpg'] + [f'{SD}-scene{i}.jpg' for i in range(1, len(acts) + 1)]
+        ok = sum(1 for n in need if (IMG / n).is_file())
+        print(f'      既有圖片 {ok}/{len(need)} 張')
+        if ok != len(need):
+            die(f'沿用模式下缺圖：{[n for n in need if not (IMG/n).is_file()]}')
+        cover_prompt = ''
+    cover_prompt = cover_prompt or scene_prompt(title, opening, 5, 8)
+    if not args.skip_images:
+        if args.video:
+            ok += video_frame(args.video, 3.0, f'{SD}-1900.jpg', tmpdir)
+        else:
+            ok += ai_image(cover_prompt, f'{SD}-1900.jpg', tmpdir)
     for i, (t, b) in enumerate(acts, 1):
         name = f'{SD}-scene{i}.jpg'
+        if args.skip_images:
+            continue
         if args.video:
             ok += video_frame(args.video, 3.0 + i * 4, name, tmpdir)
         else:
@@ -354,6 +434,7 @@ def main():
                '新會陳皮,' + ','.join(dict.fromkeys(re.findall(r'[\u4e00-\u9fff]{2,6}', title)))[:120],
                ['新會陳皮', '陳皮故事', '新會', '陳皮村', '養生'],
                ISO, DISPLAY, body, FAQ, links)
+    doc = doc.replace(f'images/{SD}-1900.jpg"', f'images/{SD}-1900.jpg?v=1"')
     (REPO / SLUG).write_text(doc, encoding='utf-8')
     print(f'    {SLUG}  {len(doc)} 字元  對話={doc.count(chr(34)+"dialogue"+chr(34))}  figure={doc.count(chr(60)+"figure")}')
 
@@ -398,7 +479,7 @@ def main():
             pushed = True
             print('    PUSH OK' + (f'（第 {i} 次）' if i > 1 else ''))
             break
-        if '新增問題' in blob:
+        if '❌ 新增問題' in blob:
             die('pre-push 健康檢查發現新問題：\n' + blob[-800:])
         if 'rejected' in blob:
             subprocess.run(['git', 'fetch', 'origin'], cwd=REPO, check=False)

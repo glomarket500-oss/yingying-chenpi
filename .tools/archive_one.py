@@ -75,7 +75,8 @@ def main(slug):
           f'keywords: "{kw}"', f'description: "{desc}"', 'author: "滢滢"',
           'category: "陈皮故事"', 'status: 已发布', 'website: yiyichenpi',
           f'url: "{BASE}/{slug}"', '---', '', f'# {title}', '']
-    out = DONE / f'{date}-{hhmm}-{re.sub(r"[《》/\\\\:*?"<>|]", "", title)[:40]}.md'
+    safe = re.sub(r'[《》/\\:*?"<>|]', '', title)[:40]
+    out = DONE / f'{date}-{hhmm}-{safe}.md'
     out.write_text('\n'.join(fm) + ('\n'.join(opening) + '\n\n' if opening else '') + '\n'.join(md) + '\n',
                    encoding='utf-8')
     tt = out.read_text(encoding='utf-8')
